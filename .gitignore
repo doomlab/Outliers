@@ -1,3 +1,7 @@
+# ignore PDFs 
+articles/
+literature/
+
 # History files
 .Rhistory
 .Rapp.history
