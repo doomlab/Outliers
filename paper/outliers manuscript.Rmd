@@ -80,21 +80,21 @@ Although the APA and many researchers (Orr, Sackett, & Dubois, 1991, …) have i
 # Methods
 We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
 
-*Fields*
+## Fields
 A list of psychological field areas was created to begin the search for appropriate journals to include.  The authors brainstormed the list of topics (shown in Table XX) by first listing major research areas in psychology (i.e. cognitive, clinical, social).  Second, a list of common courses offered at large universities was consulted to add to the list of fields.  Lastly, the American Psychological Association's list of divisions was examined for any potential missed fields. The topic list was created to capture large fields of psychology with small overlaps (i.e. cognition and neuropsychology) while avoiding specific subfields of topics (i.e. cognition, perception, and memory).
 
-*Journals*
+##Journals
 Once these topic areas were decided, researchers used various search sources (Google, EBSCO host databases) to find journals that were dedicated to each broad topic. Journals were included if they appeared to publish a wide range of articles within the selected fields. A list of journals, publishers, and impact factors (as noted by the journal website) was created for each field.  Two journals from each field were selected based on the following criteria: 1) high impact factors, 2) impact factors over one a minimum, 3) a mix of publishers if possible, and 4) availability due to university resources.  These journals are shown in Table XX.
 
-*Articles*
+##Articles
 Fifty articles from each journal were examined for data analysis. Data collection of articles started at the last volume publication from 2012 and progressed backwards until fifty articles had been found. We excluded online first publications and started in 2012 to ensure time for errata and retraction of articles. Articles were including if they met the following criteria: 1) included data analyses, 2) included multiple participants or data-points, and 3) analyses were based on human subjects or stimuli. Therefore, we excluded theory articles, animal populations, and single subject designs. Based on article review, three fields were excluded.  Applied behavior analysis articles predominantly included single-subject designs, evolutionary psychology articles were primarily theory articles, and statistics related journal articles were based on user created data with specific set characteristics.  Since none of these themes fit into our analysis of understanding data screening with human subject samples, we excluded those two fields from analyses.
 
-*Data Processing*
+##Data Processing
 Each article was then reviewed for key components of data analyses.  Each experiment in an article was treated separately. For each experiment, the type of analysis, number of participants/stimuli, and if they indicated outliers were coded.  Types of analyses were broadly coded into basic statistics (descriptive statistics, z-scores, t-tests, and correlations), ANOVAs, regressions, chi-squares, nonparametric statistics, modeling, and Bayesian/other analyses. First, we coded if outliers were mentioned at all in article.  If so, we coded outliers into four types: 1) people, 2) data, 3) both, and 4) none found.  We found that a separate coding for data was important for analyses with response time studies where individual participants were not omitted but rather specific data trials were eliminated.  Then, the author decision on what to do with the outliers was coded into whether they removed participants/stimuli or left these outliers in the analysis, as well as if they tested the analyses with and without these outliers for determination of their effect on the study.  If they removed outliers, a new sample size was recorded. Lastly, we coded the reasoning for outlier detection as either participant based (i.e. 3-month old infants were too fussy to be included), experimenter based (i.e. the experimental session was interrupted), statistical based (i.e. three SD from the mean), and no listed reason.
 
 Table XX
-*List of Fields, Journals, and Impact Factors 2012*
-
+##List of Fields, Journals, and Impact Factors 2012
+```{r table}
 tableprint = matrix(NA, nrow = 31, ncol = 4)
 
 tableprint[1, ] = c("Applied Behavior Analysis", "Journal of Experimental Analysis of Behavior", "Wiley", 1.39)
@@ -162,6 +162,7 @@ tableprint[31, ] = c("Overview", "Psychological Assessment", "APA", 2.99)
 kable(tableprint, 
       digits = 3,
       col.names = c("Field", "Journal", "Publisher", "Impact Factor"))
+```
 *Note.* Impact factors as of tme of data collection (Spring 2013).
 
 ## Participants
