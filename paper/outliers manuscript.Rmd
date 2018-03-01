@@ -1,0 +1,192 @@
+---
+title             : "Outrageous observations: The redheaded stepchild of data analysis"
+shorttitle        : "Title"
+
+author: 
+  - name          : "Erin M. Buchanan"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "Postal address"
+    email         : "my@email.com"
+  - name          : "Ernst-August Doelle"
+    affiliation   : "1,2"
+
+affiliation:
+  - id            : "1"
+    institution   : "Wilhelm-Wundt-University"
+  - id            : "2"
+    institution   : "Konstanz Business School"
+
+author_note: |
+  Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
+
+  Enter author note here.
+
+abstract: |
+  Enter abstract here. Each new line herein must be indented, like this line.
+  
+keywords          : "keywords"
+wordcount         : "X"
+
+bibliography      : ["r-references.bib"]
+
+figsintext        : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : yes
+
+lang              : "english"
+class             : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r load_packages, include = FALSE}
+library("papaja")
+```
+
+```{r analysis_preferences}
+# Seed for random number generation
+set.seed(42)
+```
+
+*What are outliers.*
+Throughout psychology's assessments of experimental procedures, participant observations have intrigued, inspired, and confused experimenters world wide. Some of these observations exist in such extremes that we begin to think of them as outliers, influential observations, or fringliers (@Osborne2004; @Wainer1976).  Since they were first commented on in 1777 by Bernoulli, outliers have been defined as many things.  @Munoz-Garcia1990 have synthesized their own definition that we feel is concurrent with our work: 
+  "An outlier is an observation which being atypical and/or erroneous deviates        decidedly from the general behavior of experimental data with respect to the        criteria which is to be 
+  analyzed on it." (pg 217)
+
+Outliers can be observed in many forms, which should be outlined to ensure proper understanding and handling of such observations. Researchers have separated outliers into categories in many different ways over the years (@Beckman1983a; @Hodge2004; @Munoz-Garcia1990; @ORR1991; @Osborne2004).  Many of the categories used to describe outliers have noticeable overlap. For instance, @Munoz-Garcia1990 stated that outliers come about by errors in the way we gather data (inappropriate techniques, or experimenter error), errors in preparation (improper hypothesis, planning, or methods), or natural variability. Shortly after, @ORR1991 described outliers as consisting of people being included in an experiment who aren't part of the population, legitimate datapoints that are interesting because they do not fit the expected scheme, extreme datapoints on error components, human error in observation/coding, and errors in data preparation. Similarly, @Hodge2004 state that outliers arise, "due to mechanical faults, changes in system behaviour, fraudulent behaviour, human error, instrument error or simply through natural deviations in populations." @Osborne2004 have also specified that outliers follow from data errors, intentional or motivated mis-reporting, sampling error, standardization failure, bad assumptions about distributions, or legitimate data points. Taken together, we have delineated the following 4 types of outliers for the purpose of this paper. 
+  1.	Data entry error, experimenter error in processing, coding, or preparing data,       as well as motivated misreporting.
+  2.	Participants who do not represent the intended population. For example, a           participant who uses a DVORAK or ergonomic keyboard will not be appropriate in       a study investigating the typing speeds of typical QWERTY keyboard users.
+  3.	Valid data points which bring to light interesting phenomena the study was not       aimed at capturing. For instance, the 1854 cholera epidemic in London was           found by Dr. John Snow to stem from a specific water well on Broad Street. While the majority of individuals infected lived very close to the contaminated well, Dr. Snow also found an instance of cholera far away from the well. When he rode out to investigate this outlying case, he found that the  woman in question had someone ride to that specific well to draw water for her because she liked the taste (Vinten-Johansen, Brody, Paneth, Rachman, & Rip, 2003).
+  4.	Natural deviations in the population.
+
+*Effects of outliers*
+These outliers can have serious effects on data, which can lead to imprecise data analysis (@Osborne2004), confusing results (@Stevens1984; @Yuan2001), and inappropriate conclusions (@Coin2008; @Stevens1984). By keeping outliers in a dataset, analyses are more likely to have increased error variance (depending on sample size, @ORR1991) and biased estimates (@Osborne2004) as well as reduced effect size and power (@ORR1991; @Osborne2004) which can alter the results of the analysis and lead to falsely supporting (Type I error) or denying a claim (Type II error). Additionally, incorrect estimates of effect lead to misleading meta-analyses or sample size estimates for study planning. Beyond these effects on analyses and conclusions these outliers can be inspirational to researchers and to their research models as they can encourage the diagnosis, change, and evolution of a research model (@Beckman1983). All together, these issues caused by outliers can lead to furthering unwarranted avenues of research, ignoring important information, and creating erroneous theories, all of which serve to weaken the sciences.  
+
+*Determination of outliers*
+
+*Report of outliers*
+For these reasons, we aim to stress the importance of properly identifying outliers, their potential cause(s), and ways to handle the extreme responses.  
+
+Further, as outlined by the APA (American Psychological Association, 2010), one should acknowledge these steps not only at the time of analysis, but also at the time of publication. As @Kruskal1960a stated, no matter how we treat outlying observations, 
+  "It is very important to say something about such observations in any but the      most summary report. At least how many observations were excluded from the formal   analysis, and why, should be given." (pg. 1)
+
+However, outlier report rates in studies have indicated that researchers either fail to acknowledge outliers or fail to report their acknowledgment of outliers (@Huffcutt1995; @ORR1991). @Huffcutt1995 looked at Organizational Behavior/Human Resource Management meta-analytic literature since 1987. As they were dealing with meta-analyses, the outliers they were identifying consisted of study coefficients, or correlations, not individual data points, as outliers are usually thought of. In their study they found only six of fifty meta-analyses used any outlier treatment for study coefficients. Also, in most of these, highly subjective means were used to determine which study coefficients were outliers. Similarly, @ORR1991 inspected 100 Industrial/Organizational Psychology personnel studies and found no mention of outliers.
+
+Although the APA and many researchers (@ORR1991, …) have instructed researchers to outline their data cleaning, there has been a dearth in recent literature investigating if these instructions are actually being followed. Therefore, the authors felt that the current study examined the results in 27 journals and 672 articles across 13 psychological disciplines to assess if outliers are being reported. Given previous report rates (@Huffcutt1995; @ORR1991) we expect to find little to no reporting of outliers in these articles. Further, we will examine how outlier reports relate to field, journal, analysis, and sample size. We will also investigate the methods and rational of outlier detection and removal.
+
+
+# Methods
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
+
+*Fields*
+A list of psychological field areas was created to begin the search for appropriate journals to include.  The authors brainstormed the list of topics (shown in Table XX) by first listing major research areas in psychology (i.e. cognitive, clinical, social).  Second, a list of common courses offered at large universities was consulted to add to the list of fields.  Lastly, the American Psychological Association's list of divisions was examined for any potential missed fields. The topic list was created to capture large fields of psychology with small overlaps (i.e. cognition and neuropsychology) while avoiding specific subfields of topics (i.e. cognition, perception, and memory).
+
+*Journals*
+Once these topic areas were decided, researchers used various search sources (Google, EBSCO host databases) to find journals that were dedicated to each broad topic. Journals were included if they appeared to publish a wide range of articles within the selected fields. A list of journals, publishers, and impact factors (as noted by the journal website) was created for each field.  Two journals from each field were selected based on the following criteria: 1) high impact factors, 2) impact factors over one a minimum, 3) a mix of publishers if possible, and 4) availability due to university resources.  These journals are shown in Table XX.
+
+*Articles*
+Fifty articles from each journal were examined for data analysis. Data collection of articles started at the last volume publication from 2012 and progressed backwards until fifty articles had been found. We excluded online first publications and started in 2012 to ensure time for errata and retraction of articles. Articles were including if they met the following criteria: 1) included data analyses, 2) included multiple participants or data-points, and 3) analyses were based on human subjects or stimuli. Therefore, we excluded theory articles, animal populations, and single subject designs. Based on article review, three fields were excluded.  Applied behavior analysis articles predominantly included single-subject designs, evolutionary psychology articles were primarily theory articles, and statistics related journal articles were based on user created data with specific set characteristics.  Since none of these themes fit into our analysis of understanding data screening with human subject samples, we excluded those two fields from analyses.
+
+*Data Processing*
+Each article was then reviewed for key components of data analyses.  Each experiment in an article was treated separately. For each experiment, the type of analysis, number of participants/stimuli, and if they indicated outliers were coded.  Types of analyses were broadly coded into basic statistics (descriptive statistics, z-scores, t-tests, and correlations), ANOVAs, regressions, chi-squares, nonparametric statistics, modeling, and Bayesian/other analyses. First, we coded if outliers were mentioned at all in article.  If so, we coded outliers into four types: 1) people, 2) data, 3) both, and 4) none found.  We found that a separate coding for data was important for analyses with response time studies where individual participants were not omitted but rather specific data trials were eliminated.  Then, the author decision on what to do with the outliers was coded into whether they removed participants/stimuli or left these outliers in the analysis, as well as if they tested the analyses with and without these outliers for determination of their effect on the study.  If they removed outliers, a new sample size was recorded. Lastly, we coded the reasoning for outlier detection as either participant based (i.e. 3-month old infants were too fussy to be included), experimenter based (i.e. the experimental session was interrupted), statistical based (i.e. three SD from the mean), and no listed reason.
+
+Table XX
+*List of Fields, Journals, and Impact Factors 2012*
+
+tableprint = matrix(NA, nrow = 31, ncol = 4)
+
+tableprint[1, ] = c("Applied Behavior Analysis", "Journal of Experimental Analysis of Behavior", "Wiley", 1.39)
+
+tableprint[2, ] = c("Applied Behavior Analysis", "Journal of Applied Behavior Analysis", "Wiley", 1.19)
+
+tableprint[3, ] = c("Clinical", "Journal of Consulting and Clinical Psychology", "APA", 4.85)
+
+tableprint[4, ] = c("Clinical", "Journal of Clinical Psychology", "Wiley", 2.12)
+
+tableprint[5, ] = c("Cognitive", "Cognitive Psychology", "Elsevier", 4.27)
+
+tableprint[6, ] = c("Cognitive", "Journal of Experimental Psychology: Learning, Memory, and Cognition", "APA", 2.85)
+
+tableprint[7, ] = c("Counseling", "Journal of Counseling", "APA", 3.23)
+
+tableprint[8, ] = c("Counseling", "The Counseling Psychologist", "Sage", 1.82)
+
+tableprint[9, ] = c("Developmental", "Journal of Experimental Child Psychology", "Elsevier", 3.23)
+
+tableprint[10, ] = c("Developmental", "Journal of Youth and Adolescence", "Springer", 2.72)
+
+tableprint[11, ] = c("Educational", "Journal of Educational Psychology", "APA", 3.08)
+
+tableprint[12, ] = c("Educational", "Contemporary Educational Psychology", "Elsevier", 2.20)
+
+tableprint[13, ] = c("Environmental", "Journal of Environmental Psychology", "Elsevier", 2.93)
+
+tableprint[14, ] = c("Environmental", "Environment and Behavior", "Sage", 1.27)
+
+tableprint[15, ] = c("Evolutionary", "Evolution and Human Behavior", "Elsevier", 3.11)
+
+tableprint[16, ] = c("Evolutionary", "Evolutionary Psychology", "Open Access", 1.06)
+
+tableprint[17, ] = c("Forensics", "Psychology, Public Policy, and Law", "APA", 1.93)
+
+tableprint[18, ] = c("Forensics", "Law and Human Bevhavior", "Spring", 2.16)
+
+tableprint[19, ] = c("Industrial Organization", "Organizational Behavior and Human Decision Process", "Elsevier", 3.94)
+
+tableprint[20, ] = c("Industrial Organization", "Personnel Psychology", "Wiley", 2.93)
+
+tableprint[21, ] = c("Neurological/Physiological", "Neuropsychology", "APA", 3.82)
+
+tableprint[22, ] = c("Neurological/Physiological", "Cognitive, Affective, and Behavioral Neuroscience", "Springer", 3.57)
+
+tableprint[23, ] = c("Social", "Journal of Personality and Social Psychology", "APA", 5.08)
+
+tableprint[24, ] = c("Social", "Journal of Experimental Social Psychology", "Elsevier", 2.31)
+
+tableprint[25, ] = c("Sports", "Journal of Sport & Exercise Psychology", "Human Kinetics", 2.66)
+
+tableprint[26, ] = c("Sports", "Sociology of Sport Journal", "Human Kinetics", 1.00)
+
+tableprint[27, ] = c("Statistics", "Special Section of the Psychological Bulletin", "APA", 14.46)
+
+tableprint[28, ] = c("Statistics", "Structural Equation Modeling", "Taylor & Francis", 4.71)
+
+tableprint[29, ] = c("Overview", "Psychonomic Bulletin & Review", "Springer", 2.25)
+
+tableprint[30, ] = c("Overview", "Psychonomic Science", "Sage", 4.43)
+
+tableprint[31, ] = c("Overview", "Psychological Assessment", "APA", 2.99)
+
+kable(tableprint, 
+      digits = 3,
+      col.names = c("Field", "Journal", "Publisher", "Impact Factor"))
+*Note.* Impact factors as of tme of data collection (Spring 2013).
+
+## Participants
+
+## Material
+
+## Procedure
+
+## Data analysis
+We used `r cite_r("r-references.bib")` for all our analyses.
+
+
+# Results
+
+# Discussion
+
+
+\newpage
+
+# References
+```{r create_r-references}
+r_refs(file = "r-references.bib")
+```
+
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+
