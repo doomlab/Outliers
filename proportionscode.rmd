@@ -37,4 +37,20 @@ master$people.or.data.points = factor(master$people.or.data.points,
 
 table(master$people.or.data.points)
 ```
+```{r}
+master$Basics
+table(master$Basics)
+master$Basics = factor(master$Basics,
+                      levels = c("0", "1"),
+                      labels = c("No", "Yes"))
+table(master$Basics)
+
+master$BayesOther
+table(master$BayesOther)
+master$BayesOther = factor(master$BayesOther,
+                      levels = c("0", "1"),
+                      labels = c("No", "Yes"))
+table(master$BayesOther)
+```
+
 
