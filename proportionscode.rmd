@@ -11,91 +11,153 @@ master = read.csv("outliers complete.csv")
 ```
 
 ```{r proportions}
-master$mention.outliers
+
 table(master$mention.outliers)
 master$mention.outliers = factor(master$mention.outliers,
                       levels = c("no", "yes"),
                       labels = c("No", "Yes"))
-table(master$mention.outliers, master$time.pulled, master$Type)
 
-#no
-1688/2230 
-#0.7569507
+##create a data frame of the percentages
+outsummary = table(master$mention.outliers, master$time.pulled, master$Type)
+outsummary = as.data.frame(outsummary)
+colnames(outsummary) = c("mention.outliers", "time.pulled", "Type", "Freq")
 
-#yes
-541/2230
-#0.2426009
-```
+##here we want to calculate if they mention outliers by year and type
+##want to focus on the yeses 
+library(dplyr)
 
-```{r reason}
-master$reason.code
+outpercent = group_by(outsummary, time.pulled, Type) %>%
+  mutate(percent = Freq/sum(Freq)*100)
 
-##for 2012 yes what are the reasons
-##erin add grep code here 
-
-##for 2017 what are the reasons
-
-
-
-```
-
-```{r Peopledata}
-master$people.or.data.points
-master$people.or.data.points = factor(master$people.or.data.points,
-                      levels = c("", "both", "data points", "data points ", "none found", "people", "people "),
-                      labels = c("None", "Both", "Data Points", "Data Points ", "None Found", "People", "People "))
-
-table(master$people.or.data.points)
-
-
-```
-
-```{r BasicsBayes}
-
-##if they are doing basic statistics so equals 1 how many times do they mention outliers yes/no by year 
-master$Basics
-table(master$Basics, master$time.pulled, master$mention.outliers)
-
-
+##in the outpercent table, you see the percent based on year and Type, so each yes/no combination adds up to one hundred. We are only interested in the percent of yeses.
 ```
 
 ```{r journalgraph}
 library(ggplot2)
 
-theme = theme(panel.grid.major = element_blank(), 
+cleanup = theme(panel.grid.major = element_blank(), 
               panel.grid.minor = element_blank(), 
               panel.background = element_blank(), 
               axis.line = element_line(colour = "black"), 
               legend.key = element_rect(fill = "white"),
               text = element_text(size = 15))
- 
-bargraph = ggplot(master, aes(Type, , fill = time.pulled))
-bargraph +
-  stat_summary(fun.x = mean, 
-               geom = "bar", 
-               position="dodge") + 
-  stat_summary(fun.data = mean_cl_normal, 
-               geom = "errorbar", 
-               position = position_dodge(width = 0.90), 
-               width = 0.2) + 
-  theme +
-  xlab("Journal") +
-  ylab("Proportion") + 
-  coord_cartesian(ylim = c(0,1))+
-  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+
+graphdata = subset(outpercent, mention.outliers == "Yes")
+
+#calculate CIs to add to graph
+graphdata$sample = as.data.frame(table(master$time.pulled, master$Type))$Freq
+graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
+
+dotplot = ggplot(graphdata, aes(Type, percent, color = time.pulled))
+dotplot +
+  geom_pointrange(aes(ymin=percent-SE, ymax=percent+SE))+ 
+  cleanup +
+  xlab("Field of Journal") +
+  ylab("Percent of Outlier Mentions") + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+  scale_color_manual(name = "Year", 
+                     values = c("maroon", "gray")) + 
+  coord_cartesian(ylim = c(0,75))
 ```
 
 ```{r journalprop}
-table(master$time.pulled)
-
-#2012
-1085/2231
-
-#2017
-1146/2231
-
 library(MOTE)
-#overall
-d.prop(p1 = 0.486329, p2 = 0.513671, n1 = 1085, n2 = 1146, a = .05)
+graphdata$prop = graphdata$percent/100
+types = levels(graphdata$Type)
+for (i in 1:length(types))
+{
+  saved = d.prop(graphdata$prop[graphdata$Type==types[i]][1],
+         graphdata$prop[graphdata$Type==types[i]][2],
+         graphdata$sample[ graphdata$Type==types[i]][1], 
+         graphdata$sample[ graphdata$Type==types[i]][2],
+         a = .05) 
+  print(c(types[i],saved$d))
+}
+
 ```
+
+
+```{r reason}
+master$reason.code
+table(master$reason.code)
+reasons = subset(master, mention.outliers == "Yes")
+
+##create reason columns
+reasons$part = 0
+reasons$part[ grep("part", reasons$reason.code)] = 1
+reasons$stat = 0
+reasons$stat[ grep("stat", reasons$reason.code)] = 1
+reasons$exp = 0
+reasons$exp[ grep("exp", reasons$reason.code)] = 1
+
+##create a data frame of the percentages
+reasonssummary = table(reasons$part, reasons$time.pulled, reasons$Type)
+reasonssummary = as.data.frame(reasonssummary)
+colnames(reasonssummary) = c("yesno", "time.pulled", "Type", "part.freq")
+reasonssummary$stat.freq = as.data.frame(table(reasons$stat, reasons$time.pulled, reasons$Type))$Freq
+reasonssummary$exp.freq = as.data.frame(table(reasons$exp, reasons$time.pulled, reasons$Type))$Freq
+
+reasonspercent = group_by(reasonssummary, time.pulled, Type) %>%
+  mutate(part.percent = part.freq/sum(part.freq)*100) %>%
+  mutate(stat.percent = stat.freq/sum(stat.freq)*100) %>%
+  mutate(exp.percent = exp.freq/sum(exp.freq)*100) 
+
+#only include the percent of 1s
+
+```
+
+```{r Peopledata}
+
+peep_data = subset(master, mention.outliers == "Yes")
+table(peep_data$people.or.data.points)
+
+##create a data frame of the percentages
+peep_datasummary = table(peep_data$people.or.data.points, peep_data$time.pulled, peep_data$Type)
+peep_datasummary = as.data.frame(peep_datasummary)
+colnames(peep_datasummary) = c("code", "time.pulled", "Type", "Freq")
+
+peep_datapercent = group_by(peep_datasummary, time.pulled, Type) %>%
+  mutate(percent = Freq/sum(Freq)*100)
+```
+
+```{r BasicsBayes}
+
+##if they are doing basic statistics so equals 1 how many times do they mention outliers yes/no by year 
+library(reshape)
+analyses = master[ , c(3, 4, 10, 20:26)]
+longanalyses = melt(analyses,
+                    id = c("time.pulled", "Type", "mention.outliers"))
+colnames(longanalyses)[4:5] = c("analysis.type", "used")
+
+longanalyses = subset(longanalyses, used == 1)
+
+##create a data frame of the percentages
+analysessummary = table(longanalyses$mention.outliers, longanalyses$time.pulled, longanalyses$analysis.type)
+analysessummary = as.data.frame(analysessummary)
+colnames(analysessummary) = c("mention.outliers", "time.pulled",  "analysis.type", "Freq")
+
+analysespercent = group_by(analysessummary, time.pulled, analysis.type) %>%
+  mutate(percent = Freq/sum(Freq)*100)
+
+graphdata = subset(analysespercent, mention.outliers == "Yes")
+
+#calculate CIs to add to graph
+graphdata$sample = as.data.frame(table(longanalyses$time.pulled, longanalyses$analysis.type))$Freq
+graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
+
+dotplot2 = ggplot(graphdata, aes(analysis.type, percent, color = time.pulled))
+dotplot2 +
+  geom_pointrange(aes(ymin=percent-SE, ymax=percent+SE))+ 
+  cleanup +
+  xlab("Type of Analysis") +
+  ylab("Percent of Outlier Mentions") + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+  scale_color_manual(name = "Year", 
+                     values = c("maroon", "gray")) + 
+  coord_cartesian(ylim = c(0,50))
+
+```
+
+
+
 
