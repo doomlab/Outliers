@@ -12,11 +12,11 @@ master = read.csv("outliers complete.csv")
 
 ```{r proportions}
 master$mention.outliers
-
+table(master$mention.outliers)
 master$mention.outliers = factor(master$mention.outliers,
                       levels = c("no", "yes"),
                       labels = c("No", "Yes"))
-table(master$mention.outliers)
+table(master$mention.outliers, master$time.pulled, master$Type)
 
 #no
 1688/2230 
@@ -30,46 +30,12 @@ table(master$mention.outliers)
 ```{r reason}
 master$reason.code
 
-master$reason.code = factor(master$reason.code,
-                      levels = c("", "did not follow instructions", "experimenter error", "experimenter error, statistical reasons", "no reason", "participant error", "participant error, experimenter error", "participant error, statisical reasons", "participant error, statistical reason", "participant error, statistical reasons", "statistical reason", "statistical reasons"),
-                      labels = c("None", "Did Not Follow Instructions", "Experimenter Error", "Experimenter Error, Statistical Reasons", "No Reason", "Participant Error", "Participant Error, Experimenter Error", "Participant Error, Statisical Reasons", "Participant Error, Statistical Reason", "Participant Error, Statistical Reasons", "Statistical Reason", "Statistical Reasons"))
+##for 2012 yes what are the reasons
+##erin add grep code here 
 
-table(master$reason.code)
-#None
-1719/2231
+##for 2017 what are the reasons
 
-#did not follow instructions
-1/2231
 
-#experimenter error(ee)
-14/2231
-
-#ee, statistical reason(sr)
-1/2231
-
-#noreason
-5/2231
-
-#participant error (pe)
-317/2231
-
-#pe,ee
-15/2231
-
-#pe,sr
-6/2231
-
-#pe,sr
-1/2231
-
-#pe,sr
-26/2231
-
-#sr
-59/2231
-
-#sr
-67/2231
 
 ```
 
@@ -81,49 +47,15 @@ master$people.or.data.points = factor(master$people.or.data.points,
 
 table(master$people.or.data.points)
 
-#none
-1699/2231
 
-#both
-29/2231
-
-#data points
-115/2231
-
-#data points
-1/2231
-
-#none found 
-14/2231
-
-#people
-370/2231
-
-#people
-3/2231
 ```
-```{r BasicsBayes}
-master$Basics
-table(master$Basics)
-#master$Basics = factor(master$Basics,
-                     # levels = c("0", "1"),
-                      #labels = c("No", "Yes"))
-#table(master$Basics)
-#0
-1317/2231
-#1
-914/2231
 
-master$BayesOther
-table(master$BayesOther)
-#master$BayesOther = factor(master$BayesOther,
-                      #levels = c("0", "1"),
-                      #labels = c("No", "Yes"))
-#table(master$BayesOther)
-#0
-2035/2231
-#1
-196/2231
+```{r BasicsBayes}
+
+##if they are doing basic statistics so equals 1 how many times do they mention outliers yes/no by year 
+master$Basics
+table(master$Basics, master$time.pulled, master$mention.outliers)
+
 
 ```
 
@@ -152,6 +84,7 @@ bargraph +
   coord_cartesian(ylim = c(0,1))+
   theme(axis.text.x = element_text(angle = 60, hjust = 1))
 ```
+
 ```{r journalprop}
 table(master$time.pulled)
 
