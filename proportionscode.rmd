@@ -1,0 +1,40 @@
+---
+title: "Proportions"
+author: "Me"
+date: "3/22/2018"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+master = read.csv("outliers complete.csv")
+```
+
+```{r proportions}
+master$mention.outliers
+
+master$mention.outliers = factor(master$mention.outliers,
+                      levels = c("no", "yes"),
+                      labels = c("No", "Yes"))
+table(master$mention.outliers)
+```
+
+```{r reason}
+master$reason.code
+
+master$reason.code = factor(master$reason.code,
+                      levels = c("", "did not follow instructions", "experimenter error", "experimenter error, statistical reasons", "no reason", "participant error", "participant error, experimenter error", "participant error, statisical reasons", "participant error, statistical reason", "participant error, statistical reasons", "statistical reason", "statistical reasons"),
+                      labels = c("None", "Did Not Follow Instructions", "Experimenter Error", "Experimenter Error, Statistical Reasons", "No Reason", "Participant Error", "Participant Error, Experimenter Error", "Participant Error, Statisical Reasons", "Participant Error, Statistical Reason", "Participant Error, Statistical Reasons", "Statistical Reason", "Statistical Reasons"))
+
+table(master$reason.code)
+```
+
+```{r}
+master$people.or.data.points
+master$people.or.data.points = factor(master$people.or.data.points,
+                      levels = c("", "both", "data points", "data points ", "none found", "people", "people "),
+                      labels = c("None", "Both", "Data Points", "Data Points ", "None Found", "People", "People "))
+
+table(master$people.or.data.points)
+```
+
