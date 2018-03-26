@@ -91,7 +91,7 @@ reasons$part[ grep("part", reasons$reason.code)] = 1
 reasons$stat = 0
 reasons$stat[ grep("stat", reasons$reason.code)] = 1
 reasons$exp = 0
-reasons$exp[ grep("exp", reasons$reason.code)] = 1
+reasons$exp[ grep("unus", reasons$reason.code)] = 1
 
 ##create a data frame of the percentages
 reasonssummary = table(reasons$part, reasons$time.pulled, reasons$Type)
