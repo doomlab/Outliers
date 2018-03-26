@@ -53,7 +53,7 @@ graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
 
 dotplot = ggplot(graphdata, aes(Type, percent, color = time.pulled))
 dotplot +
-  geom_pointrange(aes(ymin=percent-SE, ymax=percent+SE))+ 
+  geom_pointrange(aes(ymin=percent-1.96*SE, ymax=percent+1.96*SE))+ 
   cleanup +
   xlab("Field of Journal") +
   ylab("Percent of Outlier Mentions") + 
@@ -112,10 +112,10 @@ reasonspercent = group_by(reasonssummary, time.pulled, Type) %>%
 ```{r Peopledata}
 
 peep_data = subset(master, mention.outliers == "Yes")
-table(peep_data$people.or.data.points)
+table(peep_data$peopleor.data.points)
 
 ##create a data frame of the percentages
-peep_datasummary = table(peep_data$people.or.data.points, peep_data$time.pulled, peep_data$Type)
+peep_datasummary = table(peep_data$peopleor.data.points, peep_data$time.pulled, peep_data$Type)
 peep_datasummary = as.data.frame(peep_datasummary)
 colnames(peep_datasummary) = c("code", "time.pulled", "Type", "Freq")
 
@@ -150,7 +150,7 @@ graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
 
 dotplot2 = ggplot(graphdata, aes(analysis.type, percent, color = time.pulled))
 dotplot2 +
-  geom_pointrange(aes(ymin=percent-SE, ymax=percent+SE))+ 
+  geom_pointrange(aes(ymin=percent-1.96*SE, ymax=percent+1.96*SE))+ 
   cleanup +
   xlab("Type of Analysis") +
   ylab("Percent of Outlier Mentions") + 
