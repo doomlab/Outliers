@@ -52,7 +52,7 @@ graphdata$sample = as.data.frame(table(master$time.pulled, master$Type))$Freq
 graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
 
 dotplot = ggplot(graphdata, aes(Type, percent, color = time.pulled))
-dotplot +
+finalgraph = dotplot +
   geom_pointrange(aes(ymin=percent-1.96*SE, ymax=percent+1.96*SE))+ 
   cleanup +
   xlab("Field of Journal") +
@@ -61,6 +61,11 @@ dotplot +
   scale_color_manual(name = "Year", 
                      values = c("maroon", "gray")) + 
   coord_cartesian(ylim = c(0,75))
+
+#tiff(filename = "mention_graph.tiff", res = 300, width = 6, 
+#     height = 6, units = 'in', compression = "lzw")
+#plot(finalgraph)
+#dev.off()
 ```
 
 ```{r journalprop}
@@ -149,7 +154,7 @@ graphdata$sample = as.data.frame(table(longanalyses$time.pulled, longanalyses$an
 graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
 
 dotplot2 = ggplot(graphdata, aes(analysis.type, percent, color = time.pulled))
-dotplot2 +
+finalgraph = dotplot2 +
   geom_pointrange(aes(ymin=percent-1.96*SE, ymax=percent+1.96*SE))+ 
   cleanup +
   xlab("Type of Analysis") +
@@ -158,6 +163,11 @@ dotplot2 +
   scale_color_manual(name = "Year", 
                      values = c("maroon", "gray")) + 
   coord_cartesian(ylim = c(0,50))
+
+#tiff(filename = "analyses_graph.tiff", res = 300, width = 6, 
+#     height = 6, units = 'in', compression = "lzw")
+#plot(finalgraph)
+#dev.off()
 
 ```
 
