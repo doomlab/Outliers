@@ -8,7 +8,7 @@ output: word_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 master = read.csv("outliers complete.csv")
-
+library(knitr)
 ##experiment size
 table(master$Journal, master$time.pulled)
 ```
@@ -32,6 +32,7 @@ library(dplyr)
 outpercent = group_by(outsummary, time.pulled, Type) %>%
   mutate(percent = Freq/sum(Freq)*100)
 
+kable(outpercent)
 ##in the outpercent table, you see the percent based on year and Type, so each yes/no combination adds up to one hundred. We are only interested in the percent of yeses.
 ```
 
@@ -110,6 +111,7 @@ reasonspercent = group_by(reasonssummary, time.pulled, Type) %>%
   mutate(stat.percent = stat.freq/sum(stat.freq)*100) %>%
   mutate(exp.percent = exp.freq/sum(exp.freq)*100) 
 
+kable(reasonspercent)
 #only include the percent of 1s
 
 ```
@@ -126,6 +128,7 @@ colnames(peep_datasummary) = c("code", "time.pulled", "Type", "Freq")
 
 peep_datapercent = group_by(peep_datasummary, time.pulled, Type) %>%
   mutate(percent = Freq/sum(Freq)*100)
+kable(peep_datapercent)
 ```
 
 ```{r BasicsBayes}
