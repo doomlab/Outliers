@@ -1,34 +1,31 @@
 ---
 title             : "Outrageous observations: The redheaded stepchild of data analysis"
-shorttitle        : "Title"
+shorttitle        : "Outrageous observations"
 
 author: 
-  - name          : "Erin M. Buchanan"
+  - name          : "K. D. Valentine"
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
-    address       : "Postal address"
-    email         : "my@email.com"
-  - name          : "Ernst-August Doelle"
-    affiliation   : "1,2"
+    address       : "210 McAlester Hall, Columbia, MO, 65211"
+    email         : "kdvdnf@mail.missouri.edu"
+  - name          : "Erin M. Buchanan"
+    affiliation   : "2"
 
 affiliation:
   - id            : "1"
-    institution   : "Wilhelm-Wundt-University"
+       institution   : "University of Missouri"
   - id            : "2"
-    institution   : "Konstanz Business School"
+      institution   : "Missouri State University"
 
 author_note: |
-  Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
-
-  Enter author note here.
-
-abstract: |
-  Enter abstract here. Each new line herein must be indented, like this line.
+ K. D. Valentine is a Ph.D. candidate at the University of Missouri.  Erin M. Buchanan is an Associate Professor of Quantitative Psychology at Missouri State University. 
   
-keywords          : "keywords"
-wordcount         : "X"
+abstract: |
+  
+  
+keywords          : "outlier, influential observation, replication"
 
-bibliography      : ["outliers.bib"]
+bibliography      : ["q_bib.bib"]
 
 figsintext        : no
 figurelist        : no
@@ -39,6 +36,8 @@ lineno            : yes
 lang              : "english"
 class             : "man"
 output            : papaja::apa6_pdf
+relpace_ampersands: yes
+csl               : apa6.csl
 ---
 
 ```{r load_packages, include = FALSE}
@@ -46,32 +45,13 @@ library("papaja")
 library(knitr)
 ```
 
-*What are outliers.*
-Throughout psychology's assessments of experimental procedures, participant observations have intrigued, inspired, and confused experimenters world wide. Some of these observations exist in such extremes that we begin to think of them as outliers, influential observations, or fringliers (@Osborne2004; @Wainer1976).  Since they were first commented on in 1777 by Bernoulli, outliers have been defined as many things.  @Munoz-Garcia1990 have synthesized their own definition that we feel is concurrent with our work: 
-  "An outlier is an observation which being atypical and/or erroneous deviates        decidedly from the general behavior of experimental data with respect to the        criteria which is to be 
-  analyzed on it." (pg 217)
-
-Outliers can be observed in many forms, which should be outlined to ensure proper understanding and handling of such observations. Researchers have separated outliers into categories in many different ways over the years (@Beckman1983a; @Hodge2004; @Munoz-Garcia1990; @ORR1991; @Osborne2004).  Many of the categories used to describe outliers have noticeable overlap. For instance, @Munoz-Garcia1990 stated that outliers come about by errors in the way we gather data (inappropriate techniques, or experimenter error), errors in preparation (improper hypothesis, planning, or methods), or natural variability. Shortly after, @ORR1991 described outliers as consisting of people being included in an experiment who aren't part of the population, legitimate datapoints that are interesting because they do not fit the expected scheme, extreme datapoints on error components, human error in observation/coding, and errors in data preparation. Similarly, @Hodge2004 state that outliers arise, "due to mechanical faults, changes in system behaviour, fraudulent behaviour, human error, instrument error or simply through natural deviations in populations." @Osborne2004 have also specified that outliers follow from data errors, intentional or motivated mis-reporting, sampling error, standardization failure, bad assumptions about distributions, or legitimate data points. Taken together, we have delineated the following 4 types of outliers for the purpose of this paper. 
-  1.	Data entry error, experimenter error in processing, coding, or preparing data,       as well as motivated misreporting.
-  2.	Participants who do not represent the intended population. For example, a           participant who uses a DVORAK or ergonomic keyboard will not be appropriate in       a study investigating the typing speeds of typical QWERTY keyboard users.
-  3.	Valid data points which bring to light interesting phenomena the study was not       aimed at capturing. For instance, the 1854 cholera epidemic in London was           found by Dr. John Snow to stem from a specific water well on Broad Street. While the majority of individuals infected lived very close to the contaminated well, Dr. Snow also found an instance of cholera far away from the well. When he rode out to investigate this outlying case, he found that the  woman in question had someone ride to that specific well to draw water for her because she liked the taste (Vinten-Johansen, Brody, Paneth, Rachman, & Rip, 2003).
-  4.	Natural deviations in the population.
-
-*Effects of outliers*
-These outliers can have serious effects on data, which can lead to imprecise data analysis (@Osborne2004), confusing results (@Stevens1984; @Yuan2001), and inappropriate conclusions (@Coin2008; @Stevens1984). By keeping outliers in a dataset, analyses are more likely to have increased error variance (depending on sample size, @ORR1991) and biased estimates (@Osborne2004) as well as reduced effect size and power (@ORR1991; @Osborne2004) which can alter the results of the analysis and lead to falsely supporting (Type I error) or denying a claim (Type II error). Additionally, incorrect estimates of effect lead to misleading meta-analyses or sample size estimates for study planning. Beyond these effects on analyses and conclusions these outliers can be inspirational to researchers and to their research models as they can encourage the diagnosis, change, and evolution of a research model (@Beckman1983). All together, these issues caused by outliers can lead to furthering unwarranted avenues of research, ignoring important information, and creating erroneous theories, all of which serve to weaken the sciences.  
-
-*Determination of outliers*
-
-*Report of outliers*
-For these reasons, we aim to stress the importance of properly identifying outliers, their potential cause(s), and ways to handle the extreme responses.  
-
-Further, as outlined by the APA (American Psychological Association, 2010), one should acknowledge these steps not only at the time of analysis, but also at the time of publication. As @Kruskal1960a stated, no matter how we treat outlying observations, 
-  "It is very important to say something about such observations in any but the      most summary report. At least how many observations were excluded from the formal   analysis, and why, should be given." (pg. 1)
-
-However, outlier report rates in studies have indicated that researchers either fail to acknowledge outliers or fail to report their acknowledgment of outliers (@Huffcutt1995; @ORR1991). @Huffcutt1995 looked at Organizational Behavior/Human Resource Management meta-analytic literature since 1987. As they were dealing with meta-analyses, the outliers they were identifying consisted of study coefficients, or correlations, not individual data points, as outliers are usually thought of. In their study they found only six of fifty meta-analyses used any outlier treatment for study coefficients. Also, in most of these, highly subjective means were used to determine which study coefficients were outliers. Similarly, @ORR1991 inspected 100 Industrial/Organizational Psychology personnel studies and found no mention of outliers.
-
-Although the APA and many researchers (@ORR1991, …) have instructed researchers to outline their data cleaning, there has been a dearth in recent literature investigating if these instructions are actually being followed. Therefore, the authors felt that the current study examined the results in 27 journals and 672 articles across 13 psychological disciplines to assess if outliers are being reported. Given previous report rates (@Huffcutt1995; @ORR1991) we expect to find little to no reporting of outliers in these articles. Further, we will examine how outlier reports relate to field, journal, analysis, and sample size. We will also investigate the methods and rational of outlier detection and removal.
-
+Concern based on nonrep of psych (Ioannidis, 2012; Pashler & Harris, 2012, Pashler & wagenmakers, 2012). 
+Many factors are said to contribute to this, including xyz. 
+In the years since the crisis began we have seen many recommendations, initiatives, and movements arise to assist in improving the reliability of psychological findings. While we have seen improvements in x y z, research has yet to determine how this new culture of research has altered reporting of outliers within publications. Herein, we aim to quantify the rates of reporting of outliers within psychology at two time points—in 2012, when the replication crisis was born (Pashler & Wagenmakers, 2012), and in 2017. 
+Outliers
+Since Bernoulli first mentioned outliers in 1777, outliers, influential observations, or fringliers have been defined and redefined throughout the years (Beckman & Cook, 1983; Hodge & Austin, 2004; Munoz-Garcia, Moreno-Rebollo, Pascual-Acosta, 1990; Orr, Sackett, & Dubois, 1991; Osborne & Overbay, 2004), but for the purposes of this manuscript can be defined as, “an observation which being atypical and/or erroneous deviates decidedly from the general behavior of experimental data with respect to the criteria which is to be analyzed on it” (Munoz-Garcia, Moreno-Rebollo, Pascual-Acosta , 1990). And while the APA have urged researchers to ouline their outlier pratices (cite APA) and a plethora of statistics are available to researchers to identify and describe these datapoints (insert citations here), this discussion of outliers rarely makes it to the page. Consider, for example, Orr, Sackett, and Dubois (1991), who inspected 100 Industrial/Organizational Psychology personnel studies and found no mention of outliers. 
+This is not to say that researchers are not taking these datapoints into consideration during their data cleaning and analysis plan, or even going so far as removing them, as work by LeBel and colleagues (2013) has reported that 11% of psychology researchers stated that they had not reported excluding participants for being outliers in their papers. This, by definition, is a problem. The current zeitgeist of increased transparency and reproducibility applies not only to the manner in which data is collected, but also the various ways the data is transformed, cleaned, pared down, and analyzed. Therefore, it is just as important for a researcher to state how they identified outliers within their data, how the outliers were handled, and how this choice of handling impacted the estimates and conclusions of their analyses, as it is for them to report their sample size. 
+Reporting out outlier practices are vital because by keeping outliers in a dataset, analyses are more likely to have increased error variance (depending on sample size, Orr et al., 1991) and biased estimates (Osborne, & Overbay, 2004) as well as reduced effect size and power (Orr, Sackett, & Dubois, 1991; Osborne, & Overbay 2004) which can alter the results of the analysis and lead to falsely supporting (Type I error), denying a claim (Type II error), or failing to replicate previous work. Additionally, incorrect estimates of effect lead to misleading meta-analyses or sample size estimates for study planning. Beyond these effects on analyses and conclusions, express exploration of these outliers can be beneficial to scientists as a way to further improve our research and research practices. Further, outliers can be informative to researchers and to their research models as they can encourage the diagnosis, change, and evolution of a research model (Beckman & Cook, 1983). Taken together, these issues caused by not noting outliers can lead to furthering unwarranted avenues of research, ignoring important information, and creating erroneous theories, all of which serve to weaken the sciences, while making clear the presence or absence of outliers, how they were assessed, and how they were handled, can improve our transparency and replicability, help to strengthen our science.  
 
 # Method
 
@@ -159,18 +139,13 @@ kable(tableprint,
       col.names = c("Field", "Journal", "Publisher", "Impact Factor"))
 ```
 *Note.* Impact factors as of tme of data collection (Spring 2013).
-
-## Participants
-
-## Material
-
-## Procedure
-
 ## Data analysis
 
 # Results
 
 # Discussion
+Some may argue that use of the precious word limit dictated by journals to describe such acts as outlier identification and handling may be irrational. However, we contest that given the current availability and use of online supplements and appendixes, as well as the invent of the Open Science Framework (OSF; cite) which allows researchers the ability to upload any number of additional resources and supplements that can be easily referenced in their manuscripts in as little as 4 words: See supplement at osf.io/52mqw.
+
 
 
 \newpage
