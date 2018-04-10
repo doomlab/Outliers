@@ -43,8 +43,11 @@ csl               : apa6.csl
 ```{r load_packages, include = FALSE}
 library("papaja")
 library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+master = read.csv("outliers complete.csv")
+##experiment size
+table(master$Journal, master$time.pulled)
 ```
-
 The focus on the lack of replication in psychology has raised concerns regarding the reproducibility and validity of current published reports (Etz & Vandekerckhove, 2016; Lindsay, 2015; Open Science Collaboration, 2015; van Elk et al., 2015). Researchers have attributed this lack of replication to many things, including publication bias (Brannick, 2012), the potential for the over-reliance, abuse, or misunderstanding of p-values (Gigerenzer, 2004; Ioannidis, 2005; Simmons, Nelson, & Simonsohn, 2011), and researcher degreed of freedom (Simmons, Nelson, & Simonsohn, 2011), including selective removal or inclusion of datapoints. 
 In the years since the crisis began many recommendations have been made (Cumming, 2008; Simmons, Nelson, & Simonsohn, 2011; Asendorpf et al., 2013; Lakens, 2013; Benjamin et al., 2017; Lakens et al., 2018; Valentine, Buchanan, Scofield & Beauchamp, 2018; Maxwell, Lau, & Howard, 2015; Nosek, Spies, & Motyl, 2012), projects have been organized (Klein et al., 2014; Open Science Collaboration, 2015) and steps have been taken to assist in improving the reliability of psychological findings. While we have seen vast discussion of the problems and proposed solutions, research has yet to determine how this new culture of research has altered the actual reporting practices of researchers. Herein, we aim specifically to quantify the rates of reporting of outliers within psychology at two time points—in 2012, when the replication crisis was born (Pashler & Wagenmakers, 2012), and 5 years later, in 2017. 
 #Outliers
@@ -55,18 +58,18 @@ The current zeitgeist of increased transparency and reproducibility applies not 
 # Method
 
 ## Fields
-A list of psychological field areas was created to begin the search for appropriate journals to include.  The authors brainstormed the list of topics (shown in Table XX) by first listing major research areas in psychology (i.e. cognitive, clinical, social).  Second, a list of common courses offered at large universities was consulted to add to the list of fields.  Lastly, the American Psychological Association's list of divisions was examined for any potential missed fields. The topic list was created to capture large fields of psychology with small overlaps (i.e. cognition and neuropsychology) while avoiding specific subfields of topics (i.e. cognition, perception, and memory).
+A list of psychological field areas was created to begin the search for appropriate journals to include.  The authors brainstormed the list of topics (shown in \@ref(tab:table)) by first listing major research areas in psychology (i.e. cognitive, clinical, social).  Second, a list of common courses offered at large universities was consulted to add to the list of fields.  Lastly, the American Psychological Association's list of divisions was examined for any potential missed fields. The topic list was created to capture large fields of psychology with small overlap (i.e. cognition and neuropsychology) while avoiding specific subfields of topics (i.e. cognition, perception, and memory). Sixteen fields were initiially identified, however only 13 were included in final analysis due to limitations noted below. 
 
 ##Journals
-Once these topic areas were decided, researchers used various search sources (Google, EBSCO host databases) to find journals that were dedicated to each broad topic. Journals were included if they appeared to publish a wide range of articles within the selected fields. A list of journals, publishers, and impact factors (as noted by the journal website) was created for each field.  Two journals from each field were selected based on the following criteria: 1) high impact factors, 2) impact factors over one a minimum, 3) a mix of publishers if possible, and 4) availability due to university resources.  These journals are shown in Table XX.
+Once these topic areas were decided, researchers used various search sources (Google, EBSCO host databases) to find journals that were dedicated to each broad topic. Journals were included if they appeared to publish a wide range of articles within the selected fields. A list of journals, publishers, and impact factors (as noted by each journals website in Spring of 2013) were identified for each field.  Two journals from each field were selected based on the following criteria: 1) high impact factors, 2) impact factors over one at minimum, 3) a mix of publishers if possible, and 4) availability due to university resources.  These journals are shown in \@ref(tab:table).
 
 ##Articles
-Fifty articles from each journal were examined for data analysis. Data collection of articles started at the last volume publication from 2012 and progressed backwards until fifty articles had been found. We excluded online first publications and started in 2012 to ensure time for errata and retraction of articles. Articles were including if they met the following criteria: 1) included data analyses, 2) included multiple participants or data-points, and 3) analyses were based on human subjects or stimuli. Therefore, we excluded theory articles, animal populations, and single subject designs. Based on article review, three fields were excluded.  Applied behavior analysis articles predominantly included single-subject designs, evolutionary psychology articles were primarily theory articles, and statistics related journal articles were based on user created data with specific set characteristics.  Since none of these themes fit into our analysis of understanding data screening with human subject samples, we excluded those two fields from analyses.
+Fifty articles from each journal were examined for data analysis (25 articles were collected beginning in 2012 and 25 articles were collected beginning in 2017). Data collection of articles started at the last volume publication from 2012 and progressed backwards until fifty articles had been found. We excluded online first publications and started in 2012 to ensure time for errata and retraction of articles. Articles were including if they met the following criteria: 1) included data analyses, 2) included multiple participants or data-points, and 3) analyses were based on human subjects or stimuli. Therefore, we excluded theory articles, animal populations, and single subject designs. Based on article review, three fields were excluded.  Applied behavior analysis articles predominantly included single-subject designs, evolutionary psychology articles were primarily theory articles, and statistics related journal articles were based on user created data with specific set characteristics.  Since none of these themes fit into our analysis of understanding data screening with human subject samples, we excluded those three fields from analyses.
 
 ##Data Processing
-Each article was then reviewed for key components of data analyses.  Each experiment in an article was treated separately. For each experiment, the type of analysis, number of participants/stimuli, and if they indicated outliers were coded.  Types of analyses were broadly coded into basic statistics (descriptive statistics, z-scores, t-tests, and correlations), ANOVAs, regressions, chi-squares, nonparametric statistics, modeling, and Bayesian/other analyses. First, we coded if outliers were mentioned at all in article.  If so, we coded outliers into four types: 1) people, 2) data, 3) both, and 4) none found.  We found that a separate coding for data was important for analyses with response time studies where individual participants were not omitted but rather specific data trials were eliminated.  Then, the author decision on what to do with the outliers was coded into whether they removed participants/stimuli or left these outliers in the analysis, as well as if they tested the analyses with and without these outliers for determination of their effect on the study.  If they removed outliers, a new sample size was recorded. Lastly, we coded the reasoning for outlier detection as either participant based (i.e. 3-month old infants were too fussy to be included), experimenter based (i.e. the experimental session was interrupted), statistical based (i.e. three SD from the mean), and no listed reason.
+Each article was then reviewed for key components of data analyses.  Each experiment in an article was treated separately. For each experiment, the type of analysis conducted, number of participants/stimuli analyzed, and if they made any mention of outliers were coded.  Types of analyses were broadly coded into basic statistics (descriptive statistics, z-scores, t-tests, and correlations), ANOVAs, regressions, chi-squares, nonparametric statistics, modeling, and Bayesian/other analyses. First, we coded if outliers were mentioned at all in article.  If so, we coded information about outliers into four types: 1) people, 2) data, 3) both, or 4) none found.  We found that a separate coding for data was important for analyses with response time studies where individual participants were not omitted but rather specific data trials were eliminated.  Then, the author's decision for how to handle the outliers was coded into whether they removed participants/stimuli, left these outliers in the analysis, or winsorized the daatapoints. Experiments were additionally coded for whether they tested the analyses with, without, or both with and without these outliers for determination of their effect on the study.  If they removed outliers, a new sample size was recorded. Lastly, we coded the reasoning for outlier detection as one or more of the following: 1) Statistical reason (i.e. they used numbers to define odd or deviant behavior in responding, such as z-score or Mahalanobis distance scores), 2) Participant error (i.e.failed attention checks, did not follow instructions, or poor data because of participant problems), 3) Unusable data (inside knowledge of the study or experimenter/technological problems), or 4) no listed reason.
 
-Table XX
+
 ##List of Fields, Journals, and Impact Factors 2012
 ```{r table, echo = FALSE, results = 'asis'}
 tableprint = matrix(NA, nrow = 31, ncol = 4)
@@ -137,12 +140,141 @@ kable(tableprint,
       digits = 3,
       col.names = c("Field", "Journal", "Publisher", "Impact Factor"))
 ```
-*Note.* Impact factors as of tme of data collection (Spring 2013).
+*Note.* Impact factors as of time of initial data collection (Spring 2013).
+
+
+```{r proportions}
+
+table(master$mention.outliers)
+master$mention.outliers = factor(master$mention.outliers,
+                      levels = c("no", "yes"),
+                      labels = c("No", "Yes"))
+
+##create a data frame of the percentages
+outsummary = table(master$mention.outliers, master$time.pulled, master$Type)
+outsummary = as.data.frame(outsummary)
+colnames(outsummary) = c("mention.outliers", "time.pulled", "Type", "Freq")
+
+##here we want to calculate if they mention outliers by year and type
+##want to focus on the yeses 
+library(dplyr)
+
+outpercent = group_by(outsummary, time.pulled, Type) %>%
+  mutate(percent = Freq/sum(Freq)*100)
+
+#kable(outpercent)
+##in the outpercent table, you see the percent based on year and Type, so each yes/no combination adds up to one hundred. We are only interested in the percent of yeses.
+```
+
+
+```{r journalgraph}
+library(ggplot2)
+
+cleanup = theme(panel.grid.major = element_blank(), 
+              panel.grid.minor = element_blank(), 
+              panel.background = element_blank(), 
+              axis.line = element_line(colour = "black"), 
+              legend.key = element_rect(fill = "white"),
+              text = element_text(size = 15))
+
+graphdata = subset(outpercent, mention.outliers == "Yes")
+
+#calculate CIs to add to graph
+graphdata$sample = as.data.frame(table(master$time.pulled, master$Type))$Freq
+graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
+
+dotplot = ggplot(graphdata, aes(Type, percent, color = time.pulled))
+finalgraph = dotplot +
+  geom_pointrange(aes(ymin=percent-1.96*SE, ymax=percent+1.96*SE))+ 
+  cleanup +
+  xlab("Field of Journal") +
+  ylab("Percent of Outlier Mentions") + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+  scale_color_manual(name = "Year", 
+                     values = c("maroon", "gray")) + 
+  coord_cartesian(ylim = c(0,75))
+
+tiff(filename = "mention_graph.tiff", res = 300, width = 8, 
+     height = 6, units = 'in', compression = "lzw")
+plot(finalgraph)
+dev.off()
+```
+
+```{r journalprop}
+library(MOTE)
+graphdata$prop = graphdata$percent/100
+types = levels(graphdata$Type)
+for (i in 1:length(types))
+{
+  saved = d.prop(graphdata$prop[graphdata$Type==types[i]][1],
+         graphdata$prop[graphdata$Type==types[i]][2],
+         graphdata$sample[ graphdata$Type==types[i]][1], 
+         graphdata$sample[ graphdata$Type==types[i]][2],
+         a = .05) 
+  print(c(types[i],saved$d))
+}
+
+```
+
+```{r reason}
+master$reason.code
+table(master$reason.code)
+reasons = subset(master, mention.outliers == "Yes")
+
+##create reason columns
+reasons$part = 0
+reasons$part[ grep("part", reasons$reason.code)] = 1
+reasons$stat = 0
+reasons$stat[ grep("stat", reasons$reason.code)] = 1
+reasons$exp = 0
+reasons$exp[ grep("unus", reasons$reason.code)] = 1
+
+##create a data frame of the percentages
+reasonssummary = table(reasons$part, reasons$time.pulled, reasons$Type)
+reasonssummary = as.data.frame(reasonssummary)
+colnames(reasonssummary) = c("yesno", "time.pulled", "Type", "part.freq")
+reasonssummary$stat.freq = as.data.frame(table(reasons$stat, reasons$time.pulled, reasons$Type))$Freq
+reasonssummary$exp.freq = as.data.frame(table(reasons$exp, reasons$time.pulled, reasons$Type))$Freq
+
+reasonspercent = group_by(reasonssummary, time.pulled, Type) %>%
+  mutate(part.percent = part.freq/sum(part.freq)*100) %>%
+  mutate(stat.percent = stat.freq/sum(stat.freq)*100) %>%
+  mutate(exp.percent = exp.freq/sum(exp.freq)*100) 
+
+kable(reasonspercent)
+#only include the percent of 1s
+
+```
+
+```{r Peopledata}
+
+peep_data = subset(master, mention.outliers == "Yes")
+table(peep_data$peopleor.data.points)
+
+##create a data frame of the percentages
+peep_datasummary = table(peep_data$peopleor.data.points, peep_data$time.pulled, peep_data$Type)
+peep_datasummary = as.data.frame(peep_datasummary)
+colnames(peep_datasummary) = c("code", "time.pulled", "Type", "Freq")
+
+peep_datapercent = group_by(peep_datasummary, time.pulled, Type) %>%
+  mutate(percent = Freq/sum(Freq)*100)
+kable(peep_datapercent)
+```
 ## Data analysis
 
 # Results
+1) Do we mention outliers at all?
+2) Does reporting change by time?
+3) Does this (difference in) reporting of outliers have any relationship to the specific discipline, Journal, Type of analysis, or Sample size?
+Investigating reporting of outliers, we find that in 2012, X% of articles--X% of experiments--mentioned outliers, while in 2017 X% of articles--X% of experiments--mentioned outliers. This represents a significant? increase in mentions of outliers (insert chi-q here). Further exploration reveals that differences? in reporting between years arise between fields (insert analysis here), which can be seen in \@ref(tab:journalprop) ?.  
+
+
+4) When we do talk about them, what rational do we use to take them out most often, and how does this vary by time, discipline, Journal, Type of analysis, or Sample size?
+5) Do we remove people or data points, and how does this vary by time, discipline, Journal, Type of analysis, or Sample size?
+6) Do we test with and without them to determine if they should be taken out, and how does this vary by time, discipline, Journal, Type of analysis, or Sample size?
 
 # Discussion
+While modest improvments in reporting can be seen in some fields, overall the outlook is still bleak. 
 Some may argue that use of the precious word limit dictated by journals to describe such acts as outlier identification and handling may be irrational. However, we contest that given the current availability and use of online supplements and appendixes, as well as the invent of the Open Science Framework (OSF; cite) which allows researchers the ability to upload any number of additional resources and supplements that can be easily referenced in their manuscripts in as little as 4 words: See supplement at osf.io/52mqw.
 
 
