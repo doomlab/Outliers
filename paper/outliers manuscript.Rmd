@@ -260,6 +260,51 @@ peep_datapercent = group_by(peep_datasummary, time.pulled, Type) %>%
   mutate(percent = Freq/sum(Freq)*100)
 kable(peep_datapercent)
 ```
+```{r BasicsBayes}
+
+##if they are doing basic statistics so equals 1 how many times do they mention outliers yes/no by year 
+library(reshape)
+analyses = master[ , c(3, 4, 10, 20:26)]
+longanalyses = melt(analyses,
+                    id = c("time.pulled", "Type", "mention.outliers"))
+colnames(longanalyses)[4:5] = c("analysis.type", "used")
+
+longanalyses = subset(longanalyses, used == 1)
+
+##create a data frame of the percentages
+analysessummary = table(longanalyses$mention.outliers, longanalyses$time.pulled, longanalyses$analysis.type)
+analysessummary = as.data.frame(analysessummary)
+colnames(analysessummary) = c("mention.outliers", "time.pulled",  "analysis.type", "Freq")
+
+analysespercent = group_by(analysessummary, time.pulled, analysis.type) %>%
+  mutate(percent = Freq/sum(Freq)*100)
+
+graphdata = subset(analysespercent, mention.outliers == "Yes")
+
+#calculate CIs to add to graph
+graphdata$sample = as.data.frame(table(longanalyses$time.pulled, longanalyses$analysis.type))$Freq
+graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
+
+dotplot2 = ggplot(graphdata, aes(analysis.type, percent, color = time.pulled))
+finalgraph = dotplot2 +
+  geom_pointrange(aes(ymin=percent-1.96*SE, ymax=percent+1.96*SE))+ 
+  cleanup +
+  xlab("Type of Analysis") +
+  ylab("Percent of Outlier Mentions") + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+  scale_color_manual(name = "Year", 
+                     values = c("maroon", "gray")) + 
+  coord_cartesian(ylim = c(0,50))
+
+tiff(filename = "analyses_graph.tiff", res = 300, width = 15, 
+     height = 12, units = 'in', compression = "lzw")
+plot(finalgraph)
+dev.off()
+
+```
+
+
+
 ## Data analysis
 
 # Results
