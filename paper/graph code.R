@@ -20,9 +20,10 @@ long.testing.data=melt(long.testing,
                                  "Modeling", "BayesOther"))
 #View(choice.data)          
 colnames(long.testing.data)=c("time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
-                           "part", "stat", "exp", "variable", "analysis")
-long.testing.data$analysis= gl(7, 457, labels = c("Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
-                                           "Modeling", "BayesOther"))
+                           "part", "stat", "exp", "analysis", "used")
+View(long.testing.data)
+long.testing.data = subset(long.testing.data, used == 1)
+
 View(long.testing.data)
 
 long.reason.data=long.testing.data[,c("time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
@@ -32,23 +33,17 @@ long.reason.data=melt(long.reason.data,
                            "analysis"),
                       measured=c("part", "stat", "exp"))
 colnames(long.reason.data)=c("time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
-                             "analysis", "var", "reason.type")
-long.reason.data$reason.type=gl(3, 3199, labels=c("Participant Error", "Statistical Reason", "Unusable Data"))
-
+                             "analysis", "reasion.type", "used")
 View(long.reason.data)
-##create a data frame of the percentages
-reason.table.test = table(long.reason.data$analysis, long.reason.data$reason.type)
-View(reason.table.test)
-reason.table.test = as.data.frame(reason.table.test)
-colnames(reason.table.test) = c("analysis", "reason.type", "Freq")
-library(dplyr)
+long.reason.data = subset(long.reason.data, used == 1)
+long.reason.data<-na.omit(long.reason.data)
+ View(long.reason.data)
+
+long.reason.data$reason=factor(long.reason.data$reasion.type)
+reason.table.test = table( long.reason.data$reason, long.reason.data$analysis)
 View(reason.table.test)
 
-reasonspercent = group_by(reason.table.test, reason.type ) %>%
-  mutate(percent = Freq/sum(Freq)*100)
-View(reasonspercent)
-barplot()
-
+barplot(reason.table.test, col=c("purple", "blue", "green"), space=1, legend = rownames(reason.table.test))
 
 
 
