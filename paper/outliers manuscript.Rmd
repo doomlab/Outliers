@@ -322,11 +322,14 @@ model2
 ftable(mytable)
 
 
+
 #try for journal?
 #mytable2 <- xtabs(~time.pulled+mention.outliers+Journal, data=master)
 #loglm(~time.pulled+mention.outliers+Journal, data=mytable2)
 #ftable(mytable2)
 #can't talk about this becasue of data sparsity
+
+
 ```
 
 ```{r graphanalysisbyreason}
@@ -358,6 +361,7 @@ long.testing.data = subset(long.testing.data, used == 1)
 
 View(long.testing.data)
 
+
 long.reason.data=long.testing.data[,c("time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
                                        "analysis", "part", "stat", "exp")]
 long.reason.data=melt(long.reason.data,
@@ -375,52 +379,98 @@ long.reason.data$reason=factor(long.reason.data$reasion.type)
 reason.table.test = table( long.reason.data$reason, long.reason.data$analysis)
 View(reason.table.test)
 chisq.test(reason.table.test) #thre a "approximation may be incorrect" error, so switched to the Fisher test.
-fisher.test(reason.table.test, simulate.p.value=TRUE,B=1e7)
+#fisher.test(reason.table.test, simulate.p.value=TRUE,B=1e7)
 
 #so probably don't need to graph it so much. 
-barplot(reason.table.test, col=c("purple", "blue", "green"), space=1, legend = rownames(reason.table.test))
+#barplot(reason.table.test, col=c("purple", "blue", "green"), space=1, legend = rownames(reason.table.test))
 
 ```
 
 
 ## Data analysis
 
-# Results
-Investigating reporting of outliers, we found that in 2012, X% of articles--X% of experiments--mentioned outliers, while in 2017 X% of articles--X% of experiments--mentioned outliers. This represents a significant increase in mentions of outliers *chi^2* (`r chisq.test(table1)$Table[1, 2]`) = `r chisq.test(table1)$Table[1,1]`, *p* = `r chisq.test(table1)$Table[1,3]`. Further exploration reveals that differences? in reporting between years arise between fields (*chi^2* (`r model2$Table[3, 3]`) = `r model2$Table[3,2]`, *p* = `r model2$Table[3,3]`), which can be seen in \@ref(tab:journalprop). Specifically, if we look at the change in reporting for each field analyzed at the level of the experiment  (HEYO, CAN I GET A TABLE IN HERE LIKE ON THE POSTER WITH THE EFFECT SIZES?) we find the largest differences appear for Social, Cognitive, I/O, and Forensic Psychology, with the smallest changes appearing for the Environmental, Overview, and Clinical Psychology. 
-
-I want a graph here x=type of analysis, y=proportion using each code, with side-by-side bars for each code.
-
-4) When we do talk about them, what rational do we use to take them out most often, and how does this vary by time, discipline, Journal, Type of analysis, or Sample size?
-
-chi-sq for rationalextime, rationalexdiscipline, rationalextype, 
-plot sample size x mention?
 ```{r chisquares}
+
+
+long.test=master[,c("time.pulled", "Type", "mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
+                             "Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
+                            "Modeling", "BayesOther" )]
+
+long.test.data=melt(long.test, 
+                    id = c("time.pulled", "Type","mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without"),
+                    measured = c("Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
+                                 "Modeling", "BayesOther"))
+#View(choice.data)          
+colnames(long.test.data)=c("time.pulled", "Type","mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
+                            "analysis", "used")
+View(long.test.data)
+long.test.data = subset(long.test.data, used == 1)
+
+View(long.test.data)
+
+mytable3 <- xtabs(~time.pulled+mention.outliers+analysis, data=long.test.data)
+model3<-loglm(~time.pulled+mention.outliers+analysis, data=mytable3)
+model3
+ftable(mytable3)
+#find significant association between analysis type and reproting of outliers.  every analyssi shows an increase in mentions of outliers. 
+model3b=table(long.testing.data$analysis, long.testing.data$time.pulled)
+chisq.test(model3b)
+model3b
 #rationalextime
 #View(long.reason.data)
-long.reason.data.na<-na.omit(long.reason.data)
+long.reason.data.na=na.omit(long.reason.data)
 length(long.reason.data.na$time.pulled)
 t.r.time<-table(long.reason.data.na$time.pulled, long.reason.data.na$reason)
 t.r.time
 chisq.test(t.r.time)
-names(t.r.time.test)
 #View(t.r.time.test$observed)
-#associated: more overall in 2017, but most increase in use of statistical reasoning (.59, as compared to part=.31, exp=.4).
+#associated: more overall in 2017, but most increase in reporting of participant error (increasing 3-fold), experimental error (2-fold), and statistical reasons (<2fold)
+
 
 #rationalexdiscipline
-names(long.reason.data.na)
-t.r.field<-table(long.reason.data.na$Type, long.reason.data.na$reason)
-View(t.r.field)
+#t.r.field<-table(long.reason.data.na$Type, long.reason.data.na$reason)
+#View(t.r.field)
 
 #can't discuss this, too sparse of data
 
 
-#rationalexanalysis
-#this one done above
+
+out.testing$peopleor.data.points.f=factor(out.testing$peopleor.data.points)
 time.people<-table(out.testing$time.pulled, out.testing$peopleor.data.points)
+time.people<-time.people[,c(2:5)]
+time.people
+
+chisq.test(time.people)#thre a "approximation may be incorrect" error, so switched to the Fisher test.
+#fisher.test(time.people, simulate.p.value=TRUE,B=1e7) # same as chisq basically p= 0.01594
+#so, there is a sign. difference, mainly driven by the fact that taking out people has doubled. 
+
+
+#long.reason.data.2=long.reason.data[,c(1, 3:9)]
+#people.reason=table(long.reason.data$peopleor.data.points, long.reason.data$reason)
+#people.reason
+#so can't run this one b/c data sparsity
+
+#time.out=table(long.reason.data$take.out.or.leave.in, long.reason.data$time.pulled)
+#time.out
+#can't run that
+
+#reason.out=table(long.reason.data$reason, long.reason.data$take.out.or.leave.in)
+#reason.out
+#can't run that either
+
+#out.people=table(out.testing$take.out.or.leave.in, out.testing$peopleor.data.points)
+#out.people
+#this data is super sparse, let's keep this part simple and just describe the data we have. 
+
+table(out.testing$peopleor.data.points)     
+table(out.testing$take.out.or.leave.in)     
+table(out.testing$run.with.or.without)
+table(out.testing$difference.between.analyses.with.and.without)
+table(out.testing$report.results.on.if.did.both)
+
 ```
 
 ```{r correlation}
-names(master)
 master$mention.outliers2<-as.numeric(master$mention.outliers)
 table(master$mention.outliers2)
 #1=no, 2=yes
@@ -429,8 +479,11 @@ cor.test(cor.data$original.sample.size, cor.data$mention.outliers2, use="complet
 #super small rho, but it's significant. 
 ```
 
-5) Do we remove people or data points, and how does this vary by time, discipline, Journal, Type of analysis, or Sample size?
-6) Do we test with and without them to determine if they should be taken out, and how does this vary by time, discipline, Journal, Type of analysis, or Sample size?
+# Results
+Investigating reporting of outliers, we found that in 2012, X% of articles--X% of experiments--mentioned outliers, while in 2017 X% of articles--X% of experiments--mentioned outliers. This represents a significant increase in mentions of outliers *chi^2* (`r chisq.test(table1)$Table[1, 2]`) = `r chisq.test(table1)$Table[1,1]`, *p* = `r chisq.test(table1)$Table[1,3]`. Further exploration reveals that differences? in reporting between years arise between fields (*chi^2* (`r model2$Table[3, 3]`) = `r model2$Table[3,2]`, *p* = `r model2$Table[3,3]`), which can be seen in \@ref(tab:journalprop). Specifically, if we look at the change in reporting for each field analyzed at the level of the experiment  (HEYO, CAN I GET A TABLE IN HERE LIKE ON THE POSTER WITH THE EFFECT SIZES?) we find the largest differences appear for Social, Cognitive, I/O, and Forensic Psychology, with the smallest changes appearing for the Environmental, Overview, and Clinical Psychology. 
+When viewing the reporting of outliers broken down by analysis across time, we see there is a significant association between time, analysis, and outlier reporting (insert stats here). Every analysis shows an increase in mentions of outliers over time, and when looking solely the relationship between analysis and time of those experiments actually reporting outliers, we see the largest increases in reporting for the Baysian/Other category, followed by the modeling category, and the nonparametric category.  
+Of those outliers that were reported, the majority of the time this was reportedly due to statistical reasons (x%) and/or participant errors (x%), with few experiments reporting outliers due to unusable data. When looking at the association of these reasons over time, we again clearly see all reasons increasing in usage from 2012 to 2017, but see the most increase in reporting of participant errors, followed by unusable data, and finally statistical reasons. It is therefore unsurprising that there is a significant association between time and whether it was a person or datapoint were discusses as outliers (insert chi-sq here), such that all instances increased in reporting over time, however, removal of people doubled from 2012 to 2017. 
+In our review, the majority of outliers mentioned referred to people (x%), removed the observation (x%), and ran the analyses without the observation (x%). Only 10 experiments (x%) discussed the differences between results both with and without the outlying ovservations, and of those, 6 found no differences in their analyses and 4 found differences in their analyses. Of the 6 that found no differences, they all reported their final analyses without the outliers. Of the 4 that found differences, 1 left the outliers in, and 2 reported the results both with and without the outliers. (CAN WE PUT A TABLE FOR THIS PARAGRAPH THAT HAS A ROW FOR EACH OUTCOME, I.E. WITH/WITHOUT/WINSORIZED, AND A COLUMN FOR THE %(N) FALLING INTO THAT CATEGORY?)
 
 # Discussion
 While modest improvments in reporting can be seen in some fields, overall the outlook is still bleak. 
