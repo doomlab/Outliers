@@ -385,10 +385,7 @@ barplot(reason.table.test, col=c("purple", "blue", "green"), space=1, legend = r
 ## Data analysis
 
 # Results
-1) Do we mention outliers at all?
-2) Does reporting change by time?
-3) Does this (difference in) reporting of outliers have any relationship to the specific discipline, Journal, Type of analysis, or Sample size?
-Investigating reporting of outliers, we find that in 2012, X% of articles--X% of experiments--mentioned outliers, while in 2017 X% of articles--X% of experiments--mentioned outliers. This represents a significant increase in mentions of outliers *chi^2* (`r chisq.test(table1)$Table[1, 2]`) = `r chisq.test(table1)$Table[1,1]`, *p* = `r chisq.test(table1)$Table[1,3]`. Further exploration reveals that differences? in reporting between years arise between fields (*chi^2* (`r model2$Table[3, 3]`) = `r model2$Table[3,2]`, *p* = `r model2$Table[3,3]`), which can be seen in \@ref(tab:journalprop).  
+Investigating reporting of outliers, we found that in 2012, X% of articles--X% of experiments--mentioned outliers, while in 2017 X% of articles--X% of experiments--mentioned outliers. This represents a significant increase in mentions of outliers *chi^2* (`r chisq.test(table1)$Table[1, 2]`) = `r chisq.test(table1)$Table[1,1]`, *p* = `r chisq.test(table1)$Table[1,3]`. Further exploration reveals that differences? in reporting between years arise between fields (*chi^2* (`r model2$Table[3, 3]`) = `r model2$Table[3,2]`, *p* = `r model2$Table[3,3]`), which can be seen in \@ref(tab:journalprop). Specifically, if we look at the change in reporting for each field  (HEYO, CAN I GET A TABLE IN HERE LIKE ON THE POSTER WITH THE EFFECT SIZES?) we find the largest differences appear for Social, Cognitive, I/O, and Forensic Psychology, with the smallest changes appearing for the Environmental, Overview, and Clinical Psychology. 
 
 I want a graph here x=type of analysis, y=proportion using each code, with side-by-side bars for each code.
 
