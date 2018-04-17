@@ -168,6 +168,11 @@ colnames(outsummary) = c("mention.outliers", "time.pulled", "Type", "Freq")
 ##here we want to calculate if they mention outliers by year and type
 ##want to focus on the yeses 
 library(dplyr)
+oaoutsummary = table(master$mention.outliers, master$time.pulled)
+oaoutsummary = as.data.frame(oaoutsummary)
+colnames(oaoutsummary) = c("mention.outliers", "time.pulled", "Freq")
+overalloutpercent = group_by(oaoutsummary, time.pulled) %>%
+  mutate(percent = Freq/sum(Freq)*100)
 
 outpercent = group_by(outsummary, time.pulled, Type) %>%
   mutate(percent = Freq/sum(Freq)*100)
@@ -325,9 +330,10 @@ table1
 #let's try a 3-way table
 # 3-Way Frequency Table 
 #
+library(MASS)
 mytable <- xtabs(~time.pulled+mention.outliers+Type, data=master)
 model2<-loglm(~time.pulled+mention.outliers+Type, data=mytable)
-model2
+t.m.f=model2
 ftable(mytable)
 
 
@@ -387,8 +393,8 @@ long.reason.data<-na.omit(long.reason.data)
 long.reason.data$reason=factor(long.reason.data$reasion.type)
 reason.table.test = table( long.reason.data$reason, long.reason.data$analysis)
 View(reason.table.test)
-chisq.test(reason.table.test) #thre a "approximation may be incorrect" error, so switched to the Fisher test.
-#fisher.test(reason.table.test, simulate.p.value=TRUE,B=1e7)
+p.t.m.a=chisq.test(reason.table.test) #thre a "approximation may be incorrect" error, so switched to the Fisher test.
+f.t.m.a=fisher.test(reason.table.test, simulate.p.value=TRUE,B=1e7)
 
 #so probably don't need to graph it so much. 
 #barplot(reason.table.test, col=c("purple", "blue", "green"), space=1, legend = rownames(reason.table.test))
@@ -419,7 +425,7 @@ View(long.test.data)
 
 mytable3 <- xtabs(~time.pulled+mention.outliers+analysis, data=long.test.data)
 model3<-loglm(~time.pulled+mention.outliers+analysis, data=mytable3)
-model3
+t.m.a=model3
 ftable(mytable3)
 #find significant association between analysis type and reproting of outliers.  every analyssi shows an increase in mentions of outliers. 
 model3b=table(long.testing.data$analysis, long.testing.data$time.pulled)
@@ -495,9 +501,9 @@ plot(master$year, master$original.sample.size) #wtf is up with year here?
 printnum(stuff$p.value, gt1=FALSE, zero=FALSE)
 ?apa_print
 # Results
-Investigating reporting of outliers, we found that in 2012, X% of articles--X% of experiments--mentioned outliers, while in 2017 X% of articles--X% of experiments--mentioned outliers. This represents a significant increase in mentions of outliers, $\chi^2$ (`r stuff$parameter`) = `r stuff$statistics`, *p*< .001 PUT CHISQ STATS HERE. Further exploration reveals that differences in reporting between years arise between fields (INSERT CHSQ HERE) which can be seen in \@ref(tab:journalprop). Specifically, if we look at the change in reporting for each field analyzed at the level of the experiment (HEYO, CAN I GET A TABLE IN HERE LIKE ON THE POSTER WITH THE EFFECT SIZES?) we find the largest differences appear for Social, Cognitive, I/O, and Forensic Psychology, with the smallest changes appearing for the Environmental, Overview, and Clinical Psychology. 
+Investigating reporting of outliers, we found that in 2012, `r overalloutpercent$percent[2]`% of experiments mentioned outliers, while in 2017 `r overalloutpercent$percent[4]`% of experiments mentioned outliers. This represents a significant increase in mentions of outliers, $\chi^2$ (`r stuff$parameter`) = `r stuff$statistics`, *p*< .001. Further exploration reveals that differences in reporting between years arise between fields ($\chi^2$ (`r t.m.f$df`) = `r t.m.f$pearson`, *p*< .001) which can be seen in \@ref(tab:journalprop). Specifically, if we look at the change in reporting for each field analyzed at the level of the experiment (HEYO, CAN I GET A TABLE IN HERE LIKE ON THE POSTER WITH THE EFFECT SIZES?) we find the largest differences appear for Social, Cognitive, I/O, and Forensic Psychology, with the smallest changes appearing for the Environmental, Overview, and Clinical Psychology. 
 
-When viewing the reporting of outliers broken down by analysis across time, we see there is a significant association between time, analysis, and outlier reporting (insert stats here). Every analysis shows an increase in mentions of outliers over time, and when looking solely the relationship between analysis and time of those experiments actually reporting outliers, we see the largest increases in reporting for the Bayesian/Other category, followed by the modeling category, and the nonparametric category.  
+When viewing the reporting of outliers broken down by analysis across time, we see there is a significant association between time, analysis, and outlier reporting ($\chi^2$ (`r t.m.a$df`) = `r t.m.a$pearson`, *p*< .001). As can be seen in \@ref(????) Every analysis shows an increase in mentions of outliers over time, and when looking solely the relationship between analysis and time of those experiments actually reporting outliers, we see the largest increases in reporting for the Bayesian/Other category, followed by the modeling category, and the nonparametric category.  
 Of those outliers that were reported, the majority of the time this was reportedly due to statistical reasons (x%) and/or participant errors (x%), with few experiments reporting outliers due to unusable data. When looking at the association of these reasons over time, we again clearly see all reasons increasing in usage from 2012 to 2017, but see the most increase in reporting of participant errors, followed by unusable data, and finally statistical reasons. It is therefore unsurprising that there is a significant association between time and whether it was a person or datapoint were discusses as outliers (insert chi-sq here), such that all instances increased in reporting over time, however, removal of people doubled from 2012 to 2017. 
 In our review, the majority of outliers mentioned referred to people (x%), removed the observation (x%), and ran the analyses without the observation (x%). Only 9 experiments (x%) discussed the differences between results both with and without the outlying observations, and of those, 5 found no differences in their analyses and 4 found differences in their analyses. Of the 5 that found no differences,  3 reported their final analyses without the outliers, 1 reported their final analyses with the outlier included, and 1 reported both with and without the outliers. Of the 4 that found differences, 3 reported the results without the outliers and 1 reported the results both with and without the outliers. (CAN WE PUT A TABLE FOR THIS PARAGRAPH THAT HAS A ROW FOR EACH OUTCOME (take out, report diff, etc.), I.E. WITH/WITHOUT/WINSORIZED, AND A COLUMN FOR THE %(N) FALLING INTO THAT CATEGORY?)
 
