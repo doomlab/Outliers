@@ -277,6 +277,7 @@ peep_datapercent = group_by(peep_datasummary, time.pulled, Type) %>%
   mutate(percent = Freq/sum(Freq)*100)
 kable(peep_datapercent)
 ```
+
 ```{r BasicsBayes}
 
 ##if they are doing basic statistics so equals 1 how many times do they mention outliers yes/no by year 
@@ -515,9 +516,18 @@ df<-master %>%
     mutate(id = group_indices_(master, .dots=c("article"))) 
 
 m1 <- glmer(mention.outliers2 ~ year  + (1 | Type),
-data=df, family=binomial(link="logit"))
-#fails to converge
+            data=df, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1)
 
+m1 <- glmer(mention.outliers2 ~ year + Type  + (1 | Journal),
+            data=df, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1)
 
 #want to see if reporting people or data points changes over time
 #subset data removing both and none
