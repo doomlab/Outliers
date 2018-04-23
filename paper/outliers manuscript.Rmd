@@ -47,6 +47,8 @@ knitr::opts_chunk$set(echo = TRUE)
 master = read.csv("outliers complete.csv")
 ##experiment size
 table(master$Journal, master$time.pulled)
+table(master$Journal, master$year)
+
 ```
 
 The focus on the lack of replication in psychology has raised concerns regarding the reproducibility and validity of current published reports (Etz & Vandekerckhove, 2016; Lindsay, 2015; Open Science Collaboration, 2015; van Elk et al., 2015). Researchers have attributed this lack of replication to many things, including publication bias (Brannick, 2012), the potential for the over-reliance, abuse, or misunderstanding of p-values (Gigerenzer, 2004; Ioannidis, 2005; Simmons, Nelson, & Simonsohn, 2011), and researcher degreed of freedom (Simmons, Nelson, & Simonsohn, 2011), including selective removal or inclusion of datapoints. 
@@ -256,7 +258,7 @@ reasonspercent = group_by(reasonssummary, time.pulled, Type) %>%
   mutate(stat.percent = stat.freq/sum(stat.freq)*100) %>%
   mutate(exp.percent = exp.freq/sum(exp.freq)*100) 
 
-kable(reasonspercent)
+#kable(reasonspercent)
 #only include the percent of 1s
 
 ```
@@ -351,7 +353,13 @@ ftable(mytable)
 ```{r graphanalysisbyreason}
 library(reshape)
 out.testing = subset(master, mention.outliers == "Yes")
-
+library(car)
+master$mention.outliers2<-as.numeric(master$mention.outliers)
+table(master$mention.outliers2)
+master$mention.outliers2=recode(master$mention.outliers2, "1=0; 2=1")
+table(master$mention.outliers2)
+#0=no, 1=yes
+#need to go back and put this var into these datasets so can analyze mlm**********************************
 ##create reason columns
 out.testing$part = 0
 out.testing$part[ grep("part", out.testing$reason.code)] = 1
@@ -487,19 +495,48 @@ table(out.testing$report.results.on.if.did.both, out.testing$difference.between.
 ```
 
 ```{r correlation}
-master$mention.outliers2<-as.numeric(master$mention.outliers)
-table(master$mention.outliers2)
-#1=no, 2=yes
 cor.data<-master[,c(9, 28)]
 cor.test(cor.data$original.sample.size, cor.data$mention.outliers2, use="complete.obs", method="spearman") 
 #super small rho, but it's significant. 
 
 cor.test(master$original.sample.size, master$time.pulled, use="complete.obs", method="spearman") 
-#we are increasing in sample size over time, slightly, rho=.137, p<.001
+#we are increasing in sample size over time, slightly, rho=.136, p<.001
 plot(master$year, master$original.sample.size) #wtf is up with year here?
 
 #printnum(stuff$p.value, gt1=FALSE, zero=FALSE)
 #?apa_print
+
+```
+
+```{r mlms}
+library(lme4)
+library(dplyr)
+df<-master %>% 
+    mutate(id = group_indices_(master, .dots=c("article"))) 
+
+m1 <- glmer(mention.outliers2 ~ year  + (1 | Type),
+data=df, family=binomial(link="logit"))
+#fails to converge
+
+
+#want to see if reporting people or data points changes over time
+#subset data removing both and none
+names(out.testing)
+table(out.testing$peopleor.data.points.f)
+out.testing.people = subset(out.testing, peopleor.data.points.f == c("data points", "people"))
+out.testing.people <- subset(out.testing, peopleor.data.points.f=='data points' | peopleor.data.points.f=='people') 
+table(out.testing.people$peopleor.data.points.f)
+#make the variable binary
+out.testing.people$peopleor.data.points.f<-as.numeric(out.testing.people$peopleor.data.points.f)
+table(out.testing.people$peopleor.data.points.f)
+out.testing.people$peopleor.data.points.bi=recode(out.testing.people$peopleor.data.points.f, "2=0; 4=1")
+table(out.testing.people$peopleor.data.points.bi)
+#datapoints=0, people=1
+m2 <- glmer(peopleor.data.points.bi ~ year  + (1 | Type),
+data=out.testing.people, family=binomial(link="logit"))
+#fails to converge
+
+
 
 ```
 
