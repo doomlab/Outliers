@@ -283,7 +283,7 @@ kable(peep_datapercent)
 ##if they are doing basic statistics so equals 1 how many times do they mention outliers yes/no by year 
 library(reshape)
 analyses = master[ , c(3, 4, 10, 20:26)]
-View(analyses)
+#View(analyses)
 longanalyses = melt(analyses,
                     id = c("time.pulled", "Type", "mention.outliers"))
 colnames(longanalyses)[4:5] = c("analysis.type", "used")
@@ -352,7 +352,6 @@ ftable(mytable)
 ```
 
 ```{r graphanalysisbyreason}
-library(reshape)
 out.testing = subset(master, mention.outliers == "Yes")
 library(car)
 master$mention.outliers2<-as.numeric(master$mention.outliers)
@@ -381,10 +380,10 @@ long.testing.data=melt(long.testing,
 #View(choice.data)          
 colnames(long.testing.data)=c("time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
                            "part", "stat", "exp", "analysis", "used")
-View(long.testing.data)
+#View(long.testing.data)
 long.testing.data = subset(long.testing.data, used == 1)
 
-View(long.testing.data)
+#View(long.testing.data)
 
 
 long.reason.data=long.testing.data[,c("time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
@@ -395,14 +394,14 @@ long.reason.data=melt(long.reason.data,
                       measured=c("part", "stat", "exp"))
 colnames(long.reason.data)=c("time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
                              "analysis", "reasion.type", "used")
-View(long.reason.data)
+#View(long.reason.data)
 long.reason.data = subset(long.reason.data, used == 1)
 long.reason.data<-na.omit(long.reason.data)
- View(long.reason.data)
+# View(long.reason.data)
 
 long.reason.data$reason=factor(long.reason.data$reasion.type)
 reason.table.test = table( long.reason.data$reason, long.reason.data$analysis)
-View(reason.table.test)
+#View(reason.table.test)
 p.t.m.a=chisq.test(reason.table.test) #thre a "approximation may be incorrect" error, so switched to the Fisher test.
 f.t.m.a=fisher.test(reason.table.test, simulate.p.value=TRUE,B=1e7)
 
@@ -417,21 +416,25 @@ Chi-Square tests were used to analyze the associations between variables. When a
 ```{r chisquares}
 
 
-long.test=master[,c("time.pulled", "Type", "mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
+long.test=master[,c("Journal","year", "time.pulled", "Type", "mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
                              "Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
                             "Modeling", "BayesOther" )]
 
 long.test.data=melt(long.test, 
-                    id = c("time.pulled", "Type","mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without"),
+                    id = c("Journal","year", "time.pulled", "Type","mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without"),
                     measured = c("Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
                                  "Modeling", "BayesOther"))
 #View(choice.data)          
-colnames(long.test.data)=c("time.pulled", "Type","mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
+colnames(long.test.data)=c("Journal","year", "time.pulled", "Type","mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
                             "analysis", "used")
-View(long.test.data)
+#View(long.test.data)
 long.test.data = subset(long.test.data, used == 1)
+long.test.data$mention.outliers2<-as.numeric(long.test.data$mention.outliers)
+table(long.test.data$mention.outliers2)
+long.test.data$mention.outliers2=recode(long.test.data$mention.outliers2, "1=0; 2=1")
+table(long.test.data$mention.outliers2)
 
-View(long.test.data)
+#View(long.test.data)
 
 mytable3 <- xtabs(~time.pulled+mention.outliers+analysis, data=long.test.data)
 model3<-loglm(~time.pulled+mention.outliers+analysis, data=mytable3)
@@ -511,23 +514,183 @@ plot(master$year, master$original.sample.size) #wtf is up with year here?
 
 ```{r mlms}
 library(lme4)
-library(dplyr)
-df<-master %>% 
-    mutate(id = group_indices_(master, .dots=c("article"))) 
-
-m1 <- glmer(mention.outliers2 ~ year  + (1 | Type),
-            data=df, 
+m1 <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+            data=master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
 summary(m1)
 
-m1 <- glmer(mention.outliers2 ~ year + Type  + (1 | Journal),
-            data=df, 
+clin.master=master[which(master$Type=="Clinical"),]
+cog.master=master[which(master$Type=="Cognitive"),]
+coun.master=master[which(master$Type=="Counseling"),]
+dev.master=master[which(master$Type=="Developmental"),]
+edu.master=master[which(master$Type=="Educational"),]
+envi.master=master[which(master$Type=="Environmental"),]
+for.master=master[which(master$Type=="Forensics"),]
+io.master=master[which(master$Type=="IO"),]
+meth.master=master[which(master$Type=="Methods"),]
+neu.master=master[which(master$Type=="Neuro"),]
+over.master=master[which(master$Type=="Overview"),]
+soc.master=master[which(master$Type=="Social"),]
+sport.master=master[which(master$Type=="Sports"),]
+
+m1cl <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+            data=clin.master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1)
+summary(m1cl)
+
+m1cog <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+            data=cog.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1cog)
+
+m1cou <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+            data=coun.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1cou)
+
+m1dev <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+            data=dev.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1dev)
+
+m1edu <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+            data=edu.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1edu)
+
+m1envi <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+            data=envi.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1envi)
+
+m1for <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+            data=for.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1for)
+
+m1io <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+            data=io.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1io)
+
+m1meth <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+            data=meth.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1meth)
+
+m1neu <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+            data=neu.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1neu)
+
+m1over <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+            data=over.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1over)
+
+m1soc <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+            data=soc.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1soc)
+
+m1sport <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+            data=sport.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1sport)
+#show largest change in forensic (45% more likely to report), followed by social at 34% and io at 33% followed by developmental at 20% and cognitive at 15%  
+
+#now need to see if they vary by analysis
+basic.data=long.test.data[which(long.test.data$analysis=="Basics"),]
+anova.data=long.test.data[which(long.test.data$analysis=="ANOVA"),]
+reg.data=long.test.data[which(long.test.data$analysis=="Regression"),]
+chi.data=long.test.data[which(long.test.data$analysis=="ChiSquare"),]
+nonpar.data=long.test.data[which(long.test.data$analysis=="Nonparametric"),]
+model.data=long.test.data[which(long.test.data$analysis=="Modeling"),]
+bo.data=long.test.data[which(long.test.data$analysis=="BayesOther"),]
+
+
+
+m1basic <- glmer(mention.outliers2 ~ year + (1 | Journal),
+            data=basic.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1basic)
+
+m1anova <- glmer(mention.outliers2 ~ year + (1 | Journal),
+            data=anova.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1anova)
+
+m1reg <- glmer(mention.outliers2 ~ year + (1 | Journal),
+            data=reg.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1reg)
+
+m1chi <- glmer(mention.outliers2 ~ year + (1 | Journal),
+            data=chi.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1chi)
+
+m1non <- glmer(mention.outliers2 ~ year + (1 | Journal),
+            data=nonpar.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1non)
+
+m1model <- glmer(mention.outliers2 ~ year + (1 | Journal),
+            data=model.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1model)
+
+m1bo <- glmer(mention.outliers2 ~ year + (1 | Journal),
+            data=bo.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1bo)
+
+#change in reporting by year significant for nonparamertic (38% more likely to report), basic (23%), regression (15%), anova (14%), and modeling (.11). Interesting changes in variance due to journal. 
+
+
+
 
 #want to see if reporting people or data points changes over time
 #subset data removing both and none
@@ -542,9 +705,15 @@ table(out.testing.people$peopleor.data.points.f)
 out.testing.people$peopleor.data.points.bi=recode(out.testing.people$peopleor.data.points.f, "2=0; 4=1")
 table(out.testing.people$peopleor.data.points.bi)
 #datapoints=0, people=1
-m2 <- glmer(peopleor.data.points.bi ~ year  + (1 | Type),
-data=out.testing.people, family=binomial(link="logit"))
-#fails to converge
+m2 <- glmer(peopleor.data.points.bi ~ year  + (1 | Journal),
+          data=out.testing.people, family=binomial(link="logit"),
+          control = glmerControl(optimizer = "bobyqa"),
+          nAGQ = 0)
+summary(m2)
+
+#no difference in reporting by time
+#this is important because it contradicts what the chi-sq of time pulled says
+
 
 
 
