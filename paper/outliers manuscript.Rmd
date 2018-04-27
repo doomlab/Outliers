@@ -45,6 +45,7 @@ library("papaja")
 library(knitr)
 knitr::opts_chunk$set(echo = TRUE)
 master = read.csv("outliers complete.csv")
+l.master=nrow(master)
 ##experiment size
 table(master$Journal, master$time.pulled)
 table(master$Journal, master$year)
@@ -368,17 +369,17 @@ out.testing$stat[ grep("stat", out.testing$reason.code)] = 1
 out.testing$exp = 0
 out.testing$exp[ grep("unus", out.testing$reason.code)] = 1
 names(out.testing)
-long.testing=out.testing[,c("time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
+long.testing=out.testing[,c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
                             "part", "stat", "exp", "Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
                             "Modeling", "BayesOther" )]
 
 long.testing.data=melt(long.testing, 
-                    id = c("time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
+                    id = c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
                            "part", "stat", "exp"),
                     measured = c("Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
                                  "Modeling", "BayesOther"))
 #View(choice.data)          
-colnames(long.testing.data)=c("time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
+colnames(long.testing.data)=c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
                            "part", "stat", "exp", "analysis", "used")
 #View(long.testing.data)
 long.testing.data = subset(long.testing.data, used == 1)
@@ -386,13 +387,13 @@ long.testing.data = subset(long.testing.data, used == 1)
 #View(long.testing.data)
 
 
-long.reason.data=long.testing.data[,c("time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
+long.reason.data=long.testing.data[,c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
                                        "analysis", "part", "stat", "exp")]
 long.reason.data=melt(long.reason.data,
-                      id=c("time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
+                      id=c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
                            "analysis"),
                       measured=c("part", "stat", "exp"))
-colnames(long.reason.data)=c("time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
+colnames(long.reason.data)=c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
                              "analysis", "reasion.type", "used")
 #View(long.reason.data)
 long.reason.data = subset(long.reason.data, used == 1)
@@ -403,7 +404,7 @@ long.reason.data$reason=factor(long.reason.data$reasion.type)
 reason.table.test = table( long.reason.data$reason, long.reason.data$analysis)
 #View(reason.table.test)
 p.t.m.a=chisq.test(reason.table.test) #thre a "approximation may be incorrect" error, so switched to the Fisher test.
-f.t.m.a=fisher.test(reason.table.test, simulate.p.value=TRUE,B=1e7)
+#f.t.m.a=fisher.test(reason.table.test, simulate.p.value=TRUE,B=1e7)
 
 #so probably don't need to graph it so much. 
 #barplot(reason.table.test, col=c("purple", "blue", "green"), space=1, legend = rownames(reason.table.test))
@@ -626,7 +627,12 @@ m1sport <- glmer(mention.outliers2 ~ year  + (1 | Journal),
             nAGQ = 0)
 summary(m1sport)
 #show largest change in forensic (45% more likely to report), followed by social at 34% and io at 33% followed by developmental at 20% and cognitive at 15%  
-
+m2 <- glmer(mention.outliers2 ~ year*analysis + (1 | Journal),
+            data=long.test.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m2)
 #now need to see if they vary by analysis
 basic.data=long.test.data[which(long.test.data$analysis=="Basics"),]
 anova.data=long.test.data[which(long.test.data$analysis=="ANOVA"),]
@@ -691,7 +697,6 @@ summary(m1bo)
 
 
 
-
 #want to see if reporting people or data points changes over time
 #subset data removing both and none
 names(out.testing)
@@ -716,14 +721,15 @@ summary(m2)
 
 
 
-
 ```
 
 # Results
-Investigating reporting of outliers, we found that in 2012, `r overalloutpercent$percent[2]`% of experiments mentioned outliers, while in 2017 `r overalloutpercent$percent[4]`% of experiments mentioned outliers. This represents a significant increase in mentions of outliers, $\chi^2$ (`r stuff$parameter`) = `r stuff$statistics`, *p*< .001. Further exploration reveals that differences in reporting between years arise between fields ($\chi^2$ (`r t.m.f$df`) = `r t.m.f$pearson`, *p*< .001) which can be seen in \@ref(tab:journalprop). Specifically, if we look at the change in reporting for each field analyzed at the level of the experiment (HEYO, CAN I GET A TABLE IN HERE LIKE ON THE POSTER WITH THE EFFECT SIZES?) we find the largest differences appear for Social, Cognitive, I/O, and Forensic Psychology, with the smallest changes appearing for the Environmental, Overview, and Clinical Psychology. 
+Data processing resulted in a total of 2234 experiments being coded, 1085 of which were from 2012 or prior, and the additional 1149 being from 2017 or prior. Investigating reporting of outliers, we found that in 2012, `r overalloutpercent$percent[2]`% of experiments mentioned outliers, while in 2017 `r overalloutpercent$percent[4]`% of experiments mentioned outliers. When evaluted withhin the context of a multilevel model using the year the experiment was pusblished to predict whether or not outliers were mentioned and inclduing a random intercept for journal we find that year significantly predicts mentioning outliers, *b*= `r m1$beta[2]`, SE=0.02, *p* <.001. Each year, experiemtns were 13.5% more likely to report outliers as the previous year. Further exploration reveals that differences in reporting between years arise between fields  which can be seen in \@ref(tab:journalprop). Specifically, if we look at the change in reporting for each field analyzed at the level of the experiment we find the largest changes in forensic (45% more likely to report), social (34%), and IO (33%). Following these are developmental (20%) and cognitive (15%). These analyses show that in some fields, including our overall category and neuro psychology  an insignificant but intersting suggestion that reporting of outliers may actually be decreasing slightly. Additionally, we find that the variability due to journal fis consistently small throughout all fields.
 
-When viewing the reporting of outliers broken down by analysis across time, we see there is a significant association between time, analysis, and outlier reporting ($\chi^2$ (`r t.m.a$df`) = `r t.m.a$pearson`, *p*< .001). As can be seen in \@ref(????) Every analysis shows an increase in mentions of outliers over time, and when looking solely the relationship between analysis and time of those experiments actually reporting outliers, we see the largest increases in reporting for the Bayesian/Other category, followed by the modeling category, and the nonparametric category.  
-Of those outliers that were reported, the majority of the time this was reportedly due to statistical reasons (x%) and/or participant errors (x%), with few experiments reporting outliers due to unusable data. When looking at the association of these reasons over time, we again clearly see all reasons increasing in usage from 2012 to 2017, but see the most increase in reporting of participant errors, followed by unusable data, and finally statistical reasons. It is therefore unsurprising that there is a significant association between time and whether it was a person or datapoint were discusses as outliers (insert chi-sq here), such that all instances increased in reporting over time, however, removal of people doubled from 2012 to 2017. 
+We then investigated how this reporting between years may differ by analysis, as can be seen in \@ref(????) (CAN I GET A TABLE HERE WITH A ROW FOR EACH ANALYSIS TYPE AND A COLUMN FOR N IN 2012, N IN 2017, ODD RATIO INCREASE, AND JOURNAL VARIANCE PLEASE). Increase in reporting was significant for nonparamertic (38% more likely to report), basic (23%), regression (15%), anova (14%), and modeling (11%) techniques. Additionally, we find some variability due to journal between analyses. 
+
+Of those outliers that were reported, the majority of the time this was reportedly due to statistical reasons (47.7%) and/or participant errors (47.1%), with few experiments reporting outliers due to unusable data (5.2%). HOW CAN WE ANALYZE THIS NOW THAT WE HAVE YEAR? LIKE A MULTINOMIAL LOGIT? BUT THEY AREN'T UNIQUE CATEGORIES..? When looking at the association of these reasons over time, we again clearly see all reasons increasing in usage from 2012 to 2017, but see the most increase in reporting of participant errors, followed by unusable data, and finally statistical reasons. THIS IS ALSO NOT TRUE NOW DUE TO OUR MLM It is therefore unsurprising that there is a significant association between time and whether it was a person or datapoint were discusses as outliers (insert chi-sq here), such that all instances increased in reporting over time, however, removal of people doubled from 2012 to 2017.
+
 In our review, the majority of outliers mentioned referred to people (x%), removed the observation (x%), and ran the analyses without the observation (x%). Only 9 experiments (x%) discussed the differences between results both with and without the outlying observations, and of those, 5 found no differences in their analyses and 4 found differences in their analyses. Of the 5 that found no differences,  3 reported their final analyses without the outliers, 1 reported their final analyses with the outlier included, and 1 reported both with and without the outliers. Of the 4 that found differences, 3 reported the results without the outliers and 1 reported the results both with and without the outliers. (CAN WE PUT A TABLE FOR THIS PARAGRAPH THAT HAS A ROW FOR EACH OUTCOME (take out, report diff, etc.), I.E. WITH/WITHOUT/WINSORIZED, AND A COLUMN FOR THE %(N) FALLING INTO THAT CATEGORY?)
 
 # Discussion
