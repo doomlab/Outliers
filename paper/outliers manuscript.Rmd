@@ -497,7 +497,10 @@ table(out.testing$run.with.or.without)
 table(out.testing$difference.between.analyses.with.and.without)
 table(out.testing$report.results.on.if.did.both)
 table(out.testing$report.results.on.if.did.both, out.testing$difference.between.analyses.with.and.without)
+table(out.testing$report.results.on.if.did.both, out.testing$take.out.or.leave.in)
+
 ```
+
 
 ```{r correlation}
 cor.data<-master[,c(9, 28)]
