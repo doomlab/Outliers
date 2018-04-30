@@ -18,7 +18,7 @@ affiliation:
       institution   : "Missouri State University"
 
 author_note: |
- K. D. Valentine is a Ph.D. candidate at the University of Missouri.  Erin M. Buchanan is an Associate Professor of Quantitative Psychology at Missouri State University. 
+ K. D. Valentine is a Ph.D. candidate at the University of Missouri. Erin M. Buchanan is an Associate Professor of Quantitative Psychology at Missouri State University. 
   
 abstract: |
   The social sciences have begun to take a careful look at the way we process and interpret data, as many famous experiments do not appear to replicate (Open Science Collaboration, 2015). The Open Science Foundation (OSF) was founded in 2013 to promote a transparent research process from formation of the hypotheses to completely reproducible papers (Nosek et al., 2015). This project examines the impact of the formation of OSF and changing research culture on the publication of information concerning data screening methods for outliers, as the impact of outliers can critically change the findings and interpretation of experiments.
@@ -69,7 +69,7 @@ Bernoulli first mentioned outliers in 1777 starting the long history of examinin
 However, outlier detection and removal is likely part of a researchers data screening procedure, even if it does not make the research publication. Lebel et al. (2013)  that 11% of psychology researchers stated that they had not reported excluding participants for being outliers in their papers. Fiedler and Schwarz (2016) suggested that more than a quarter of researchers decide whether to exclude data only after looking at the impact of doing so. Bakker and Wicherts (2014) investigated the effects of outliers on published analyses, and while they did not find that they affected the surveyed results, they do report that these findings are likely biased by the non-reporting of data screening procedures, as sample sizes and degrees of freedom often did not match. The lack of transparency in data manipulation and reporting is problematic. 
 
 
-By keeping outliers in a dataset, analyses are more likely to have increased error variance (depending on sample size, Orr et al., 1991), biased estimates (Osborne, & Overbay, 2004), and reduced effect size and power (Orr, Sackett, & Dubois, 1991; Osborne, & Overbay 2004), which can alter the results of the analysis and lead to falsely supporting (Type I error), or denying a claim (Type II error). Inconsistencies in the treatment and publicatin of outliers could also lead to the failures to replicate previous work, as it would be difficult to replicate analyses that have been *p*-hacked into "just-significant" results (Nelson, Simmons, & Simonsohn, 2018; Legget, 2013). The influence of this practice can be wide spread, as non-reporting of data manipulation can negatively affect meta-analyses, effect size, and sample size estimates for study planning. On the other hand, outliers do not always need to be seen as nuisance, as they will often be informative to researchers as they can encourage the diagnosis, change, and evolution of a research model (Beckman & Cook, 1983). Taken together, a lack of reporting of outlier practices can lead to furthering unwarranted avenues of research, ignoring important information, creating erroneous theories, and failure to replicate, all of which serve to weaken the sciences. Clarifying the presence or absence of outliers, how they were assessed, and how they were handled, can improve our transparency and replicability, and ultimately help to strengthen our science.  
+By keeping outliers in a dataset, analyses are more likely to have increased error variance (depending on sample size, Orr et al., 1991), biased estimates (Osborne, & Overbay, 2004), and reduced effect size and power (Orr, Sackett, & Dubois, 1991; Osborne, & Overbay 2004), which can alter the results of the analysis and lead to falsely supporting (Type I error), or denying a claim (Type II error). Inconsistencies in the treatment and publicatin of outliers could also lead to the failures to replicate previous work, as it would be difficult to replicate analyses that have been *p*-hacked into "just-significant" results (Nelson, Simmons, & Simonsohn, 2018; Legget, 2013). The influence of this practice can be wide spread, as non-reporting of data manipulation can negatively affect meta-analyses, effect size, and sample size estimates for study planning. On the other hand, outliers do not always need to be seen as nuisance, as they will often be informative to researchers as they can encourage the diagnosis, change, and evolution of a research model (Beckman & Cook, 1983). Taken together, a lack of reporting of outlier practices can lead to furthering unwarranted avenues of research, ignoring important information, creating erroneous theories, and failure to replicate, all of which serve to weaken the sciences. Clarifying the presence or absence of outliers, how they were assessed, and how they were handled, can improve our transparency and replicability, and ultimately help to strengthen our science. 
 
 The current zeitgeist of increased transparency and reproducibility applies not only to the manner in which data is collected, but also the various ways the data is transformed, cleaned, pared down, and analyzed. Therefore, it can be argued that it is just as important for a researcher to state how they identified outliers within their data, how the outliers were handled, and how this choice of handling impacted the estimates and conclusions of their analyses, as it is for them to report their sample size. Given the timing of the renaissance, we expected to find a positive change in reporting ratings for outliers in 2017, as compared to 2012. This report spans a wide range of psychological sub-domains, however, we also expected the impact of the Open Science Collaboration (2015) publication to affect social and cognitive psychology more than other fields. 
 
@@ -77,26 +77,44 @@ The current zeitgeist of increased transparency and reproducibility applies not 
 
 ## Fields
 
-A list of psychological field areas was created to begin the search for appropriate journals to include.  The authors brainstormed the list of topics (shown in \@ref(tab:table)) by first listing major research areas in psychology (i.e. cognitive, clinical, social).  Second, a list of common courses offered at large universities was consulted to add to the list of fields.  Lastly, the American Psychological Association's list of divisions was examined for any potential missed fields. The topic list was created to capture large fields of psychology with small overlap (i.e. cognition and neuropsychology) while avoiding specific subfields of topics (i.e. cognition, perception, and memory). Sixteen fields were initially identified, however only 13 were included in final analysis due to limitations noted below. 
+A list of psychological sub-domains was created to begin the search for appropriate journals to include. The authors brainstormed the list of topics (shown in Table \@ref(tab:info-table)) by first listing major research areas in psychology (i.e., cognitive, clinical, social, etc.). Second, a list of common courses offered at large universities was consulted to add to the list of fields. Lastly, the American Psychological Association's list of divisions was examined for any potential missed fields. The topic list was created to capture large fields of psychology with small overlap (i.e., cognition and neuropsychology) while avoiding specific subfields of topics (i.e., cognition, perception, and memory). Sixteen fields were initially identified, however only thirteen were included in final analysis due to limitations noted below. 
 
 ## Journals
 
-Once these fields were agreed upon, researchers used various search sources (Google, EBSCO host databases) to find journals that were dedicated to each broad topic. Journals were included if they appeared to publish a wide range of articles within the selected fields. A list of journals, publishers, and impact factors (as noted by each journals website in Spring of 2013) were identified for each field.  Two journals from each field were selected based on the following criteria: 1) high impact factors, 2) impact factors over one at minimum, 3) a mix of publishers if possible, and 4) availability due to university resources.  These journals are shown in \@ref(tab:info-table).
+Once these fields were agreed upon, researchers used various search sources (Google, EBSCO host databases) to find journals that were dedicated to each broad topic. Journals were included if they appeared to publish a wide range of articles within the selected fields. A list of journals, publishers, and impact factors (as noted by each journals website in Spring of 2012 and 2018) were identified for each field. Two journals from each field were selected based on the following criteria: 1) high impact factors over one at minimum, 2) a mix of publishers, if possible, and 3) availability due to university resources. These journals are shown in the online supplemental materials at https://osf.io/52mqw/.
 
-##Articles
-Fifty articles from each journal were examined for data analysis (25 articles were collected beginning in 2012 and 25 articles were collected beginning in 2017). Data collection of articles started at the last volume publication from the given year (2012 or 2017) and progressed backwards until 25 articles had been found. We excluded online first publications and started in 2012 to ensure time for errata and retraction of articles. Articles were including if they met the following criteria: 1) included data analyses, 2) included multiple participants or data-points, and 3) analyses were based on human subjects or stimuli. Therefore, we excluded theory articles, animal populations, and single subject designs. Based on review for the 2012 articles, three fields were excluded.  Applied behavior analysis articles predominantly included single-subject designs, evolutionary psychology articles were primarily theory articles, and statistics related journal articles were based on user created data with specific set characteristics.  Since none of these themes fit into our analysis of understanding data screening with human subject samples, we excluded those three fields from analyses.
+## Articles
+
+Fifty articles from each journal were examined for data analysis: 25 articles were collected beginning in Spring 2013 for 2012 and in Fall 2017. Data collection of articles started at the last volume publication from the given year (2012 or 2017) and progressed backwards until 25 articles had been found. We excluded online first publications and started in 2012 to ensure time for errata and retraction of articles. Articles were included if they met the following criteria: 1) included data analyses, 2) included multiple participants or data-points, and 3) analyses were based on human subjects or stimuli. Therefore, we excluded theory articles, animal populations, and single subject designs. Based on review for the 2012 articles, three fields were excluded. Applied Behavior Analysis articles predominantly included single-subject designs, evolutionary psychology articles were primarily theory articles, and statistics related journal articles were based on user created data with specific set characteristics. Since none of these themes fit into our analysis of understanding data screening with human subject samples, we excluded those three fields from analyses.
 
 ## Data Processing
 
-Each article was then reviewed for key components of data analysis.  Each experiment in an article was coded separately. For each experiment, the type of analysis conducted, number of participants/stimuli analyzed, and whether or not they made any mention of outliers were coded.  Types of analyses were broadly coded into basic statistics (descriptive statistics, z-scores, t-tests, and correlations), ANOVAs, regressions, chi-squares, nonparametric statistics, modeling, and Bayesian/other analyses. First, we coded if outliers were mentioned at all in article.  If so, we coded information about outliers into four types: 1) people, 2) data, 3) both, or 4) none found.  We found that a unique code for data was important for analyses with response time studies where individual participants were not omitted but rather specific data trials were eliminated.  Then, for those articles that mentioned outliers, the author's decision for how to handle the outliers was coded into whether they removed participants/stimuli, left these outliers in the analysis, or winsorized the datapoints. Experiments were additionally coded for whether they tested the analyses with, without, or both with and without these outliers for determination of their effect on the study.  If they removed outliers, a new sample size was recorded. Lastly, we coded the reasoning for outlier detection as one or more of the following: 1) Statistical reason (i.e. they used numbers to define odd or deviant behavior in responding, such as z-score or Mahalanobis distance scores), 2) Participant error (i.e. failed attention checks, did not follow instructions, or poor data because of participant problems), 3) Unusable data (inside knowledge of the study or experimenter/technological problems), or 4) no listed reason.
+Each article was then reviewed for key components of data analysis. Each experiment in an article was coded separately. For each experiment, the type of analysis conducted, number of participants/stimuli analyzed, and whether or not they made any mention of outliers were coded. 
 
+### Analysis types
 
+Types of analyses were broadly defined as basic statistics (descriptive statistics, *z*-scores, *t*-tests, and correlations), ANOVAs, regressions, chi-squares, nonparametric statistics, modeling, and Bayesian/other analyses. 
 
-## List of Fields, Journals, and Impact Factors 2012
+### Outlier coding
+
+For outliers, we used a dichotomous yes/no for if they were mentioned in an article. Outliers were not limited to simple statistical analysis of discrepant responses, but we also checked for specific exclusion criteria that were not related to missing data or study characteristics (i.e., we did not consider it an outlier if they were only looking for older adults). If so, we coded information about outliers into four types: 1) people, 2) data points, 3) both, or 4) none found. The distinction between people and data points was if individual trials were eliminated or if entire participant data was eliminated. We found that a unique code for data points was important for analyses with response time studies where individual participants were not omitted but rather specific data trials were eliminated. 
+
+Then, for those articles that mentioned outliers, the author's decision for how to handle the outliers was coded into whether they removed participants/stimuli, left these outliers in the analysis, or winsorized the data points. Experiments were coded for whether they tested the analyses with, without, or both for determination of their effect on the study. If they removed outliers, a new sample size was recorded. Lastly, we coded the reasoning for outlier detection as one or more of the following: 1) Statistical reason (i.e., used numbers to define odd or deviant behavior in responding, such as *z*-score or Mahalanobis distance scores), 2) Participant error (i.e., failed attention checks, did not follow instructions, or low quality data because of participant problems), 3) Unusable data (i.e., inside knowledge of the study or experimenter/technological problems), or 4) no listed reason. DID WE ACTUALLY HAVE NO LISTED REASON? 
 
 ```{r info-table, echo = FALSE, results = 'asis'}
-tableprint = matrix(NA, nrow = 31, ncol = 4)
+tableprint = matrix(NA, nrow = 13, ncol = 8)
 
+
+apa_table.latex(tableprint,
+                escape = F,
+                col.names = c("Field", "\\% 12", "$N$ 12", "\\% 17", 
+                              "$N$ 17", "OR", "LL", "UL"))
+```
+
+```{r info-journal, include=FALSE}
+tableprint = matrix(NA, nrow = 31, ncol = 6)
+colnames(tableprint) = c("Field", "Journal", "Publisher", "Impact2012", 
+                         "Impact2017", "5Year")
 tableprint[1, ] = c("Applied Behavior Analysis", "Journal of Experimental Analysis of Behavior", "Wiley", 1.39)
 
 tableprint[2, ] = c("Applied Behavior Analysis", "Journal of Applied Behavior Analysis", "Wiley", 1.19)
@@ -159,14 +177,10 @@ tableprint[30, ] = c("Overview", "Psychonomic Science", "Sage", 4.43)
 
 tableprint[31, ] = c("Overview", "Psychological Assessment", "APA", 2.99)
 
-kable(tableprint, 
-      digits = 3,
-      col.names = c("Field", "Journal", "Publisher", "Impact Factor"))
+write.csv(tableprint, "Journal Information.csv", row.names = F)
 ```
-*Note.* Impact factors as of time of initial data collection (Spring 2013).
 
-
-```{r proportions}
+```{r proportions, include=FALSE}
 
 table(master$mention.outliers)
 master$mention.outliers = factor(master$mention.outliers,
@@ -450,7 +464,7 @@ mytable3 <- xtabs(~time.pulled+mention.outliers+analysis, data=long.test.data)
 model3<-loglm(~time.pulled+mention.outliers+analysis, data=mytable3)
 t.m.a=model3
 ftable(mytable3)
-#find significant association between analysis type and reproting of outliers.  every analyssi shows an increase in mentions of outliers. 
+#find significant association between analysis type and reproting of outliers. every analyssi shows an increase in mentions of outliers. 
 model3b=table(long.testing.data$analysis, long.testing.data$time.pulled)
 chisq.test(model3b)
 model3b
