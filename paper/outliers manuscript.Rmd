@@ -45,11 +45,6 @@ library("papaja")
 library(knitr)
 knitr::opts_chunk$set(echo = TRUE)
 master = read.csv("outliers complete.csv")
-l.master=nrow(master)
-##experiment size
-table(master$Journal, master$time.pulled)
-table(master$Journal, master$year)
-
 ```
 
 Psychology is undergoing a "renaissance" in which focus has shifted to the replication and reproducibility of current published reports (Nelson, Simmons, and Simonsohn, 2018; Etz & Vandekerckhove, 2016; Lindsay, 2015; Open Science Collaboration, 2015; van Elk et al., 2015). A main concern has been the difficulty in replicating phenomena, often attributed to publication bias (Brannick, 2012), the use and misuse of *p*-values (Gigerenzer, 2004; Ioannidis, 2005), and researcher degrees of freedom (Simmons, Nelson, & Simonsohn, 2011). In particular, this analysis focused on one facet of questionable research practices that affect potential replication (QPRs), specifically, the selective removal or inclusion of datapoints. 
@@ -68,7 +63,6 @@ Bernoulli first mentioned outliers in 1777 starting the long history of examinin
 
 However, outlier detection and removal is likely part of a researchers data screening procedure, even if it does not make the research publication. Lebel et al. (2013)  that 11% of psychology researchers stated that they had not reported excluding participants for being outliers in their papers. Fiedler and Schwarz (2016) suggested that more than a quarter of researchers decide whether to exclude data only after looking at the impact of doing so. Bakker and Wicherts (2014) investigated the effects of outliers on published analyses, and while they did not find that they affected the surveyed results, they do report that these findings are likely biased by the non-reporting of data screening procedures, as sample sizes and degrees of freedom often did not match. The lack of transparency in data manipulation and reporting is problematic. 
 
-
 By keeping outliers in a dataset, analyses are more likely to have increased error variance (depending on sample size, Orr et al., 1991), biased estimates (Osborne, & Overbay, 2004), and reduced effect size and power (Orr, Sackett, & Dubois, 1991; Osborne, & Overbay 2004), which can alter the results of the analysis and lead to falsely supporting (Type I error), or denying a claim (Type II error). Inconsistencies in the treatment and publicatin of outliers could also lead to the failures to replicate previous work, as it would be difficult to replicate analyses that have been *p*-hacked into "just-significant" results (Nelson, Simmons, & Simonsohn, 2018; Legget, 2013). The influence of this practice can be wide spread, as non-reporting of data manipulation can negatively affect meta-analyses, effect size, and sample size estimates for study planning. On the other hand, outliers do not always need to be seen as nuisance, as they will often be informative to researchers as they can encourage the diagnosis, change, and evolution of a research model (Beckman & Cook, 1983). Taken together, a lack of reporting of outlier practices can lead to furthering unwarranted avenues of research, ignoring important information, creating erroneous theories, and failure to replicate, all of which serve to weaken the sciences. Clarifying the presence or absence of outliers, how they were assessed, and how they were handled, can improve our transparency and replicability, and ultimately help to strengthen our science. 
 
 The current zeitgeist of increased transparency and reproducibility applies not only to the manner in which data is collected, but also the various ways the data is transformed, cleaned, pared down, and analyzed. Therefore, it can be argued that it is just as important for a researcher to state how they identified outliers within their data, how the outliers were handled, and how this choice of handling impacted the estimates and conclusions of their analyses, as it is for them to report their sample size. Given the timing of the renaissance, we expected to find a positive change in reporting ratings for outliers in 2017, as compared to 2012. This report spans a wide range of psychological sub-domains, however, we also expected the impact of the Open Science Collaboration (2015) publication to affect social and cognitive psychology more than other fields. 
@@ -81,7 +75,7 @@ A list of psychological sub-domains was created to begin the search for appropri
 
 ## Journals
 
-Once these fields were agreed upon, researchers used various search sources (Google, EBSCO host databases) to find journals that were dedicated to each broad topic. Journals were included if they appeared to publish a wide range of articles within the selected fields. A list of journals, publishers, and impact factors (as noted by each journals website in Spring of 2012 and 2018) were identified for each field. Two journals from each field were selected based on the following criteria: 1) high impact factors over one at minimum, 2) a mix of publishers, if possible, and 3) availability due to university resources. These journals are shown in the online supplemental materials at https://osf.io/52mqw/.
+Once these fields were agreed upon, researchers used various search sources (Google, EBSCO host databases) to find journals that were dedicated to each broad topic. Journals were included if they appeared to publish a wide range of articles within the selected fields. A list of journals, publishers, and impact factors (as noted by each journals website in Spring of 2013 and 2018) were identified for each field. Two journals from each field were selected based on the following criteria: 1) high impact factors over one at minimum, 2) a mix of publishers, if possible, and 3) availability due to university resources. These journals are shown in the online supplemental materials at https://osf.io/52mqw/.
 
 ## Articles
 
@@ -99,7 +93,7 @@ Types of analyses were broadly defined as basic statistics (descriptive statisti
 
 For outliers, we used a dichotomous yes/no for if they were mentioned in an article. Outliers were not limited to simple statistical analysis of discrepant responses, but we also checked for specific exclusion criteria that were not related to missing data or study characteristics (i.e., we did not consider it an outlier if they were only looking for older adults). If so, we coded information about outliers into four types: 1) people, 2) data points, 3) both, or 4) none found. The distinction between people and data points was if individual trials were eliminated or if entire participant data was eliminated. We found that a unique code for data points was important for analyses with response time studies where individual participants were not omitted but rather specific data trials were eliminated. 
 
-Then, for those articles that mentioned outliers, the author's decision for how to handle the outliers was coded into whether they removed participants/stimuli, left these outliers in the analysis, or winsorized the data points. Experiments were coded for whether they tested the analyses with, without, or both for determination of their effect on the study. If they removed outliers, a new sample size was recorded. Lastly, we coded the reasoning for outlier detection as one or more of the following: 1) Statistical reason (i.e., used numbers to define odd or deviant behavior in responding, such as *z*-score or Mahalanobis distance scores), 2) Participant error (i.e., failed attention checks, did not follow instructions, or low quality data because of participant problems), 3) Unusable data (i.e., inside knowledge of the study or experimenter/technological problems), or 4) no listed reason. DID WE ACTUALLY HAVE NO LISTED REASON? 
+Then, for those articles that mentioned outliers, the author's decision for how to handle the outliers was coded into whether they removed participants/stimuli, left these outliers in the analysis, or winsorized the data points. Experiments were coded for whether they tested the analyses with, without, or both for determination of their effect on the study. If they removed outliers, a new sample size was recorded. Lastly, we coded the reasoning for outlier detection as one or more of the following: 1) Statistical reason (i.e., used numbers to define odd or deviant behavior in responding, such as *z*-score or Mahalanobis distance scores), 2) Participant error (i.e., failed attention checks, did not follow instructions, or low quality data because of participant problems), and 3) Unusable data (i.e., inside knowledge of the study or experimenter/technological problems).
 
 ```{r info-table, echo = FALSE, results = 'asis'}
 tableprint = matrix(NA, nrow = 13, ncol = 8)
@@ -179,6 +173,42 @@ tableprint[31, ] = c("Overview", "Psychological Assessment", "APA", 2.99)
 
 write.csv(tableprint, "Journal Information.csv", row.names = F)
 ```
+
+# Results
+
+## Data Analytic Plan
+KD IS GOING TO DO A THING HERE. 
+Chi-Square tests were used to analyze the associations between variables. When a chi-square analysis suggested that the approximation may be incorrect a Fisher's Exact test will be analyzed as well and both will be reported. Frequencies were used to describe the outliers mentioned. 
+
+## Overall Outliers
+
+Data processing resulted in a total of 2234 experiments being coded, 1085 of which were from 2012 or prior, and the additional 1149 being from 2017 or prior. Investigating reporting of outliers, we found that in 2012, `r overalloutpercent$percent[2]`% of experiments mentioned outliers, while in 2017 `r overalloutpercent$percent[4]`% of experiments mentioned outliers. When evaluted within the context of a multilevel model using the year the experiment was pusblished to predict whether or not outliers were mentioned and inclduing a random intercept for journal we find that year significantly predicts mentioning outliers, *b*= `r m1$beta[2]`, SE=0.02, *p* <.001. Each year, experiments were 13.5% more likely to report outliers as the previous year. 
+
+## Fields
+
+Further exploration reveals that differences in reporting between years arise between fields  which can be seen in \@ref(tab:journalprop). Specifically, if we look at the change in reporting for each field analyzed at the level of the experiment we find the largest changes in forensic (45% more likely to report), social (34%), and IO (33%). Following these are developmental (20%) and cognitive (15%). These analyses show that in some fields, including our overall category and neuro psychology  an insignificant but intersting suggestion that reporting of outliers may actually be decreasing slightly. Additionally, we find that the variability due to journal is consistently small throughout all fields.
+
+DESCRIPTIVE STUFF GOES HERE ABOUT HOW THESE WERE JUST TO EXPLORE AND NOT HYPOTHESES. 
+
+## Sample Size
+
+## Analyses Type
+
+We then investigated how this reporting between years may differ by analysis, as can be seen in \@ref(????) (CAN I GET A TABLE HERE WITH A ROW FOR EACH ANALYSIS TYPE AND A COLUMN FOR N IN 2012, N IN 2017, ODD RATIO INCREASE, AND JOURNAL VARIANCE PLEASE). Increase in reporting was significant for nonparamertic (38% more likely to report), basic (23%), regression (15%), anova (14%), and modeling (11%) techniques. Additionally, we find some variability due to journal between analyses. 
+
+## Reasons
+
+Of those outliers that were reported, the majority of the time this was reportedly due to statistical reasons (47.7%) and/or participant errors (47.1%), with few experiments reporting outliers due to unusable data (5.2%). HOW CAN WE ANALYZE THIS NOW THAT WE HAVE YEAR? LIKE A MULTINOMIAL LOGIT? BUT THEY AREN'T UNIQUE CATEGORIES..? When looking at the association of these reasons over time, we again clearly see all reasons increasing in usage from 2012 to 2017, but see the most increase in reporting of participant errors (3.5 times more often reported in 2017), followed by unusable data (3.3 times), and finally statistical reasons (1.7 times). 
+
+## Type of Outlier
+
+In our review, the majority of outliers mentioned referred to people (65.9%) as opposed to data points (25.3%), or both people and data points (5.7%), a final 3% of experiments mentioned outliers but did not specify a type, just that they found none. We were addtiiaonlly interested investigating the differene in reporting of just people or data points (dropping the both or none categories) across time. Using a multilevel model predicting whether people or data points were removed using year and a random intercept for journal we find no significant effect for year, b=0.05, SE=0.05, *p*=.36, demondtrating that the change in reporting of both types of outliers were consistent. When handling these data, some experiments chose to winzorize data (.7%), most analyzed the data without the observations (88.5%), some analyzed the data with the observations (7.4%), and some conducted analyses both with and without the observations (3.4%). Of the outliers found, the majority (88.1%) were removed from the dataset before analysis.
+
+# Discussion
+
+While modest improvments in reporting can be seen in some fields, overall the outlook is still bleak. 
+Some may argue that use of the precious word limit dictated by journals to describe such acts as outlier identification and handling may be irrational. However, we contest that given the current availability and use of online supplements and appendixes, as well as the invent of the Open Science Framework (OSF; cite) which allows researchers the ability to upload any number of additional resources and supplements that can be easily referenced in their manuscripts in as little as 4 words: See supplement at osf.io/52mqw.
+
 
 ```{r proportions, include=FALSE}
 
@@ -434,9 +464,6 @@ p.t.m.a=chisq.test(reason.table.test) #thre a "approximation may be incorrect" e
 
 ```
 
-
-## Data analysis
-Chi-Square tests were used to analyze the associations between variables. When a chi-square analysis suggested that the approximation may be incorrect a Fisher's Exact test will be analyzed as well and both will be reported. Frequencies were used to describe the outliers mentioned. 
 ```{r chisquares}
 
 
@@ -748,22 +775,6 @@ summary(m2)
 
 
 ```
-
-# Results
-Data processing resulted in a total of 2234 experiments being coded, 1085 of which were from 2012 or prior, and the additional 1149 being from 2017 or prior. Investigating reporting of outliers, we found that in 2012, `r overalloutpercent$percent[2]`% of experiments mentioned outliers, while in 2017 `r overalloutpercent$percent[4]`% of experiments mentioned outliers. When evaluted withhin the context of a multilevel model using the year the experiment was pusblished to predict whether or not outliers were mentioned and inclduing a random intercept for journal we find that year significantly predicts mentioning outliers, *b*= `r m1$beta[2]`, SE=0.02, *p* <.001. Each year, experiemtns were 13.5% more likely to report outliers as the previous year. Further exploration reveals that differences in reporting between years arise between fields  which can be seen in \@ref(tab:journalprop). Specifically, if we look at the change in reporting for each field analyzed at the level of the experiment we find the largest changes in forensic (45% more likely to report), social (34%), and IO (33%). Following these are developmental (20%) and cognitive (15%). These analyses show that in some fields, including our overall category and neuro psychology  an insignificant but intersting suggestion that reporting of outliers may actually be decreasing slightly. Additionally, we find that the variability due to journal fis consistently small throughout all fields.
-
-We then investigated how this reporting between years may differ by analysis, as can be seen in \@ref(????) (CAN I GET A TABLE HERE WITH A ROW FOR EACH ANALYSIS TYPE AND A COLUMN FOR N IN 2012, N IN 2017, ODD RATIO INCREASE, AND JOURNAL VARIANCE PLEASE). Increase in reporting was significant for nonparamertic (38% more likely to report), basic (23%), regression (15%), anova (14%), and modeling (11%) techniques. Additionally, we find some variability due to journal between analyses. 
-
-Of those outliers that were reported, the majority of the time this was reportedly due to statistical reasons (47.7%) and/or participant errors (47.1%), with few experiments reporting outliers due to unusable data (5.2%). HOW CAN WE ANALYZE THIS NOW THAT WE HAVE YEAR? LIKE A MULTINOMIAL LOGIT? BUT THEY AREN'T UNIQUE CATEGORIES..? When looking at the association of these reasons over time, we again clearly see all reasons increasing in usage from 2012 to 2017, but see the most increase in reporting of participant errors (3.5 times more often reported in 2017), followed by unusable data (3.3 times), and finally statistical reasons (1.7 times). 
-
-In our review, the majority of outliers mentioned referred to people (65.9%) as opposed to data points (25.3%), or both people and data points (5.7%), a final 3% of experiments mentioned outliers but did not specify a type, just that they found none. We were addtiiaonlly interested investigating the differene in reporting of just people or data points (dropping the both or none categories) across time. Using a multilevel model predicting whether people or data points were removed using year and a random intercept for journal we find no significant effect for year, b=0.05, SE=0.05, *p*=.36, demondtrating that the change in reporting of both types of outliers were consistent. When handling these data, some experiemnts chose to winzorize data (.7%), most analyzed the data without the observations (88.5%), some analyzed the data with the ovservations (7.4%), and some conducted analyses both with and without the observations (3.4%). Of the outliers found, the majority (88.1%) were removed from the dataset before analysis OK, NOW IM NOT SURE WHAT THIS IS REPORTING, CAN WE TALK AOBUT THE TAKE OUT IN VAR?. Only 9 experiments (2%) discussed the differences between results both with and without the outlying observations, and of those, 5 found no differences in their analyses and 4 found differences in their analyses. Of the 5 that found no differences, 3 reported their final analyses without the outliers, 1 reported their final analyses with the outlier included, and 1 reported the results both with and without the outliers. Of the 4 that found differences, 3 reported the results without the outliers and 1 reported the results both with and without the outliers.
-
-# Discussion
-
-While modest improvments in reporting can be seen in some fields, overall the outlook is still bleak. 
-Some may argue that use of the precious word limit dictated by journals to describe such acts as outlier identification and handling may be irrational. However, we contest that given the current availability and use of online supplements and appendixes, as well as the invent of the Open Science Framework (OSF; cite) which allows researchers the ability to upload any number of additional resources and supplements that can be easily referenced in their manuscripts in as little as 4 words: See supplement at osf.io/52mqw.
-
-
 
 \newpage
 
