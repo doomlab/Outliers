@@ -1,0 +1,402 @@
+---
+title: "Untitled"
+author: "Erin M. Buchanan"
+date: "4/30/2018"
+output: html_document
+---
+
+
+
+
+
+```{r journalprop}
+library(MOTE)
+graphdata$prop = graphdata$percent/100
+types = levels(graphdata$Type)
+for (i in 1:length(types))
+{
+  saved = d.prop(graphdata$prop[graphdata$Type==types[i]][1],
+         graphdata$prop[graphdata$Type==types[i]][2],
+         graphdata$sample[ graphdata$Type==types[i]][1], 
+         graphdata$sample[ graphdata$Type==types[i]][2],
+         a = .05) 
+  print(c(types[i],saved$d))
+}
+
+```
+
+```{r reason}
+master$reason.code
+table(master$reason.code)
+reasons = subset(master, mention.outliers == "Yes")
+
+##create reason columns
+reasons$part = 0
+reasons$part[ grep("part", reasons$reason.code)] = 1
+reasons$stat = 0
+reasons$stat[ grep("stat", reasons$reason.code)] = 1
+reasons$exp = 0
+reasons$exp[ grep("unus", reasons$reason.code)] = 1
+
+##create a data frame of the percentages
+reasonssummary = table(reasons$part, reasons$time.pulled, reasons$Type)
+reasonssummary = as.data.frame(reasonssummary)
+colnames(reasonssummary) = c("yesno", "time.pulled", "Type", "part.freq")
+reasonssummary$stat.freq = as.data.frame(table(reasons$stat, reasons$time.pulled, reasons$Type))$Freq
+reasonssummary$exp.freq = as.data.frame(table(reasons$exp, reasons$time.pulled, reasons$Type))$Freq
+
+reasonspercent = group_by(reasonssummary, time.pulled, Type) %>%
+  mutate(part.percent = part.freq/sum(part.freq)*100) %>%
+  mutate(stat.percent = stat.freq/sum(stat.freq)*100) %>%
+  mutate(exp.percent = exp.freq/sum(exp.freq)*100) 
+
+#kable(reasonspercent)
+#only include the percent of 1s
+
+```
+
+```{r Peopledata}
+
+peep_data = subset(master, mention.outliers == "Yes")
+table(peep_data$peopleor.data.points)
+
+##create a data frame of the percentages
+peep_datasummary = table(peep_data$peopleor.data.points, peep_data$time.pulled, peep_data$Type)
+peep_datasummary = as.data.frame(peep_datasummary)
+colnames(peep_datasummary) = c("code", "time.pulled", "Type", "Freq")
+
+peep_datapercent = group_by(peep_datasummary, time.pulled, Type) %>%
+  mutate(percent = Freq/sum(Freq)*100)
+kable(peep_datapercent)
+```
+
+```{r BasicsBayes}
+
+##if they are doing basic statistics so equals 1 how many times do they mention outliers yes/no by year 
+library(reshape)
+analyses = master[ , c(3, 4, 10, 20:26)]
+#View(analyses)
+longanalyses = melt(analyses,
+                    id = c("time.pulled", "Type", "mention.outliers"))
+colnames(longanalyses)[4:5] = c("analysis.type", "used")
+
+longanalyses = subset(longanalyses, used == 1)
+
+##create a data frame of the percentages
+analysessummary = table(longanalyses$mention.outliers, longanalyses$time.pulled, longanalyses$analysis.type)
+analysessummary = as.data.frame(analysessummary)
+colnames(analysessummary) = c("mention.outliers", "time.pulled",  "analysis.type", "Freq")
+
+analysespercent = group_by(analysessummary, time.pulled, analysis.type) %>%
+  mutate(percent = Freq/sum(Freq)*100)
+
+graphdata = subset(analysespercent, mention.outliers == "Yes")
+
+#calculate CIs to add to graph
+graphdata$sample = as.data.frame(table(longanalyses$time.pulled, longanalyses$analysis.type))$Freq
+graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
+
+dotplot2 = ggplot(graphdata, aes(analysis.type, percent, color = time.pulled))
+finalgraph = dotplot2 +
+  geom_pointrange(aes(ymin=percent-1.96*SE, ymax=percent+1.96*SE))+ 
+  cleanup +
+  xlab("Type of Analysis") +
+  ylab("Percent of Outlier Mentions") + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+  scale_color_manual(name = "Year", 
+                     values = c("maroon", "gray")) + 
+  coord_cartesian(ylim = c(0,50))
+
+tiff(filename = "analyses_graph.tiff", res = 300, width = 15, 
+     height = 12, units = 'in', compression = "lzw")
+plot(finalgraph)
+dev.off()
+
+```
+
+
+
+
+```{r 3-waytable}
+#let's try a 3-way table
+# 3-Way Frequency Table 
+#
+library(MASS)
+mytable <- xtabs(~time.pulled+mention.outliers+Type, data=master)
+model2<-loglm(~time.pulled+mention.outliers+Type, data=mytable)
+t.m.f=model2
+ftable(mytable)
+
+
+
+#try for journal?
+#mytable2 <- xtabs(~time.pulled+mention.outliers+Journal, data=master)
+#loglm(~time.pulled+mention.outliers+Journal, data=mytable2)
+#ftable(mytable2)
+#can't talk about this becasue of data sparsity
+
+
+```
+
+```{r graphanalysisbyreason}
+out.testing = subset(master, mention.outliers == "Yes")
+library(car)
+
+table(master$mention.outliers2)
+master$mention.outliers2=recode(master$mention.outliers2, "1=0; 2=1")
+table(master$mention.outliers2)
+
+#need to go back and put this var into these datasets so can analyze mlm**********************************
+##create reason columns
+out.testing$part = 0
+out.testing$part[ grep("part", out.testing$reason.code)] = 1
+out.testing$stat = 0
+out.testing$stat[ grep("stat", out.testing$reason.code)] = 1
+out.testing$exp = 0
+out.testing$exp[ grep("unus", out.testing$reason.code)] = 1
+names(out.testing)
+long.testing=out.testing[,c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
+                            "part", "stat", "exp", "Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
+                            "Modeling", "BayesOther" )]
+
+long.testing.data=melt(long.testing, 
+                    id = c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
+                           "part", "stat", "exp"),
+                    measured = c("Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
+                                 "Modeling", "BayesOther"))
+#View(choice.data)          
+colnames(long.testing.data)=c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
+                           "part", "stat", "exp", "analysis", "used")
+#View(long.testing.data)
+long.testing.data = subset(long.testing.data, used == 1)
+
+#View(long.testing.data)
+
+
+long.reason.data=long.testing.data[,c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
+                                       "analysis", "part", "stat", "exp")]
+long.reason.data=melt(long.reason.data,
+                      id=c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
+                           "analysis"),
+                      measured=c("part", "stat", "exp"))
+colnames(long.reason.data)=c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
+                             "analysis", "reasion.type", "used")
+#View(long.reason.data)
+long.reason.data = subset(long.reason.data, used == 1)
+long.reason.data<-na.omit(long.reason.data)
+# View(long.reason.data)
+
+long.reason.data$reason=factor(long.reason.data$reasion.type)
+reason.table.test = table( long.reason.data$reason, long.reason.data$analysis)
+#View(reason.table.test)
+p.t.m.a=chisq.test(reason.table.test) #thre a "approximation may be incorrect" error, so switched to the Fisher test.
+#f.t.m.a=fisher.test(reason.table.test, simulate.p.value=TRUE,B=1e7)
+
+#so probably don't need to graph it so much. 
+#barplot(reason.table.test, col=c("purple", "blue", "green"), space=1, legend = rownames(reason.table.test))
+
+```
+
+```{r chisquares}
+
+
+long.test=master[,c("Journal","year", "time.pulled", "Type", "mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
+                             "Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
+                            "Modeling", "BayesOther" )]
+
+long.test.data=melt(long.test, 
+                    id = c("Journal","year", "time.pulled", "Type","mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without"),
+                    measured = c("Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
+                                 "Modeling", "BayesOther"))
+#View(choice.data)          
+colnames(long.test.data)=c("Journal","year", "time.pulled", "Type","mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
+                            "analysis", "used")
+#View(long.test.data)
+long.test.data = subset(long.test.data, used == 1)
+long.test.data$mention.outliers2<-as.numeric(long.test.data$mention.outliers)
+table(long.test.data$mention.outliers2)
+long.test.data$mention.outliers2=recode(long.test.data$mention.outliers2, "1=0; 2=1")
+table(long.test.data$mention.outliers2)
+
+#View(long.test.data)
+
+mytable3 <- xtabs(~time.pulled+mention.outliers+analysis, data=long.test.data)
+model3<-loglm(~time.pulled+mention.outliers+analysis, data=mytable3)
+t.m.a=model3
+ftable(mytable3)
+#find significant association between analysis type and reproting of outliers. every analyssi shows an increase in mentions of outliers. 
+model3b=table(long.testing.data$analysis, long.testing.data$time.pulled)
+chisq.test(model3b)
+model3b
+#rationalextime
+#View(long.reason.data)
+long.reason.data.na=na.omit(long.reason.data)
+length(long.reason.data.na$time.pulled)
+t.r.time<-table(long.reason.data.na$time.pulled, long.reason.data.na$reason)
+t.r.time
+chisq.test(t.r.time)
+#View(t.r.time.test$observed)
+#associated: more overall in 2017, but most increase in reporting of participant error (increasing 3-fold), experimental error (2-fold), and statistical reasons (<2fold)
+
+
+#rationalexdiscipline
+#t.r.field<-table(long.reason.data.na$Type, long.reason.data.na$reason)
+#View(t.r.field)
+
+#can't discuss this, too sparse of data
+
+
+
+out.testing$peopleor.data.points.f=factor(out.testing$peopleor.data.points)
+time.people<-table(out.testing$time.pulled, out.testing$peopleor.data.points)
+time.people<-time.people[,c(2:5)]
+time.people
+
+chisq.test(time.people)#thre a "approximation may be incorrect" error, so switched to the Fisher test.
+#fisher.test(time.people, simulate.p.value=TRUE,B=1e7) # same as chisq basically p= 0.01594
+#so, there is a sign. difference, mainly driven by the fact that taking out people has doubled. 
+
+
+#long.reason.data.2=long.reason.data[,c(1, 3:9)]
+#people.reason=table(long.reason.data$peopleor.data.points, long.reason.data$reason)
+#people.reason
+#so can't run this one b/c data sparsity
+
+#time.out=table(long.reason.data$take.out.or.leave.in, long.reason.data$time.pulled)
+#time.out
+#can't run that
+
+#reason.out=table(long.reason.data$reason, long.reason.data$take.out.or.leave.in)
+#reason.out
+#can't run that either
+
+#out.people=table(out.testing$take.out.or.leave.in, out.testing$peopleor.data.points)
+#out.people
+#this data is super sparse, let's keep this part simple and just describe the data we have. 
+
+table(out.testing$peopleor.data.points)     
+table(out.testing$take.out.or.leave.in)     
+table(out.testing$run.with.or.without)
+table(out.testing$difference.between.analyses.with.and.without)
+table(out.testing$report.results.on.if.did.both)
+table(out.testing$report.results.on.if.did.both, out.testing$difference.between.analyses.with.and.without)
+table(out.testing$report.results.on.if.did.both, out.testing$take.out.or.leave.in)
+
+```
+
+
+```{r correlation}
+cor.data<-master[,c(9, 28)]
+cor.test(cor.data$original.sample.size, cor.data$mention.outliers2, use="complete.obs", method="spearman") 
+#super small rho, but it's significant. 
+
+cor.test(master$original.sample.size, master$time.pulled, use="complete.obs", method="spearman") 
+#we are increasing in sample size over time, slightly, rho=.136, p<.001
+plot(master$year, master$original.sample.size) #wtf is up with year here?
+
+#printnum(stuff$p.value, gt1=FALSE, zero=FALSE)
+#?apa_print
+
+```
+
+```{r mlms}
+library(lme4)
+
+
+
+#show largest change in forensic (45% more likely to report), followed by social at 34% and io at 33% followed by developmental at 20% and cognitive at 15%  
+m2 <- glmer(mention.outliers2 ~ year*analysis + (1 | Journal),
+            data=long.test.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m2)
+#now need to see if they vary by analysis
+basic.data=long.test.data[which(long.test.data$analysis=="Basics"),]
+anova.data=long.test.data[which(long.test.data$analysis=="ANOVA"),]
+reg.data=long.test.data[which(long.test.data$analysis=="Regression"),]
+chi.data=long.test.data[which(long.test.data$analysis=="ChiSquare"),]
+nonpar.data=long.test.data[which(long.test.data$analysis=="Nonparametric"),]
+model.data=long.test.data[which(long.test.data$analysis=="Modeling"),]
+bo.data=long.test.data[which(long.test.data$analysis=="BayesOther"),]
+
+
+
+m1basic <- glmer(mention.outliers2 ~ year + (1 | Journal),
+            data=basic.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1basic)
+
+m1anova <- glmer(mention.outliers2 ~ year + (1 | Journal),
+            data=anova.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1anova)
+
+m1reg <- glmer(mention.outliers2 ~ year + (1 | Journal),
+            data=reg.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1reg)
+
+m1chi <- glmer(mention.outliers2 ~ year + (1 | Journal),
+            data=chi.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1chi)
+
+m1non <- glmer(mention.outliers2 ~ year + (1 | Journal),
+            data=nonpar.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1non)
+
+m1model <- glmer(mention.outliers2 ~ year + (1 | Journal),
+            data=model.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1model)
+
+m1bo <- glmer(mention.outliers2 ~ year + (1 | Journal),
+            data=bo.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1bo)
+
+#change in reporting by year significant for nonparamertic (38% more likely to report), basic (23%), regression (15%), anova (14%), and modeling (.11). Interesting changes in variance due to journal. 
+
+
+
+#want to see if reporting people or data points changes over time
+#subset data removing both and none
+names(out.testing)
+table(out.testing$peopleor.data.points.f)
+out.testing.people = subset(out.testing, peopleor.data.points.f == c("data points", "people"))
+out.testing.people <- subset(out.testing, peopleor.data.points.f=='data points' | peopleor.data.points.f=='people') 
+table(out.testing.people$peopleor.data.points.f)
+#make the variable binary
+out.testing.people$peopleor.data.points.f<-as.numeric(out.testing.people$peopleor.data.points.f)
+table(out.testing.people$peopleor.data.points.f)
+out.testing.people$peopleor.data.points.bi=recode(out.testing.people$peopleor.data.points.f, "2=0; 4=1")
+table(out.testing.people$peopleor.data.points.bi)
+#datapoints=0, people=1
+m2 <- glmer(peopleor.data.points.bi ~ year  + (1 | Journal),
+          data=out.testing.people, family=binomial(link="logit"),
+          control = glmerControl(optimizer = "bobyqa"),
+          nAGQ = 0)
+summary(m2)
+
+#no difference in reporting by time
+#this is important because it contradicts what the chi-sq of time pulled says
+
+
+
+```

@@ -43,8 +43,21 @@ csl               : apa6.csl
 ```{r load_packages, include = FALSE}
 library("papaja")
 library(knitr)
+library(dplyr)
+library(lme4)
+library(ggplot2)
 knitr::opts_chunk$set(echo = TRUE)
+
+##load the dataset
 master = read.csv("outliers complete.csv")
+
+##graph clean up code
+cleanup = theme(panel.grid.major = element_blank(), 
+              panel.grid.minor = element_blank(), 
+              panel.background = element_blank(), 
+              axis.line = element_line(colour = "black"), 
+              legend.key = element_rect(fill = "white"),
+              text = element_text(size = 15))
 ```
 
 Psychology is undergoing a "renaissance" in which focus has shifted to the replication and reproducibility of current published reports (Nelson, Simmons, and Simonsohn, 2018; Etz & Vandekerckhove, 2016; Lindsay, 2015; Open Science Collaboration, 2015; van Elk et al., 2015). A main concern has been the difficulty in replicating phenomena, often attributed to publication bias (Brannick, 2012), the use and misuse of *p*-values (Gigerenzer, 2004; Ioannidis, 2005), and researcher degrees of freedom (Simmons, Nelson, & Simonsohn, 2011). In particular, this analysis focused on one facet of questionable research practices that affect potential replication (QPRs), specifically, the selective removal or inclusion of datapoints. 
@@ -95,17 +108,8 @@ For outliers, we used a dichotomous yes/no for if they were mentioned in an arti
 
 Then, for those articles that mentioned outliers, the author's decision for how to handle the outliers was coded into whether they removed participants/stimuli, left these outliers in the analysis, or winsorized the data points. Experiments were coded for whether they tested the analyses with, without, or both for determination of their effect on the study. If they removed outliers, a new sample size was recorded. Lastly, we coded the reasoning for outlier detection as one or more of the following: 1) Statistical reason (i.e., used numbers to define odd or deviant behavior in responding, such as *z*-score or Mahalanobis distance scores), 2) Participant error (i.e., failed attention checks, did not follow instructions, or low quality data because of participant problems), and 3) Unusable data (i.e., inside knowledge of the study or experimenter/technological problems).
 
-```{r info-table, echo = FALSE, results = 'asis'}
-tableprint = matrix(NA, nrow = 13, ncol = 8)
-
-
-apa_table.latex(tableprint,
-                escape = F,
-                col.names = c("Field", "\\% 12", "$N$ 12", "\\% 17", 
-                              "$N$ 17", "OR", "LL", "UL"))
-```
-
-```{r info-journal, include=FALSE}
+```{r info-journal, eval=FALSE, include=FALSE}
+##change EVAL to TRUE when done editing 
 tableprint = matrix(NA, nrow = 31, ncol = 6)
 colnames(tableprint) = c("Field", "Journal", "Publisher", "Impact2012", 
                          "Impact2017", "5Year")
@@ -177,404 +181,52 @@ write.csv(tableprint, "Journal Information.csv", row.names = F)
 # Results
 
 ## Data Analytic Plan
-KD IS GOING TO DO A THING HERE. 
+KD IS GOING TO DO A THING HERE. Be sure to explain the MLMS.  
 Chi-Square tests were used to analyze the associations between variables. When a chi-square analysis suggested that the approximation may be incorrect a Fisher's Exact test will be analyzed as well and both will be reported. Frequencies were used to describe the outliers mentioned. 
 
 ## Overall Outliers
 
-Data processing resulted in a total of 2234 experiments being coded, 1085 of which were from 2012 or prior, and the additional 1149 being from 2017 or prior. Investigating reporting of outliers, we found that in 2012, `r overalloutpercent$percent[2]`% of experiments mentioned outliers, while in 2017 `r overalloutpercent$percent[4]`% of experiments mentioned outliers. When evaluted within the context of a multilevel model using the year the experiment was pusblished to predict whether or not outliers were mentioned and inclduing a random intercept for journal we find that year significantly predicts mentioning outliers, *b*= `r m1$beta[2]`, SE=0.02, *p* <.001. Each year, experiments were 13.5% more likely to report outliers as the previous year. 
-
-## Fields
-
-Further exploration reveals that differences in reporting between years arise between fields  which can be seen in \@ref(tab:journalprop). Specifically, if we look at the change in reporting for each field analyzed at the level of the experiment we find the largest changes in forensic (45% more likely to report), social (34%), and IO (33%). Following these are developmental (20%) and cognitive (15%). These analyses show that in some fields, including our overall category and neuro psychology  an insignificant but intersting suggestion that reporting of outliers may actually be decreasing slightly. Additionally, we find that the variability due to journal is consistently small throughout all fields.
-
-DESCRIPTIVE STUFF GOES HERE ABOUT HOW THESE WERE JUST TO EXPLORE AND NOT HYPOTHESES. 
-
-## Sample Size
-
-## Analyses Type
-
-We then investigated how this reporting between years may differ by analysis, as can be seen in \@ref(????) (CAN I GET A TABLE HERE WITH A ROW FOR EACH ANALYSIS TYPE AND A COLUMN FOR N IN 2012, N IN 2017, ODD RATIO INCREASE, AND JOURNAL VARIANCE PLEASE). Increase in reporting was significant for nonparamertic (38% more likely to report), basic (23%), regression (15%), anova (14%), and modeling (11%) techniques. Additionally, we find some variability due to journal between analyses. 
-
-## Reasons
-
-Of those outliers that were reported, the majority of the time this was reportedly due to statistical reasons (47.7%) and/or participant errors (47.1%), with few experiments reporting outliers due to unusable data (5.2%). HOW CAN WE ANALYZE THIS NOW THAT WE HAVE YEAR? LIKE A MULTINOMIAL LOGIT? BUT THEY AREN'T UNIQUE CATEGORIES..? When looking at the association of these reasons over time, we again clearly see all reasons increasing in usage from 2012 to 2017, but see the most increase in reporting of participant errors (3.5 times more often reported in 2017), followed by unusable data (3.3 times), and finally statistical reasons (1.7 times). 
-
-## Type of Outlier
-
-In our review, the majority of outliers mentioned referred to people (65.9%) as opposed to data points (25.3%), or both people and data points (5.7%), a final 3% of experiments mentioned outliers but did not specify a type, just that they found none. We were addtiiaonlly interested investigating the differene in reporting of just people or data points (dropping the both or none categories) across time. Using a multilevel model predicting whether people or data points were removed using year and a random intercept for journal we find no significant effect for year, b=0.05, SE=0.05, *p*=.36, demondtrating that the change in reporting of both types of outliers were consistent. When handling these data, some experiments chose to winzorize data (.7%), most analyzed the data without the observations (88.5%), some analyzed the data with the observations (7.4%), and some conducted analyses both with and without the observations (3.4%). Of the outliers found, the majority (88.1%) were removed from the dataset before analysis.
-
-# Discussion
-
-While modest improvments in reporting can be seen in some fields, overall the outlook is still bleak. 
-Some may argue that use of the precious word limit dictated by journals to describe such acts as outlier identification and handling may be irrational. However, we contest that given the current availability and use of online supplements and appendixes, as well as the invent of the Open Science Framework (OSF; cite) which allows researchers the ability to upload any number of additional resources and supplements that can be easily referenced in their manuscripts in as little as 4 words: See supplement at osf.io/52mqw.
-
-
-```{r proportions, include=FALSE}
-
-table(master$mention.outliers)
+```{r overallout, include = FALSE}
+##clean up the mention column 
 master$mention.outliers = factor(master$mention.outliers,
                       levels = c("no", "yes"),
                       labels = c("No", "Yes"))
 
-##create a data frame of the percentages
-outsummary = table(master$mention.outliers, master$time.pulled, master$Type)
-outsummary = as.data.frame(outsummary)
-colnames(outsummary) = c("mention.outliers", "time.pulled", "Type", "Freq")
-
-##here we want to calculate if they mention outliers by year and type
-##want to focus on the yeses 
-library(dplyr)
+##create a data frame of the percentages by type
 oaoutsummary = table(master$mention.outliers, master$time.pulled)
 oaoutsummary = as.data.frame(oaoutsummary)
 colnames(oaoutsummary) = c("mention.outliers", "time.pulled", "Freq")
-overalloutpercent = group_by(oaoutsummary, time.pulled) %>%
-  mutate(percent = Freq/sum(Freq)*100)
 
-outpercent = group_by(outsummary, time.pulled, Type) %>%
-  mutate(percent = Freq/sum(Freq)*100)
+overalloutpercent = as.data.frame(group_by(oaoutsummary, time.pulled) %>%
+  mutate(percent = Freq/sum(Freq)*100))
 
-#kable(outpercent)
-##in the outpercent table, you see the percent based on year and Type, so each yes/no combination adds up to one hundred. We are only interested in the percent of yeses.
-```
-
-```{r journalgraph}
-library(ggplot2)
-
-cleanup = theme(panel.grid.major = element_blank(), 
-              panel.grid.minor = element_blank(), 
-              panel.background = element_blank(), 
-              axis.line = element_line(colour = "black"), 
-              legend.key = element_rect(fill = "white"),
-              text = element_text(size = 15))
-
-graphdata = subset(outpercent, mention.outliers == "Yes")
-
-#calculate CIs to add to graph
-graphdata$sample = as.data.frame(table(master$time.pulled, master$Type))$Freq
-graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
-
-dotplot = ggplot(graphdata, aes(Type, percent, color = time.pulled))
-finalgraph = dotplot +
-  geom_pointrange(aes(ymin=percent-1.96*SE, ymax=percent+1.96*SE))+ 
-  cleanup +
-  xlab("Field of Journal") +
-  ylab("Percent of Outlier Mentions") + 
-  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
-  scale_color_manual(name = "Year", 
-                     values = c("maroon", "gray")) + 
-  coord_cartesian(ylim = c(0,75))
-
-tiff(filename = "mention_graph.tiff", res = 300, width = 8, 
-     height = 6, units = 'in', compression = "lzw")
-plot(finalgraph)
-dev.off()
-```
-
-```{r journalprop}
-library(MOTE)
-graphdata$prop = graphdata$percent/100
-types = levels(graphdata$Type)
-for (i in 1:length(types))
-{
-  saved = d.prop(graphdata$prop[graphdata$Type==types[i]][1],
-         graphdata$prop[graphdata$Type==types[i]][2],
-         graphdata$sample[ graphdata$Type==types[i]][1], 
-         graphdata$sample[ graphdata$Type==types[i]][2],
-         a = .05) 
-  print(c(types[i],saved$d))
-}
-
-```
-
-```{r reason}
-master$reason.code
-table(master$reason.code)
-reasons = subset(master, mention.outliers == "Yes")
-
-##create reason columns
-reasons$part = 0
-reasons$part[ grep("part", reasons$reason.code)] = 1
-reasons$stat = 0
-reasons$stat[ grep("stat", reasons$reason.code)] = 1
-reasons$exp = 0
-reasons$exp[ grep("unus", reasons$reason.code)] = 1
-
-##create a data frame of the percentages
-reasonssummary = table(reasons$part, reasons$time.pulled, reasons$Type)
-reasonssummary = as.data.frame(reasonssummary)
-colnames(reasonssummary) = c("yesno", "time.pulled", "Type", "part.freq")
-reasonssummary$stat.freq = as.data.frame(table(reasons$stat, reasons$time.pulled, reasons$Type))$Freq
-reasonssummary$exp.freq = as.data.frame(table(reasons$exp, reasons$time.pulled, reasons$Type))$Freq
-
-reasonspercent = group_by(reasonssummary, time.pulled, Type) %>%
-  mutate(part.percent = part.freq/sum(part.freq)*100) %>%
-  mutate(stat.percent = stat.freq/sum(stat.freq)*100) %>%
-  mutate(exp.percent = exp.freq/sum(exp.freq)*100) 
-
-#kable(reasonspercent)
-#only include the percent of 1s
-
-```
-
-```{r Peopledata}
-
-peep_data = subset(master, mention.outliers == "Yes")
-table(peep_data$peopleor.data.points)
-
-##create a data frame of the percentages
-peep_datasummary = table(peep_data$peopleor.data.points, peep_data$time.pulled, peep_data$Type)
-peep_datasummary = as.data.frame(peep_datasummary)
-colnames(peep_datasummary) = c("code", "time.pulled", "Type", "Freq")
-
-peep_datapercent = group_by(peep_datasummary, time.pulled, Type) %>%
-  mutate(percent = Freq/sum(Freq)*100)
-kable(peep_datapercent)
-```
-
-```{r BasicsBayes}
-
-##if they are doing basic statistics so equals 1 how many times do they mention outliers yes/no by year 
-library(reshape)
-analyses = master[ , c(3, 4, 10, 20:26)]
-#View(analyses)
-longanalyses = melt(analyses,
-                    id = c("time.pulled", "Type", "mention.outliers"))
-colnames(longanalyses)[4:5] = c("analysis.type", "used")
-
-longanalyses = subset(longanalyses, used == 1)
-
-##create a data frame of the percentages
-analysessummary = table(longanalyses$mention.outliers, longanalyses$time.pulled, longanalyses$analysis.type)
-analysessummary = as.data.frame(analysessummary)
-colnames(analysessummary) = c("mention.outliers", "time.pulled",  "analysis.type", "Freq")
-
-analysespercent = group_by(analysessummary, time.pulled, analysis.type) %>%
-  mutate(percent = Freq/sum(Freq)*100)
-
-graphdata = subset(analysespercent, mention.outliers == "Yes")
-
-#calculate CIs to add to graph
-graphdata$sample = as.data.frame(table(longanalyses$time.pulled, longanalyses$analysis.type))$Freq
-graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
-
-dotplot2 = ggplot(graphdata, aes(analysis.type, percent, color = time.pulled))
-finalgraph = dotplot2 +
-  geom_pointrange(aes(ymin=percent-1.96*SE, ymax=percent+1.96*SE))+ 
-  cleanup +
-  xlab("Type of Analysis") +
-  ylab("Percent of Outlier Mentions") + 
-  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
-  scale_color_manual(name = "Year", 
-                     values = c("maroon", "gray")) + 
-  coord_cartesian(ylim = c(0,50))
-
-tiff(filename = "analyses_graph.tiff", res = 300, width = 15, 
-     height = 12, units = 'in', compression = "lzw")
-plot(finalgraph)
-dev.off()
-
-```
-
-```{r 2-waytable}
-table1<-table(master$time.pulled, master$mention.outliers)
-stuff<-chisq.test(table1)
-table1
-
-```
-
-
-```{r 3-waytable}
-#let's try a 3-way table
-# 3-Way Frequency Table 
-#
-library(MASS)
-mytable <- xtabs(~time.pulled+mention.outliers+Type, data=master)
-model2<-loglm(~time.pulled+mention.outliers+Type, data=mytable)
-t.m.f=model2
-ftable(mytable)
-
-
-
-#try for journal?
-#mytable2 <- xtabs(~time.pulled+mention.outliers+Journal, data=master)
-#loglm(~time.pulled+mention.outliers+Journal, data=mytable2)
-#ftable(mytable2)
-#can't talk about this becasue of data sparsity
-
-
-```
-
-```{r graphanalysisbyreason}
-out.testing = subset(master, mention.outliers == "Yes")
-library(car)
-master$mention.outliers2<-as.numeric(master$mention.outliers)
-table(master$mention.outliers2)
-master$mention.outliers2=recode(master$mention.outliers2, "1=0; 2=1")
-table(master$mention.outliers2)
-#0=no, 1=yes
-#need to go back and put this var into these datasets so can analyze mlm**********************************
-##create reason columns
-out.testing$part = 0
-out.testing$part[ grep("part", out.testing$reason.code)] = 1
-out.testing$stat = 0
-out.testing$stat[ grep("stat", out.testing$reason.code)] = 1
-out.testing$exp = 0
-out.testing$exp[ grep("unus", out.testing$reason.code)] = 1
-names(out.testing)
-long.testing=out.testing[,c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
-                            "part", "stat", "exp", "Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
-                            "Modeling", "BayesOther" )]
-
-long.testing.data=melt(long.testing, 
-                    id = c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
-                           "part", "stat", "exp"),
-                    measured = c("Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
-                                 "Modeling", "BayesOther"))
-#View(choice.data)          
-colnames(long.testing.data)=c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
-                           "part", "stat", "exp", "analysis", "used")
-#View(long.testing.data)
-long.testing.data = subset(long.testing.data, used == 1)
-
-#View(long.testing.data)
-
-
-long.reason.data=long.testing.data[,c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
-                                       "analysis", "part", "stat", "exp")]
-long.reason.data=melt(long.reason.data,
-                      id=c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
-                           "analysis"),
-                      measured=c("part", "stat", "exp"))
-colnames(long.reason.data)=c("year", "mention.outliers2", "time.pulled", "Type", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without",  
-                             "analysis", "reasion.type", "used")
-#View(long.reason.data)
-long.reason.data = subset(long.reason.data, used == 1)
-long.reason.data<-na.omit(long.reason.data)
-# View(long.reason.data)
-
-long.reason.data$reason=factor(long.reason.data$reasion.type)
-reason.table.test = table( long.reason.data$reason, long.reason.data$analysis)
-#View(reason.table.test)
-p.t.m.a=chisq.test(reason.table.test) #thre a "approximation may be incorrect" error, so switched to the Fisher test.
-#f.t.m.a=fisher.test(reason.table.test, simulate.p.value=TRUE,B=1e7)
-
-#so probably don't need to graph it so much. 
-#barplot(reason.table.test, col=c("purple", "blue", "green"), space=1, legend = rownames(reason.table.test))
-
-```
-
-```{r chisquares}
-
-
-long.test=master[,c("Journal","year", "time.pulled", "Type", "mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
-                             "Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
-                            "Modeling", "BayesOther" )]
-
-long.test.data=melt(long.test, 
-                    id = c("Journal","year", "time.pulled", "Type","mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without"),
-                    measured = c("Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
-                                 "Modeling", "BayesOther"))
-#View(choice.data)          
-colnames(long.test.data)=c("Journal","year", "time.pulled", "Type","mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
-                            "analysis", "used")
-#View(long.test.data)
-long.test.data = subset(long.test.data, used == 1)
-long.test.data$mention.outliers2<-as.numeric(long.test.data$mention.outliers)
-table(long.test.data$mention.outliers2)
-long.test.data$mention.outliers2=recode(long.test.data$mention.outliers2, "1=0; 2=1")
-table(long.test.data$mention.outliers2)
-
-#View(long.test.data)
-
-mytable3 <- xtabs(~time.pulled+mention.outliers+analysis, data=long.test.data)
-model3<-loglm(~time.pulled+mention.outliers+analysis, data=mytable3)
-t.m.a=model3
-ftable(mytable3)
-#find significant association between analysis type and reproting of outliers. every analyssi shows an increase in mentions of outliers. 
-model3b=table(long.testing.data$analysis, long.testing.data$time.pulled)
-chisq.test(model3b)
-model3b
-#rationalextime
-#View(long.reason.data)
-long.reason.data.na=na.omit(long.reason.data)
-length(long.reason.data.na$time.pulled)
-t.r.time<-table(long.reason.data.na$time.pulled, long.reason.data.na$reason)
-t.r.time
-chisq.test(t.r.time)
-#View(t.r.time.test$observed)
-#associated: more overall in 2017, but most increase in reporting of participant error (increasing 3-fold), experimental error (2-fold), and statistical reasons (<2fold)
-
-
-#rationalexdiscipline
-#t.r.field<-table(long.reason.data.na$Type, long.reason.data.na$reason)
-#View(t.r.field)
-
-#can't discuss this, too sparse of data
-
-
-
-out.testing$peopleor.data.points.f=factor(out.testing$peopleor.data.points)
-time.people<-table(out.testing$time.pulled, out.testing$peopleor.data.points)
-time.people<-time.people[,c(2:5)]
-time.people
-
-chisq.test(time.people)#thre a "approximation may be incorrect" error, so switched to the Fisher test.
-#fisher.test(time.people, simulate.p.value=TRUE,B=1e7) # same as chisq basically p= 0.01594
-#so, there is a sign. difference, mainly driven by the fact that taking out people has doubled. 
-
-
-#long.reason.data.2=long.reason.data[,c(1, 3:9)]
-#people.reason=table(long.reason.data$peopleor.data.points, long.reason.data$reason)
-#people.reason
-#so can't run this one b/c data sparsity
-
-#time.out=table(long.reason.data$take.out.or.leave.in, long.reason.data$time.pulled)
-#time.out
-#can't run that
-
-#reason.out=table(long.reason.data$reason, long.reason.data$take.out.or.leave.in)
-#reason.out
-#can't run that either
-
-#out.people=table(out.testing$take.out.or.leave.in, out.testing$peopleor.data.points)
-#out.people
-#this data is super sparse, let's keep this part simple and just describe the data we have. 
-
-table(out.testing$peopleor.data.points)     
-table(out.testing$take.out.or.leave.in)     
-table(out.testing$run.with.or.without)
-table(out.testing$difference.between.analyses.with.and.without)
-table(out.testing$report.results.on.if.did.both)
-table(out.testing$report.results.on.if.did.both, out.testing$difference.between.analyses.with.and.without)
-table(out.testing$report.results.on.if.did.both, out.testing$take.out.or.leave.in)
-
-```
-
-
-```{r correlation}
-cor.data<-master[,c(9, 28)]
-cor.test(cor.data$original.sample.size, cor.data$mention.outliers2, use="complete.obs", method="spearman") 
-#super small rho, but it's significant. 
-
-cor.test(master$original.sample.size, master$time.pulled, use="complete.obs", method="spearman") 
-#we are increasing in sample size over time, slightly, rho=.136, p<.001
-plot(master$year, master$original.sample.size) #wtf is up with year here?
-
-#printnum(stuff$p.value, gt1=FALSE, zero=FALSE)
-#?apa_print
-
-```
-
-```{r mlms}
-library(lme4)
-m1 <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+##examine the model
+m1 <- glmer(mention.outliers ~ year  + (1 | Journal),
             data=master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1)
+#summary(m1)
 
+```
+
+Data processing resulted in a total of `r nrow(master)` experiments being coded, `r nrow(master[ master$time.pulled == "2012" , ])` of which were from 2012 or prior, and the additional `r nrow(master[ master$time.pulled == "2017" , ])` being from 2017 or prior. Investigating reporting of outliers, we found that in 2012, `r printnum(overalloutpercent$percent[2], digits = 1)`% of experiments mentioned outliers, while in 2017 `r printnum(overalloutpercent$percent[4], digits = 1)`% of experiments mentioned outliers. Actual publication year was used to predict outlier mention (yes/no) with a random intercept for journal, as described above. We found that publication year predicted outlier mentions, 
+
+When evaluted within the context of a multilevel model using the year the experiment was published to predict outlier mention (yes/no) and inclduing a random intercept for journal we find that year significantly predicts mentioning outliers, *b*= `r printnum(summary(m1)$coefficients[2,1], digits = 2)`, *SE* = `r printnum(summary(m1)$coefficients[2,2], digits = 2)`, *Z* = `r printnum(summary(m1)$coefficients[2,2], digits = 2)`, *p* <.001. Each year, experiments were `r printnum(exp(summary(m1)$coefficients[2,1])*100-100, digits = 1)`% more likely to report outliers as the previous year. 
+
+## Fields
+
+```{r fieldout, include = FALSE}
+##create a data frame of the percentages by time and type
+outsummary = table(master$mention.outliers, master$time.pulled, master$Type)
+outsummary = as.data.frame(outsummary)
+colnames(outsummary) = c("mention.outliers", "time.pulled", "Type", "Freq")
+
+outpercent = as.data.frame(group_by(outsummary, time.pulled, Type) %>%
+  mutate(percent = Freq/sum(Freq)*100))
+```
+
+```{r field-mlm, include = FALSE}
 clin.master=master[which(master$Type=="Clinical"),]
 cog.master=master[which(master$Type=="Cognitive"),]
 coun.master=master[which(master$Type=="Counseling"),]
@@ -589,192 +241,194 @@ over.master=master[which(master$Type=="Overview"),]
 soc.master=master[which(master$Type=="Social"),]
 sport.master=master[which(master$Type=="Sports"),]
 
-m1cl <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+m1cl <- glmer(mention.outliers ~ year  + (1 | Journal),
             data=clin.master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1cl)
+#summary(m1cl)
 
-m1cog <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+m1cog <- glmer(mention.outliers ~ year  + (1 | Journal),
             data=cog.master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1cog)
+#summary(m1cog)
 
-m1cou <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+m1cou <- glmer(mention.outliers ~ year  + (1 | Journal),
             data=coun.master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1cou)
+#summary(m1cou)
 
-m1dev <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+m1dev <- glmer(mention.outliers ~ year  + (1 | Journal),
             data=dev.master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1dev)
+#summary(m1dev)
 
-m1edu <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+m1edu <- glmer(mention.outliers ~ year  + (1 | Journal),
             data=edu.master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1edu)
+#summary(m1edu)
 
-m1envi <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+m1envi <- glmer(mention.outliers ~ year  + (1 | Journal),
             data=envi.master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1envi)
+#summary(m1envi)
 
-m1for <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+m1for <- glmer(mention.outliers ~ year  + (1 | Journal),
             data=for.master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1for)
+#summary(m1for)
 
-m1io <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+m1io <- glmer(mention.outliers ~ year  + (1 | Journal),
             data=io.master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1io)
+#summary(m1io)
 
-m1meth <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+m1meth <- glmer(mention.outliers ~ year  + (1 | Journal),
             data=meth.master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1meth)
+#summary(m1meth)
 
-m1neu <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+m1neu <- glmer(mention.outliers ~ year  + (1 | Journal),
             data=neu.master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1neu)
+#summary(m1neu)
 
-m1over <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+m1over <- glmer(mention.outliers ~ year  + (1 | Journal),
             data=over.master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1over)
+#summary(m1over)
 
-m1soc <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+m1soc <- glmer(mention.outliers ~ year  + (1 | Journal),
             data=soc.master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1soc)
+#summary(m1soc)
 
-m1sport <- glmer(mention.outliers2 ~ year  + (1 | Journal),
+m1sport <- glmer(mention.outliers ~ year  + (1 | Journal),
             data=sport.master, 
             family=binomial(link="logit"),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
-summary(m1sport)
-#show largest change in forensic (45% more likely to report), followed by social at 34% and io at 33% followed by developmental at 20% and cognitive at 15%  
-m2 <- glmer(mention.outliers2 ~ year*analysis + (1 | Journal),
-            data=long.test.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m2)
-#now need to see if they vary by analysis
-basic.data=long.test.data[which(long.test.data$analysis=="Basics"),]
-anova.data=long.test.data[which(long.test.data$analysis=="ANOVA"),]
-reg.data=long.test.data[which(long.test.data$analysis=="Regression"),]
-chi.data=long.test.data[which(long.test.data$analysis=="ChiSquare"),]
-nonpar.data=long.test.data[which(long.test.data$analysis=="Nonparametric"),]
-model.data=long.test.data[which(long.test.data$analysis=="Modeling"),]
-bo.data=long.test.data[which(long.test.data$analysis=="BayesOther"),]
-
-
-
-m1basic <- glmer(mention.outliers2 ~ year + (1 | Journal),
-            data=basic.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m1basic)
-
-m1anova <- glmer(mention.outliers2 ~ year + (1 | Journal),
-            data=anova.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m1anova)
-
-m1reg <- glmer(mention.outliers2 ~ year + (1 | Journal),
-            data=reg.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m1reg)
-
-m1chi <- glmer(mention.outliers2 ~ year + (1 | Journal),
-            data=chi.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m1chi)
-
-m1non <- glmer(mention.outliers2 ~ year + (1 | Journal),
-            data=nonpar.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m1non)
-
-m1model <- glmer(mention.outliers2 ~ year + (1 | Journal),
-            data=model.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m1model)
-
-m1bo <- glmer(mention.outliers2 ~ year + (1 | Journal),
-            data=bo.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m1bo)
-
-#change in reporting by year significant for nonparamertic (38% more likely to report), basic (23%), regression (15%), anova (14%), and modeling (.11). Interesting changes in variance due to journal. 
-
-
-
-#want to see if reporting people or data points changes over time
-#subset data removing both and none
-names(out.testing)
-table(out.testing$peopleor.data.points.f)
-out.testing.people = subset(out.testing, peopleor.data.points.f == c("data points", "people"))
-out.testing.people <- subset(out.testing, peopleor.data.points.f=='data points' | peopleor.data.points.f=='people') 
-table(out.testing.people$peopleor.data.points.f)
-#make the variable binary
-out.testing.people$peopleor.data.points.f<-as.numeric(out.testing.people$peopleor.data.points.f)
-table(out.testing.people$peopleor.data.points.f)
-out.testing.people$peopleor.data.points.bi=recode(out.testing.people$peopleor.data.points.f, "2=0; 4=1")
-table(out.testing.people$peopleor.data.points.bi)
-#datapoints=0, people=1
-m2 <- glmer(peopleor.data.points.bi ~ year  + (1 | Journal),
-          data=out.testing.people, family=binomial(link="logit"),
-          control = glmerControl(optimizer = "bobyqa"),
-          nAGQ = 0)
-summary(m2)
-
-#no difference in reporting by time
-#this is important because it contradicts what the chi-sq of time pulled says
-
-
-
+#summary(m1sport)
 ```
+
+Further exploration reveals that differences in reporting between years arise between fields which can be seen in Table \@ref(tab:info-table). Figure \@ref(fig:type-graph) displays the percentage of outlier mentions of each field colored by year examined. A MLM was analyzed for each field using journal as a random intercept to determine the influence of year of publication on outlier reporting rates. Specifically, if we look at the change in reporting for each field analyzed at the level of the experiment, we find the largest changes in forensic (`r printnum(exp(summary(m1for)$coefficients[2,1])*100-100, digits = 1)` % more likely to report), social (`r printnum(exp(summary(m1soc)$coefficients[2,1])*100-100, digits = 1)`%), and I/O (`r printnum(exp(summary(m1io)$coefficients[2,1])*100-100, digits = 1)`%), followed by developmental (`r printnum(exp(summary(m1dev)$coefficients[2,1])*100-100, digits = 1)`%), counseling (`r printnum(exp(summary(m1cou)$coefficients[2,1])*100-100, digits = 1)`%), and cognitive (`r printnum(exp(summary(m1cog)$coefficients[2,1])*100-100, digits = 1)`%). In support of our hypothesis, we found that social and cognitive fields showed increases in their outlier reporting; however, it was encouraging to see positive trends in other fields as well. These analyses show that in some fields, including our overall and neurological fields, we found a decrease in reporting across years, although these changes were not significant. 
+
+DESCRIPTIVE STUFF GOES HERE ABOUT HOW THESE WERE JUST TO EXPLORE AND NOT HYPOTHESES. 
+
+```{r type-graph, echo = FALSE, fig.cap = "Percent of outlier mentions by sub-domain field and year examined. Error bars represent 95% confidence interval.", fig.height = 6, fig.width = 8}
+graphdata = subset(outpercent, mention.outliers == "Yes")
+
+#calculate CIs to add to graph
+graphdata$sample = as.data.frame(table(master$time.pulled, master$Type))$Freq
+graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
+
+dotplot = ggplot(graphdata, aes(Type, percent, color = time.pulled))
+dotplot = dotplot +
+  geom_pointrange(aes(ymin=percent-1.96*SE, ymax=percent+1.96*SE))+ 
+  cleanup +
+  xlab("Field of Journal") +
+  ylab("Percent of Outlier Mentions") + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+  scale_color_manual(name = "Year", 
+                     values = c("black", "gray")) + 
+  coord_cartesian(ylim = c(0,75))
+dotplot
+```
+
+```{r info-table, echo = FALSE, results = 'asis'}
+tableprint = matrix(NA, nrow = 13, ncol = 8)
+
+tableprint[ ,1] = levels(master$Type)
+tableprint[ ,2] = printnum(graphdata$percent[graphdata$time.pulled == "2012"], digits = 1)
+tableprint[ ,3] = printnum(graphdata$sample[graphdata$time.pulled == "2012"], digits = 0)
+tableprint[ ,4] = printnum(graphdata$percent[graphdata$time.pulled == "2017"], digits = 1)
+tableprint[ ,5] = printnum(graphdata$sample[graphdata$time.pulled == "2017"], digits = 0)
+tableprint[ , 6] = printnum(c(exp(summary(m1cl)$coefficients[2,1]), 
+                     exp(summary(m1cog)$coefficients[2,1]),
+                     exp(summary(m1cou)$coefficients[2,1]),
+                     exp(summary(m1dev)$coefficients[2,1]),
+                     exp(summary(m1edu)$coefficients[2,1]),
+                     exp(summary(m1envi)$coefficients[2,1]),
+                     exp(summary(m1for)$coefficients[2,1]),
+                     exp(summary(m1io)$coefficients[2,1]),
+                     exp(summary(m1meth)$coefficients[2,1]),
+                     exp(summary(m1neu)$coefficients[2,1]),
+                     exp(summary(m1over)$coefficients[2,1]),
+                     exp(summary(m1soc)$coefficients[2,1]),
+                     exp(summary(m1sport)$coefficients[2,1])), digits = 2)
+tableprint[ , 7] = printnum(c(summary(m1cl)$coefficients[2,3], 
+                     summary(m1cog)$coefficients[2,3],
+                     summary(m1cou)$coefficients[2,3],
+                     summary(m1dev)$coefficients[2,3],
+                     summary(m1edu)$coefficients[2,3],
+                     summary(m1envi)$coefficients[2,3],
+                     summary(m1for)$coefficients[2,3],
+                     summary(m1io)$coefficients[2,3],
+                     summary(m1meth)$coefficients[2,3],
+                     summary(m1neu)$coefficients[2,3],
+                     summary(m1over)$coefficients[2,3],
+                     summary(m1soc)$coefficients[2,3],
+                     summary(m1sport)$coefficients[2,3]), digits = 2)
+tableprint[ , 8] = printp(c(summary(m1cl)$coefficients[2,4], 
+                     summary(m1cog)$coefficients[2,4],
+                     summary(m1cou)$coefficients[2,4],
+                     summary(m1dev)$coefficients[2,4],
+                     summary(m1edu)$coefficients[2,4],
+                     summary(m1envi)$coefficients[2,4],
+                     summary(m1for)$coefficients[2,4],
+                     summary(m1io)$coefficients[2,4],
+                     summary(m1meth)$coefficients[2,4],
+                     summary(m1neu)$coefficients[2,4],
+                     summary(m1over)$coefficients[2,4],
+                     summary(m1soc)$coefficients[2,4],
+                     summary(m1sport)$coefficients[2,4]))
+
+apa_table.latex(as.data.frame(tableprint),
+                escape = F,
+                col.names = c("Field", "\\% 12", "$N$ 12", "\\% 17", 
+                              "$N$ 17", "OR", "$Z$", "$p$"))
+```
+
+## Analyses Type
+
+We then investigated how this reporting between years may differ by analysis, as can be seen in \@ref(????) (CAN I GET A TABLE HERE WITH A ROW FOR EACH ANALYSIS TYPE AND A COLUMN FOR N IN 2012, N IN 2017, ODD RATIO INCREASE, AND JOURNAL VARIANCE PLEASE). Increase in reporting was significant for nonparamertic (38% more likely to report), basic (23%), regression (15%), anova (14%), and modeling (11%) techniques. Additionally, we find some variability due to journal between analyses. 
+
+## Reasons
+
+Of those outliers that were reported, the majority of the time this was reportedly due to statistical reasons (47.7%) and/or participant errors (47.1%), with few experiments reporting outliers due to unusable data (5.2%). HOW CAN WE ANALYZE THIS NOW THAT WE HAVE YEAR? LIKE A MULTINOMIAL LOGIT? BUT THEY AREN'T UNIQUE CATEGORIES..? When looking at the association of these reasons over time, we again clearly see all reasons increasing in usage from 2012 to 2017, but see the most increase in reporting of participant errors (3.5 times more often reported in 2017), followed by unusable data (3.3 times), and finally statistical reasons (1.7 times). 
+
+## Type of Outlier
+
+In our review, the majority of outliers mentioned referred to people (65.9%) as opposed to data points (25.3%), or both people and data points (5.7%), a final 3% of experiments mentioned outliers but did not specify a type, just that they found none. We were addtiiaonlly interested investigating the differene in reporting of just people or data points (dropping the both or none categories) across time. Using a multilevel model predicting whether people or data points were removed using year and a random intercept for journal we find no significant effect for year, b=0.05, SE=0.05, *p*=.36, demondtrating that the change in reporting of both types of outliers were consistent. When handling these data, some experiments chose to winzorize data (.7%), most analyzed the data without the observations (88.5%), some analyzed the data with the observations (7.4%), and some conducted analyses both with and without the observations (3.4%). Of the outliers found, the majority (88.1%) were removed from the dataset before analysis.
+
+The number of outliers found by type blah blah blah. THIS SEEMED LIKE A GOOD PLACE TO TALK ABOUT THIS SINCE OBVIOUSLY THE NUMBER WILL DEPEND ON PEOPLE VERSUS DATA POINTS. 
+
+# Discussion
+
+While modest improvments in reporting can be seen in some fields, overall the outlook is still bleak. 
+Some may argue that use of the precious word limit dictated by journals to describe such acts as outlier identification and handling may be irrational. However, we contest that given the current availability and use of online supplements and appendixes, as well as the invent of the Open Science Framework (OSF; cite) which allows researchers the ability to upload any number of additional resources and supplements that can be easily referenced in their manuscripts in as little as 4 words: See supplement at osf.io/52mqw.
 
 \newpage
 
