@@ -46,6 +46,7 @@ library(knitr)
 library(dplyr)
 library(lme4)
 library(ggplot2)
+library(reshape)
 knitr::opts_chunk$set(cache = TRUE)
 
 ##load the dataset
@@ -217,6 +218,7 @@ When evaluted within the context of a multilevel model using the year the experi
 ## Fields
 
 ```{r fieldout, include = FALSE}
+
 ##create a data frame of the percentages by time and type
 outsummary = table(master$mention.outliers, master$time.pulled, master$Type)
 outsummary = as.data.frame(outsummary)
@@ -413,9 +415,150 @@ apa_table.latex(as.data.frame(tableprint),
 
 ## Analyses Type
 
-Table \@ref(tab:analysis-table) indicates the types of analyses found. 
+Table \@ref(tab:analysis-table) indicates the types of analyses across years that mention outliers, and Figure \@ref(fig:analysis-graph) visually depicts these findings. An increase in reporting was found for non-parametric statistics (`r printnum(exp(summary(m1non)$coefficients[2,1])*100-100, digits = 1)`%), basic statistics (`r printnum(exp(summary(m1basic)$coefficients[2,1])*100-100, digits = 1)`%), regression (`r printnum(exp(summary(m1reg)$coefficients[2,1])*100-100, digits = 1)`%), ANOVA (`r printnum(exp(summary(m1anova)$coefficients[2,1])*100-100, digits = 1)`%), and modeling (`r printnum(exp(summary(m1model)$coefficients[2,1])*100-100, digits = 1)`%). Bayesian and other statistics additionally showed a comparable increase, `r printnum(exp(summary(m1bo)$coefficients[2,1])*100-100, digits = 1)`%, which was not a significant change over years. 
 
-We then investigated how this reporting between years may differ by analysis, as can be seen in \@ref(????) (CAN I GET A TABLE HERE WITH A ROW FOR EACH ANALYSIS TYPE AND A COLUMN FOR N IN 2012, N IN 2017, ODD RATIO INCREASE, AND JOURNAL VARIANCE PLEASE). Increase in reporting was significant for nonparamertic (38% more likely to report), basic (23%), regression (15%), anova (14%), and modeling (11%) techniques. Additionally, we find some variability due to journal between analyses. 
+```{r analysisout, include=FALSE}
+##create longdata set for analysis
+long.test=master[,c("Journal","year", "time.pulled", "Type", "mention.outliers", "peopleor.data.points",
+                    "take.out.or.leave.in", "run.with.or.without", 
+                    "Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
+                    "Modeling", "BayesOther" )]
+
+long.test.data=melt(long.test, 
+                    id = c("Journal","year", "time.pulled", "Type",
+                           "mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without"),
+                    measured = c("Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
+                                 "Modeling", "BayesOther"))
+colnames(long.test.data)=c("Journal","year", "time.pulled", 
+                           "Type","mention.outliers", "peopleor.data.points", "take.out.or.leave.in",
+                           "run.with.or.without", "analysis", "used")
+##only use times that they used it or we are doubling up 
+long.test.data = subset(long.test.data, used == 1)
+
+##create a data frame of the percentages
+analysessummary = table(long.test.data$mention.outliers, long.test.data$time.pulled, long.test.data$analysis)
+analysessummary = as.data.frame(analysessummary)
+colnames(analysessummary) = c("mention.outliers", "time.pulled",  "analysis.type", "Freq")
+
+analysespercent = as.data.frame(group_by(analysessummary, time.pulled, analysis.type) %>%
+  mutate(percent = Freq/sum(Freq)*100))
+```
+
+```{r analyses-graph, echo = FALSE, fig.cap = "Percent of outlier mentions by analysis type and year examined. Error bars represent 95% confidence interval.", fig.height = 6, fig.width = 8}
+##only pull mention outliers
+graphdata = subset(analysespercent, mention.outliers == "Yes")
+
+#calculate CIs to add to graph
+graphdata$sample = as.data.frame(table(long.test.data$time.pulled, long.test.data$analysis))$Freq
+graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
+
+dotplot2 = ggplot(graphdata, aes(analysis.type, percent, color = time.pulled))
+finalgraph = dotplot2 +
+  geom_pointrange(aes(ymin=percent-1.96*SE, ymax=percent+1.96*SE))+ 
+  cleanup +
+  xlab("Type of Analysis") +
+  ylab("Percent of Outlier Mentions") + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+  scale_color_manual(name = "Year", 
+                     values = c("black", "gray")) + 
+  coord_cartesian(ylim = c(0,50))
+```
+
+```{r analysis-mlm, include=FALSE}
+#now need to see if they vary by analysis
+basic.data=long.test.data[which(long.test.data$analysis=="Basics"),]
+anova.data=long.test.data[which(long.test.data$analysis=="ANOVA"),]
+reg.data=long.test.data[which(long.test.data$analysis=="Regression"),]
+chi.data=long.test.data[which(long.test.data$analysis=="ChiSquare"),]
+nonpar.data=long.test.data[which(long.test.data$analysis=="Nonparametric"),]
+model.data=long.test.data[which(long.test.data$analysis=="Modeling"),]
+bo.data=long.test.data[which(long.test.data$analysis=="BayesOther"),]
+
+m1basic <- glmer(mention.outliers ~ year + (1 | Journal),
+            data=basic.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+#summary(m1basic)
+
+m1anova <- glmer(mention.outliers ~ year + (1 | Journal),
+            data=anova.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+#summary(m1anova)
+
+m1reg <- glmer(mention.outliers ~ year + (1 | Journal),
+            data=reg.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+#summary(m1reg)
+
+m1chi <- glmer(mention.outliers ~ year + (1 | Journal),
+            data=chi.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+#summary(m1chi)
+
+m1non <- glmer(mention.outliers ~ year + (1 | Journal),
+            data=nonpar.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+#summary(m1non)
+
+m1model <- glmer(mention.outliers ~ year + (1 | Journal),
+            data=model.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+#summary(m1model)
+
+m1bo <- glmer(mention.outliers ~ year + (1 | Journal),
+            data=bo.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+#summary(m1bo)
+```
+
+```{r analysis-table, echo = FALSE, results = 'asis'}
+tableprint = matrix(NA, nrow = 7, ncol = 8)
+
+tableprint[ , 1] = c("Basic Statistics", "ANOVA", "Regression", "Chi-Square",
+                    "Non-Parametric", "Modeling", "Bayesian or Other")
+tableprint[ ,2] = printnum(graphdata$percent[graphdata$time.pulled == "2012"], digits = 1)
+tableprint[ ,3] = printnum(graphdata$sample[graphdata$time.pulled == "2012"], digits = 0)
+tableprint[ ,4] = printnum(graphdata$percent[graphdata$time.pulled == "2017"], digits = 1)
+tableprint[ ,5] = printnum(graphdata$sample[graphdata$time.pulled == "2017"], digits = 0)
+tableprint[ , 6] = printnum(c(exp(summary(m1basic)$coefficients[2,1]), 
+                     exp(summary(m1anova)$coefficients[2,1]),
+                     exp(summary(m1reg)$coefficients[2,1]),
+                     exp(summary(m1chi)$coefficients[2,1]),
+                     exp(summary(m1non)$coefficients[2,1]),
+                     exp(summary(m1model)$coefficients[2,1]),
+                     exp(summary(m1bo)$coefficients[2,1])), digits = 2)
+tableprint[ , 7] = printnum(c(summary(m1basic)$coefficients[2,3], 
+                     summary(m1anova)$coefficients[2,3],
+                     summary(m1reg)$coefficients[2,3],
+                     summary(m1chi)$coefficients[2,3],
+                     summary(m1non)$coefficients[2,3],
+                     summary(m1model)$coefficients[2,3],
+                     summary(m1bo)$coefficients[2,3]), digits = 2)
+tableprint[ , 8] = printp(c(summary(m1basic)$coefficients[2,4], 
+                     summary(m1anova)$coefficients[2,4],
+                     summary(m1reg)$coefficients[2,4],
+                     summary(m1chi)$coefficients[2,4],
+                     summary(m1non)$coefficients[2,4],
+                     summary(m1model)$coefficients[2,4],
+                     summary(m1bo)$coefficients[2,4]))
+apa_table.latex(as.data.frame(tableprint),
+                escape = F,
+                col.names = c("Analysis", "\\% 12", "$N$ 12", "\\% 17", 
+                              "$N$ 17", "OR", "$Z$", "$p$"))
+```
 
 ## Reasons
 

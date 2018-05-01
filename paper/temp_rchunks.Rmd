@@ -311,65 +311,7 @@ m2 <- glmer(mention.outliers2 ~ year*analysis + (1 | Journal),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
 summary(m2)
-#now need to see if they vary by analysis
-basic.data=long.test.data[which(long.test.data$analysis=="Basics"),]
-anova.data=long.test.data[which(long.test.data$analysis=="ANOVA"),]
-reg.data=long.test.data[which(long.test.data$analysis=="Regression"),]
-chi.data=long.test.data[which(long.test.data$analysis=="ChiSquare"),]
-nonpar.data=long.test.data[which(long.test.data$analysis=="Nonparametric"),]
-model.data=long.test.data[which(long.test.data$analysis=="Modeling"),]
-bo.data=long.test.data[which(long.test.data$analysis=="BayesOther"),]
 
-
-
-m1basic <- glmer(mention.outliers2 ~ year + (1 | Journal),
-            data=basic.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m1basic)
-
-m1anova <- glmer(mention.outliers2 ~ year + (1 | Journal),
-            data=anova.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m1anova)
-
-m1reg <- glmer(mention.outliers2 ~ year + (1 | Journal),
-            data=reg.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m1reg)
-
-m1chi <- glmer(mention.outliers2 ~ year + (1 | Journal),
-            data=chi.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m1chi)
-
-m1non <- glmer(mention.outliers2 ~ year + (1 | Journal),
-            data=nonpar.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m1non)
-
-m1model <- glmer(mention.outliers2 ~ year + (1 | Journal),
-            data=model.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m1model)
-
-m1bo <- glmer(mention.outliers2 ~ year + (1 | Journal),
-            data=bo.data, 
-            family=binomial(link="logit"),
-            control = glmerControl(optimizer = "bobyqa"),
-            nAGQ = 0)
-summary(m1bo)
 
 #change in reporting by year significant for nonparamertic (38% more likely to report), basic (23%), regression (15%), anova (14%), and modeling (.11). Interesting changes in variance due to journal. 
 
