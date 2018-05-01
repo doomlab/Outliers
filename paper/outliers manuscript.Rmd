@@ -25,7 +25,7 @@ abstract: |
   
 keywords          : "outlier, influential observation, replication"
 
-bibliography      : ["q_bib.bib"]
+bibliography      : ["outliers.bib"]
 
 figsintext        : no
 figurelist        : no
@@ -36,7 +36,7 @@ lineno            : yes
 lang              : "english"
 class             : "man"
 output            : papaja::apa6_pdf
-relpace_ampersands: yes
+replace_ampersands: yes
 csl               : apa6.csl
 ---
 
@@ -46,7 +46,7 @@ library(knitr)
 library(dplyr)
 library(lme4)
 library(ggplot2)
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(cache = TRUE)
 
 ##load the dataset
 master = read.csv("outliers complete.csv")
@@ -335,7 +335,7 @@ m1sport <- glmer(mention.outliers ~ year  + (1 | Journal),
 
 Further exploration reveals that differences in reporting between years arise between fields which can be seen in Table \@ref(tab:info-table). Figure \@ref(fig:type-graph) displays the percentage of outlier mentions of each field colored by year examined. A MLM was analyzed for each field using journal as a random intercept to determine the influence of year of publication on outlier reporting rates. Specifically, if we look at the change in reporting for each field analyzed at the level of the experiment, we find the largest changes in forensic (`r printnum(exp(summary(m1for)$coefficients[2,1])*100-100, digits = 1)` % more likely to report), social (`r printnum(exp(summary(m1soc)$coefficients[2,1])*100-100, digits = 1)`%), and I/O (`r printnum(exp(summary(m1io)$coefficients[2,1])*100-100, digits = 1)`%), followed by developmental (`r printnum(exp(summary(m1dev)$coefficients[2,1])*100-100, digits = 1)`%), counseling (`r printnum(exp(summary(m1cou)$coefficients[2,1])*100-100, digits = 1)`%), and cognitive (`r printnum(exp(summary(m1cog)$coefficients[2,1])*100-100, digits = 1)`%). In support of our hypothesis, we found that social and cognitive fields showed increases in their outlier reporting; however, it was encouraging to see positive trends in other fields as well. These analyses show that in some fields, including our overall and neurological fields, we found a decrease in reporting across years, although these changes were not significant. 
 
-DESCRIPTIVE STUFF GOES HERE ABOUT HOW THESE WERE JUST TO EXPLORE AND NOT HYPOTHESES. 
+The analyses shown below were exploratory based on the findings when coding each experiment for outlier data. We explored the relationship of outlier reporting to the type of analysis used to support research hypotheses, reasons for why outliers were excluded, as well as the type of outlier excluded from the study. MAY HAVE TO REORDER HERE.
 
 ```{r type-graph, echo = FALSE, fig.cap = "Percent of outlier mentions by sub-domain field and year examined. Error bars represent 95% confidence interval.", fig.height = 6, fig.width = 8}
 graphdata = subset(outpercent, mention.outliers == "Yes")
@@ -412,6 +412,8 @@ apa_table.latex(as.data.frame(tableprint),
 ```
 
 ## Analyses Type
+
+Table \@ref(tab:analysis-table) indicates the types of analyses found. 
 
 We then investigated how this reporting between years may differ by analysis, as can be seen in \@ref(????) (CAN I GET A TABLE HERE WITH A ROW FOR EACH ANALYSIS TYPE AND A COLUMN FOR N IN 2012, N IN 2017, ODD RATIO INCREASE, AND JOURNAL VARIANCE PLEASE). Increase in reporting was significant for nonparamertic (38% more likely to report), basic (23%), regression (15%), anova (14%), and modeling (11%) techniques. Additionally, we find some variability due to journal between analyses. 
 
