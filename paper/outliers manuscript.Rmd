@@ -585,12 +585,42 @@ reasonspercent = as.data.frame(group_by(reasonssummary) %>%
   mutate(part.percent = part.freq/sum(part.freq)*100) %>%
   mutate(stat.percent = stat.freq/sum(stat.freq)*100) %>%
   mutate(unus.percent = unus.freq/sum(unus.freq)*100))
-
 ```
 
-We found that researchers often used multiple criterion checks for outlier coding, as one study might exclude participants for exceeding a standard deviation cut-off, while also excluding participants for low effort data. Therefore, reason coding was not unique for each experiment, and each experiment could have one to three reasons for data exclusion. Statistical reasoning was the largest reported exclusion criteria of papers that mentioned outliers at `r printnum(reasonspercent$stat.percent[2], digits = 1)`%. Next, participant reasons followed with `r printnum(reasonspercent$part.percent[2], digits = 1)`% of outlier mentions, and unusable data was coded in `r printnum(reasonspercent$unus.percent[2], digits = 1)`% of experiments that mentioned outliers.
+```{r reason-mlm, include=FALSE}
+reasondata = master[ master$mention.outliers == "Yes", c("Journal", "year", "reason.code")]
 
-When looking at the association of these reasons over time, we again clearly see all reasons increasing in usage from 2012 to 2017, but see the most increase in reporting of participant errors (3.5 times more often reported in 2017), followed by unusable data (3.3 times), and finally statistical reasons (1.7 times). 
+##create reason columns
+reasondata$part = 0
+reasondata$part[ grep("part", reasondata$reason.code)] = 1
+reasondata$stat = 0
+reasondata$stat[ grep("stat", reasondata$reason.code)] = 1
+reasondata$unus = 0
+reasondata$unus[ grep("unus", reasondata$reason.code)] = 1
+
+m1part <- glmer(part ~ year + (1 | Journal),
+            data=reasondata, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+#summary(m1part)
+
+m1stat <- glmer(stat ~ year + (1 | Journal),
+            data=reasondata, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+#summary(m1stat)
+
+m1unus <- glmer(unus ~ year + (1 | Journal),
+            data=reasondata, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+#summary(m1unus)
+```
+
+We found that researchers often used multiple criterion checks for outlier coding, as one study might exclude participants for exceeding a standard deviation cut-off, while also excluding participants for low effort data. Therefore, reason coding was not unique for each experiment, and each experiment could have one to three reasons for data exclusion. Statistical reasoning was the largest reported exclusion criteria of papers that mentioned outliers at `r printnum(reasonspercent$stat.percent[2], digits = 1)`%. Next, participant reasons followed with `r printnum(reasonspercent$part.percent[2], digits = 1)`% of outlier mentions, and unusable data was coded in `r printnum(reasonspercent$unus.percent[2], digits = 1)`% of experiments that mentioned outliers. To examine the trend over time, we used a similar MLM analysis as described in the our data analytic plan, with Journal as a random intercept, year as the independent variable, and the mention of type of outlier (yes/no for participant, statistical, and unusable data) as the dependent variables separately. Statistical reasons decreased by `r printnum(abs(exp(summary(m1stat)$coefficients[2,1])*100-100), digits = 1)`%, *Z* = `r printnum(summary(m1stat)$coefficients[2,3], digits = 2)`, *p* = `r printp(summary(m1stat)$coefficients[2,4])`. Participant reasons increased over time by `r printnum(abs(exp(summary(m1part)$coefficients[2,1])*100-100), digits = 1)`%, *Z* = `r printnum(summary(m1part)$coefficients[2,3], digits = 2)`, *p* = `r printp(summary(m1part)$coefficients[2,4])`. Unusable data increased by about`r printnum(abs(exp(summary(m1unus)$coefficients[2,1])*100-100), digits = 1)`%, *Z* = `r printnum(summary(m1unus)$coefficients[2,3], digits = 2)`, *p* = `r printp(summary(m1unus)$coefficients[2,4])`. 
 
 ## Type of Outlier
 
@@ -600,7 +630,7 @@ The number of outliers found by type blah blah blah. THIS SEEMED LIKE A GOOD PLA
 
 # Discussion
 
-While modest improvments in reporting can be seen in some fields, overall the outlook is still bleak. 
+While modest improvments in reporting can be seen in some fields, overall the outlook is still bleak. (OH GOOD GRIEF YOU).
 Some may argue that use of the precious word limit dictated by journals to describe such acts as outlier identification and handling may be irrational. However, we contest that given the current availability and use of online supplements and appendixes, as well as the invent of the Open Science Framework (OSF; cite) which allows researchers the ability to upload any number of additional resources and supplements that can be easily referenced in their manuscripts in as little as 4 words: See supplement at osf.io/52mqw.
 
 \newpage
