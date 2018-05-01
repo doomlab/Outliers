@@ -5,56 +5,6 @@ date: "4/30/2018"
 output: html_document
 ---
 
-
-
-
-
-```{r journalprop}
-library(MOTE)
-graphdata$prop = graphdata$percent/100
-types = levels(graphdata$Type)
-for (i in 1:length(types))
-{
-  saved = d.prop(graphdata$prop[graphdata$Type==types[i]][1],
-         graphdata$prop[graphdata$Type==types[i]][2],
-         graphdata$sample[ graphdata$Type==types[i]][1], 
-         graphdata$sample[ graphdata$Type==types[i]][2],
-         a = .05) 
-  print(c(types[i],saved$d))
-}
-
-```
-
-```{r reason}
-master$reason.code
-table(master$reason.code)
-reasons = subset(master, mention.outliers == "Yes")
-
-##create reason columns
-reasons$part = 0
-reasons$part[ grep("part", reasons$reason.code)] = 1
-reasons$stat = 0
-reasons$stat[ grep("stat", reasons$reason.code)] = 1
-reasons$exp = 0
-reasons$exp[ grep("unus", reasons$reason.code)] = 1
-
-##create a data frame of the percentages
-reasonssummary = table(reasons$part, reasons$time.pulled, reasons$Type)
-reasonssummary = as.data.frame(reasonssummary)
-colnames(reasonssummary) = c("yesno", "time.pulled", "Type", "part.freq")
-reasonssummary$stat.freq = as.data.frame(table(reasons$stat, reasons$time.pulled, reasons$Type))$Freq
-reasonssummary$exp.freq = as.data.frame(table(reasons$exp, reasons$time.pulled, reasons$Type))$Freq
-
-reasonspercent = group_by(reasonssummary, time.pulled, Type) %>%
-  mutate(part.percent = part.freq/sum(part.freq)*100) %>%
-  mutate(stat.percent = stat.freq/sum(stat.freq)*100) %>%
-  mutate(exp.percent = exp.freq/sum(exp.freq)*100) 
-
-#kable(reasonspercent)
-#only include the percent of 1s
-
-```
-
 ```{r Peopledata}
 
 peep_data = subset(master, mention.outliers == "Yes")
@@ -70,73 +20,6 @@ peep_datapercent = group_by(peep_datasummary, time.pulled, Type) %>%
 kable(peep_datapercent)
 ```
 
-```{r BasicsBayes}
-
-##if they are doing basic statistics so equals 1 how many times do they mention outliers yes/no by year 
-library(reshape)
-analyses = master[ , c(3, 4, 10, 20:26)]
-#View(analyses)
-longanalyses = melt(analyses,
-                    id = c("time.pulled", "Type", "mention.outliers"))
-colnames(longanalyses)[4:5] = c("analysis.type", "used")
-
-longanalyses = subset(longanalyses, used == 1)
-
-##create a data frame of the percentages
-analysessummary = table(longanalyses$mention.outliers, longanalyses$time.pulled, longanalyses$analysis.type)
-analysessummary = as.data.frame(analysessummary)
-colnames(analysessummary) = c("mention.outliers", "time.pulled",  "analysis.type", "Freq")
-
-analysespercent = group_by(analysessummary, time.pulled, analysis.type) %>%
-  mutate(percent = Freq/sum(Freq)*100)
-
-graphdata = subset(analysespercent, mention.outliers == "Yes")
-
-#calculate CIs to add to graph
-graphdata$sample = as.data.frame(table(longanalyses$time.pulled, longanalyses$analysis.type))$Freq
-graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
-
-dotplot2 = ggplot(graphdata, aes(analysis.type, percent, color = time.pulled))
-finalgraph = dotplot2 +
-  geom_pointrange(aes(ymin=percent-1.96*SE, ymax=percent+1.96*SE))+ 
-  cleanup +
-  xlab("Type of Analysis") +
-  ylab("Percent of Outlier Mentions") + 
-  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
-  scale_color_manual(name = "Year", 
-                     values = c("maroon", "gray")) + 
-  coord_cartesian(ylim = c(0,50))
-
-tiff(filename = "analyses_graph.tiff", res = 300, width = 15, 
-     height = 12, units = 'in', compression = "lzw")
-plot(finalgraph)
-dev.off()
-
-```
-
-
-
-
-```{r 3-waytable}
-#let's try a 3-way table
-# 3-Way Frequency Table 
-#
-library(MASS)
-mytable <- xtabs(~time.pulled+mention.outliers+Type, data=master)
-model2<-loglm(~time.pulled+mention.outliers+Type, data=mytable)
-t.m.f=model2
-ftable(mytable)
-
-
-
-#try for journal?
-#mytable2 <- xtabs(~time.pulled+mention.outliers+Journal, data=master)
-#loglm(~time.pulled+mention.outliers+Journal, data=mytable2)
-#ftable(mytable2)
-#can't talk about this becasue of data sparsity
-
-
-```
 
 ```{r graphanalysisbyreason}
 out.testing = subset(master, mention.outliers == "Yes")
@@ -200,23 +83,7 @@ p.t.m.a=chisq.test(reason.table.test) #thre a "approximation may be incorrect" e
 ```{r chisquares}
 
 
-long.test=master[,c("Journal","year", "time.pulled", "Type", "mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
-                             "Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
-                            "Modeling", "BayesOther" )]
 
-long.test.data=melt(long.test, 
-                    id = c("Journal","year", "time.pulled", "Type","mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without"),
-                    measured = c("Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
-                                 "Modeling", "BayesOther"))
-#View(choice.data)          
-colnames(long.test.data)=c("Journal","year", "time.pulled", "Type","mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without", 
-                            "analysis", "used")
-#View(long.test.data)
-long.test.data = subset(long.test.data, used == 1)
-long.test.data$mention.outliers2<-as.numeric(long.test.data$mention.outliers)
-table(long.test.data$mention.outliers2)
-long.test.data$mention.outliers2=recode(long.test.data$mention.outliers2, "1=0; 2=1")
-table(long.test.data$mention.outliers2)
 
 #View(long.test.data)
 

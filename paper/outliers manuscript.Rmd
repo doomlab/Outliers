@@ -562,7 +562,35 @@ apa_table.latex(as.data.frame(tableprint),
 
 ## Reasons
 
-Of those outliers that were reported, the majority of the time this was reportedly due to statistical reasons (47.7%) and/or participant errors (47.1%), with few experiments reporting outliers due to unusable data (5.2%). HOW CAN WE ANALYZE THIS NOW THAT WE HAVE YEAR? LIKE A MULTINOMIAL LOGIT? BUT THEY AREN'T UNIQUE CATEGORIES..? When looking at the association of these reasons over time, we again clearly see all reasons increasing in usage from 2012 to 2017, but see the most increase in reporting of participant errors (3.5 times more often reported in 2017), followed by unusable data (3.3 times), and finally statistical reasons (1.7 times). 
+```{r reasonsout, include=FALSE}
+table(master$reason.code)
+reasons = subset(master, mention.outliers == "Yes")
+
+##create reason columns
+reasons$part = 0
+reasons$part[ grep("part", reasons$reason.code)] = 1
+reasons$stat = 0
+reasons$stat[ grep("stat", reasons$reason.code)] = 1
+reasons$unus = 0
+reasons$unus[ grep("unus", reasons$reason.code)] = 1
+
+##create a data frame of the percentages
+reasonssummary = table(reasons$part)
+reasonssummary = as.data.frame(reasonssummary)
+colnames(reasonssummary) = c("yesno", "part.freq")
+reasonssummary$stat.freq = as.data.frame(table(reasons$stat))$Freq
+reasonssummary$unus.freq = as.data.frame(table(reasons$unus))$Freq
+
+reasonspercent = as.data.frame(group_by(reasonssummary) %>%
+  mutate(part.percent = part.freq/sum(part.freq)*100) %>%
+  mutate(stat.percent = stat.freq/sum(stat.freq)*100) %>%
+  mutate(unus.percent = unus.freq/sum(unus.freq)*100))
+
+```
+
+We found that researchers often used multiple criterion checks for outlier coding, as one study might exclude participants for exceeding a standard deviation cut-off, while also excluding participants for low effort data. Therefore, reason coding was not unique for each experiment, and each experiment could have one to three reasons for data exclusion. Statistical reasoning was the largest reported exclusion criteria of papers that mentioned outliers at `r printnum(reasonspercent$stat.percent[2], digits = 1)`%. Next, participant reasons followed with `r printnum(reasonspercent$part.percent[2], digits = 1)`% of outlier mentions, and unusable data was coded in `r printnum(reasonspercent$unus.percent[2], digits = 1)`% of experiments that mentioned outliers.
+
+When looking at the association of these reasons over time, we again clearly see all reasons increasing in usage from 2012 to 2017, but see the most increase in reporting of participant errors (3.5 times more often reported in 2017), followed by unusable data (3.3 times), and finally statistical reasons (1.7 times). 
 
 ## Type of Outlier
 
