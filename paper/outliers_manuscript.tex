@@ -206,21 +206,20 @@ to replicate important findings (Doyen et al., 2012), and the beginning
 of the Open Science Framework (Open Science Collaboration, 2012). These
 combined forces led to the current focus on QRPs and \emph{p}-hacking
 and the investigation potential solutions to these problems.
-Recommendations included CAN YOU OUTLINE THESE VARIOUS PUBS HERE.
-(Cumming, 2008; Simmons, Nelson, \& Simonsohn, 2011; Asendorpf et al.,
-2013; Lakens, 2013; Benjamin et al., 2017; Lakens et al., 2018;
-Valentine, Buchanan, Scofield \& Beauchamp, 2018; Maxwell, Lau, \&
-Howard, 2015; Nosek, Spies, \& Motyl, 2012). Additionally, Klein et al.
-(2014) developed the Many Labs project to aid in data collection for
-increased power, while the Open Science Collaboration (2015) published
-their findings from a combined many labs approach about the replication
-of phenomena in psychology.
-
-I THINK THIS SENTENCE WILL GET INTEGRATED ABOVE. These include an
-increased (encouragement/requirement) for researchers to be transparent
-about their research practices, including not only the design and
-execution of their experiments, but especially the data preparation and
-resulting analyses.
+Recommendations included integrating effect sizes into results (Cumming,
+2008; Lakens, 2013), implementing full disclosure and encouraging
+researchers to be transparent about their research practices, including
+not only the design and execution of their experiments, but especially
+the data preparation and resulting analyses (Simmons, Nelson, \&
+Simonsohn, 2011), attempting and interpreting well thought out
+replication studies (Asendorpf et al., 2013; Maxwell, Lau, \& Howard,
+2015), altering the way we think about \emph{p}-values (Benjamin et al.,
+2018; Lakens et al., 2018; Valentine, Buchanan, Scofield \& Beauchamp,
+2018), and restructuring incentives (Nosek, Spies, \& Motyl, 2012).
+Additionally, Klein et al. (2014) developed the Many Labs project to aid
+in data collection for increased power, while the Open Science
+Collaboration (2015) published their findings from a combined many labs
+approach about the replication of phenomena in psychology.
 
 While we have seen vast discussion of the problems and proposed
 solutions, research has yet to determine how this new culture may have
@@ -228,8 +227,7 @@ impacted reporting practices of researchers. Herein, we aim specifically
 to quantify the rates of reporting of outliers within psychology at two
 time points: 2012 when the replication crisis was born (Pashler \&
 Wagenmakers, 2012), and 2017, after the publication of reports
-concerning QPRs, replication, and transparency (WHAT IS THIS CITATION
-GAH NOSEK? 2012).
+concerning QPRs, replication, and transparency (Miguel et al., 2014).
 
 \subsection{Outliers}\label{outliers}
 
@@ -240,16 +238,16 @@ Stevens, 1984). Therefore, the examination for these data points is
 essential to any analysis using these parameters, as outliers can impact
 study results. Outliers have been defined as influential observations or
 fringliers but specifically we use Munoz-Garcia, Moreno-Rebollo, and
-Pascual-Acosta (1990, pg SOMETHING)'s definition of \enquote{an
-observation which being atypical and/or erroneous deviates decidedly
-from the general behavior of experimental data with respect to the
-criteria which is to be analyzed on it}. However, the definition of
-outliers can vary from researcher to researcher, as a wide range of
-graphical and statistical options are available for outlier detection
-(Beckman \& Cook, 1983; Hodge \& Austin, 2004; Orr, Sackett, \& Dubois,
-1991; Osborne \& Overbay, 2004). For example, Tabachnick and Fidell
-(2012) outline several of the most popular detection methods including
-visual data inspection, residual statistics, a set number of standard
+Pascual-Acosta (1990, pg 217)'s definition of \enquote{an observation
+which being atypical and/or erroneous deviates decidedly from the
+general behavior of experimental data with respect to the criteria which
+is to be analyzed on it}. However, the definition of outliers can vary
+from researcher to researcher, as a wide range of graphical and
+statistical options are available for outlier detection (Beckman \&
+Cook, 1983; Hodge \& Austin, 2004; Orr, Sackett, \& Dubois, 1991;
+Osborne \& Overbay, 2004). For example, Tabachnick and Fidell (2012)
+outline several of the most popular detection methods including visual
+data inspection, residual statistics, a set number of standard
 deviations, Mahalanobis distance, Leverage, and Cook's distances. Before
 the serious focus on QRPs, the information regarding outlier detection
 as part of data screening was often excluded from publication,
@@ -412,17 +410,25 @@ problems).
 
 \subsection{Data Analytic Plan}\label{data-analytic-plan}
 
-KD IS GOING TO DO A THING HERE. Be sure to explain the MLMS.\\
-Chi-Square tests were used to analyze the associations between
-variables. When a chi-square analysis suggested that the approximation
-may be incorrect a Fisher's Exact test will be analyzed as well and both
-will be reported. Frequencies were used to describe the outliers
-mentioned.
+Because each article constituted multiple data points within the dataset
+which were each nested within a particular journal, a multilevel model
+(MLM) was used to control for correlated error ({\textbf{???}}).
+({\textbf{???}})'s \emph{nlme} package in \emph{R} was used to calculate
+these analyses. A maximum likelihood logistic multilevel model was used
+to examine how the year in which the experiment was published predicted
+the likelihood of mentioning outliers (yes/no) while including a random
+intercept for journal. This model was run over all of the data, as well
+as broken down for each field, as well as each type of analysis in order
+to glean a more detailed account of the effect of year on outlier
+reporting. All code and data can be viewed at osf.io/52mqw.
+Additionally, we explored whether these outliers were people or data
+points, how outliers were handled, and the reasons data were named
+outliers with descriptive statistics.
 
 \subsection{Overall Outliers}\label{overall-outliers}
 
 Data processing resulted in a total of 2234 experiments being coded,
-1085 of which were from 2012 or prior, and the additional 1149 being
+1085 of which were from 2012 or prior, with the additional 1149 being
 from 2017 or prior. Investigating reporting of outliers, we found that
 in 2012, 15.7\% of experiments mentioned outliers, while in 2017 25.1\%
 of experiments mentioned outliers. Actual publication year was used to
@@ -454,7 +460,7 @@ The analyses shown below were exploratory based on the findings when
 coding each experiment for outlier data. We explored the relationship of
 outlier reporting to the type of analysis used to support research
 hypotheses, reasons for why outliers were excluded, as well as the type
-of outlier excluded from the study. MAY HAVE TO REORDER HERE.
+of outlier excluded from the study.
 
 \begin{figure}
 \centering
@@ -528,6 +534,25 @@ regression (15.1\%), ANOVA (14.5\%), and modeling (11.7\%). Bayesian and
 other statistics additionally showed a comparable increase, 23.5\%,
 which was not a significant change over years.
 
+\subsection{Type of Outlier}\label{type-of-outlier}
+
+In our review, the majority of outliers mentioned referred to people
+(65.9\%) as opposed to data points (25.3\%), or both people and data
+points (5.7\%), and a final (3.1\%) of experiments mentioned outliers
+but did not specify a type, just that they found none. The trends across
+years were examined for mentioning outliers (yes/no) for both people and
+data points, dropping the both and none found categories due to small
+size. Therefore, the dependent variable was outlier mention where the
+\enquote{yes} category indicated either the people or data point
+categories separately. The mentions of excluding participants increased
+across years, 17.2\%, \emph{Z} = 6.03, \emph{p} \textless{} .001, while
+the mention of data point exclusion was consistent across years, 4.5\%,
+\emph{Z} = 1.11, \emph{p} = .268. When handling these data, some
+experiments chose to winzorize the data (0.7\%), most analyzed the data
+without the observations (86.2\%), some analyzed the data with the
+observations (7.2\%), and some conducted analyses both with and without
+the observations (3.3\%).
+
 \subsection{Reasons}\label{reasons}
 
 We found that researchers often used multiple criterion checks for
@@ -547,25 +572,6 @@ separately. Statistical reasons decreased by 8.4\%, \emph{Z} = -1.91,
 \emph{p} = .056. Participant reasons increased over time by 13.7\%,
 \emph{Z} = 2.92, \emph{p} = .003. Unusable data increased by about
 5.3\%, \emph{Z} = 0.59, \emph{p} = .557.
-
-\subsection{Type of Outlier}\label{type-of-outlier}
-
-In our review, the majority of outliers mentioned referred to people
-(65.9\%) as opposed to data points (25.3\%), or both people and data
-points (5.7\%), and a final (3.1\%) of experiments mentioned outliers
-but did not specify a type, just that they found none. The trends across
-years were examined for mentioning outliers (yes/no) for both people and
-data points, dropping the both and none found categories due to small
-size. Therefore, the dependent variable was outlier mention where the
-\enquote{yes} category indicated either the people or data point
-categories separately. The mentions of excluding participants increased
-across years, 17.2\%, \emph{Z} = 6.03, \emph{p} \textless{} .001, while
-the mention of data point exclusion was consistent across years, 4.5\%,
-\emph{Z} = 1.11, \emph{p} = .268. When handling these data, some
-experiments chose to winzorize the data (0.7\%), most analyzed the data
-without the observations (86.2\%), some analyzed the data with the
-observations (7.2\%), and some conducted analyses both with and without
-the observations (3.3\%).
 
 \section{Discussion}\label{discussion}
 
