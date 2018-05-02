@@ -178,8 +178,8 @@ write.csv(tableprint, "Journal Information.csv", row.names = F)
 # Results
 
 ## Data Analytic Plan
-KD IS GOING TO DO A THING HERE. Be sure to explain the MLMS.  
-Chi-Square tests were used to analyze the associations between variables. When a chi-square analysis suggested that the approximation may be incorrect a Fisher's Exact test will be analyzed as well and both will be reported. Frequencies were used to describe the outliers mentioned. 
+Because each article constituted multiple data points within the dataset which were each nested within a particular journal, a multilevel model was used to control for correlated error [@Gelman2006]. @Pinheiro2017's *nlme* package in *R* was used to calculate these analyses. A maximum likelihood logistic multilevel model was used to examine how the year in which the experiment was published predicted the likelihood of mentioning outliers (yes/no) while including a random intercept for journal. This model was run over all of the data, as well as broken down for each field, as well as each type of analysis in order to glean a more detailed account of the effect of year on outlier reporting. All code and data can be viewed at osf.io/52mqw. Additionally, we explored whether these outliers were people or data points, how outliers were handled, and the reasons data were named outliers with descriptive statistics. 
+
 
 ## Overall Outliers
 
