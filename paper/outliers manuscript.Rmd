@@ -107,7 +107,7 @@ Types of analyses were broadly defined as basic statistics (descriptive statisti
 
 For outliers, we used a dichotomous yes/no for if they were mentioned in an article. Outliers were not limited to simple statistical analysis of discrepant responses, but we also checked for specific exclusion criteria that were not related to missing data or study characteristics (i.e., we did not consider it an outlier if they were only looking for older adults). If so, we coded information about outliers into four types: 1) people, 2) data points, 3) both, or 4) none found. The distinction between people and data points was if individual trials were eliminated or if entire participant data was eliminated. We found that a unique code for data points was important for analyses with response time studies where individual participants were not omitted but rather specific data trials were eliminated. 
 
-Then, for those articles that mentioned outliers, the author's decision for how to handle the outliers was coded into whether they removed participants/stimuli, left these outliers in the analysis, or winsorized the data points. Experiments were coded for whether they tested the analyses with, without, or both for determination of their effect on the study. If they removed outliers, a new sample size was recorded. Lastly, we coded the reasoning for outlier detection as one or more of the following: 1) Statistical reason (i.e., used numbers to define odd or deviant behavior in responding, such as *z*-score or Mahalanobis distance scores), 2) Participant error (i.e., failed attention checks, did not follow instructions, or low quality data because of participant problems), and 3) Unusable data (i.e., inside knowledge of the study or experimenter/technological problems).
+Then, for those articles that mentioned outliers, the author's decision for how to handle the outliers was coded into whether they removed participants/stimuli, left these outliers in the analysis, or winsorized the data points. Experiments were coded for whether they tested the analyses with, without, or both for determination of their effect on the study. If they removed outliers, a new sample size was recorded; although, this data was not analyzed, as we determined it was conflated with removal of other types of data unrelated to the interest of this paper (i.e., missing data). Lastly, we coded the reasoning for outlier detection as one or more of the following: 1) Statistical reason (i.e., used numbers to define odd or deviant behavior in responding, such as *z*-score or Mahalanobis distance scores), 2) Participant error (i.e., failed attention checks, did not follow instructions, or low quality data because of participant problems), and 3) Unusable data (i.e., inside knowledge of the study or experimenter/technological problems).
 
 ```{r info-journal, eval=FALSE, include=FALSE}
 ##change EVAL to TRUE when done editing 
@@ -624,9 +624,42 @@ We found that researchers often used multiple criterion checks for outlier codin
 
 ## Type of Outlier
 
-In our review, the majority of outliers mentioned referred to people (65.9%) as opposed to data points (25.3%), or both people and data points (5.7%), a final 3% of experiments mentioned outliers but did not specify a type, just that they found none. We were addtiiaonlly interested investigating the differene in reporting of just people or data points (dropping the both or none categories) across time. Using a multilevel model predicting whether people or data points were removed using year and a random intercept for journal we find no significant effect for year, b=0.05, SE=0.05, *p*=.36, demondtrating that the change in reporting of both types of outliers were consistent. When handling these data, some experiments chose to winzorize data (.7%), most analyzed the data without the observations (88.5%), some analyzed the data with the observations (7.4%), and some conducted analyses both with and without the observations (3.4%). Of the outliers found, the majority (88.1%) were removed from the dataset before analysis.
+```{r typeout, include=FALSE}
+peep_data = subset(master, mention.outliers == "Yes")
 
-The number of outliers found by type blah blah blah. THIS SEEMED LIKE A GOOD PLACE TO TALK ABOUT THIS SINCE OBVIOUSLY THE NUMBER WILL DEPEND ON PEOPLE VERSUS DATA POINTS. 
+##create a data frame of the percentages
+peep_datasummary = table(peep_data$peopleor.data.points)
+
+peep_datasummary = as.data.frame(peep_datasummary)
+colnames(peep_datasummary) = c("code", "Freq")
+
+peep_datapercent = as.data.frame(group_by(peep_datasummary) %>%
+  mutate(percent = Freq/sum(Freq)*100))
+```
+
+```{r type-mlm, include=FALSE}
+##people versus no outliers
+people = subset(master, peopleor.data.points == "people" | peopleor.data.points == "")
+datapoints = subset(master, peopleor.data.points == "data points" | peopleor.data.points == "")
+
+m1people <- glmer(mention.outliers ~ year + (1 | Journal),
+            data=people, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+#summary(m1people)
+
+m1dp <- glmer(mention.outliers ~ year + (1 | Journal),
+            data=datapoints, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+#summary(m1dp)
+
+whatdid = table(master$run.with.or.without[master$run.with.or.without !=""])/sum(table(master$run.with.or.without[master$run.with.or.without !=""]))*100
+```
+
+In our review, the majority of outliers mentioned referred to people (`r printnum(peep_datapercent$percent[5], digits = 1)`%) as opposed to data points (`r printnum(peep_datapercent$percent[3], digits = 1)`%), or both people and data points (`r printnum(peep_datapercent$percent[2], digits = 1)`%), and a final (`r printnum(peep_datapercent$percent[4], digits = 1)`%) of experiments mentioned outliers but did not specify a type, just that they found none. The trends across years were examined for mentioning outliers (yes/no) for both people and data points, dropping the both and none found categories due to small size. Therefore, the dependent variable was outlier mention where the "yes" category indicated either the people or data point categories separately. The mentions of excluding participants increased across years, `r printnum(abs(exp(summary(m1people)$coefficients[2,1])*100-100), digits = 1)`%, *Z* = `r printnum(summary(m1people)$coefficients[2,3], digits = 2)`, *p* `r printp(summary(m1people)$coefficients[2,4])`, while the mention of data point exclusion was consistent across years, `r printnum(abs(exp(summary(m1dp)$coefficients[2,1])*100-100), digits = 1)`%, *Z* = `r printnum(summary(m1dp)$coefficients[2,3], digits = 2)`, *p* = `r printp(summary(m1dp)$coefficients[2,4])`. When handling these data, some experiments chose to winzorize the data (`r printnum(whatdid["winsorized"], digits = 1)`%), most analyzed the data without the observations (`r printnum(whatdid["without"], digits = 1)`%), some analyzed the data with the observations (`r printnum(whatdid["with"], digits = 1)`%), and some conducted analyses both with and without the observations (`r printnum(whatdid["both"], digits = 1)`%). 
 
 # Discussion
 
