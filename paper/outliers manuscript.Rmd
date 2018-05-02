@@ -13,9 +13,9 @@ author:
 
 affiliation:
   - id            : "1"
-       institution   : "University of Missouri"
+    institution   : "University of Missouri"
   - id            : "2"
-      institution   : "Missouri State University"
+    institution   : "Missouri State University"
 
 author_note: |
  K. D. Valentine is a Ph.D. candidate at the University of Missouri. Erin M. Buchanan is an Associate Professor of Quantitative Psychology at Missouri State University. 
@@ -71,7 +71,7 @@ I THINK THIS SENTENCE WILL GET INTEGRATED ABOVE.
  
  While we have seen vast discussion of the problems and proposed solutions, research has yet to determine how this new culture may have impacted reporting practices of researchers. Herein, we aim specifically to quantify the rates of reporting of outliers within psychology at two time points: 2012 when the replication crisis was born (Pashler & Wagenmakers, 2012), and 2017, after the publication of reports concerning QPRs, replication, and transparency (WHAT IS THIS CITATION GAH NOSEK? 2012). 
 
-# Outliers
+## Outliers
 
 Bernoulli first mentioned outliers in 1777 starting the long history of examining for discrepant observations (Bernoulli, 1961), which can bias both descriptive and inferential statistics (Cook & Weisberg, 1980; Stevens, 1984). Therefore, the examination for these data points is essential to any analysis using these parameters, as outliers can impact study results. Outliers have been defined as influential observations or fringliers but specifically we use Munoz-Garcia, Moreno-Rebollo, and Pascual-Acosta (1990, pg SOMETHING)'s definition of "an observation which being atypical and/or erroneous deviates decidedly from the general behavior of experimental data with respect to the criteria which is to be analyzed on it". However, the definition of outliers can vary from researcher to researcher, as a wide range of graphical and statistical options are avaliable for outlier detection (Beckman & Cook, 1983; Hodge & Austin, 2004; Orr, Sackett, & Dubois, 1991; Osborne & Overbay, 2004). For example, Tabachnick and Fidell (2012) outline several of the most popular detection methods including visual data inspection, residual statistics, a set number of standard deviations, Mahalanobis distance, Leverage, and Cook's distances. Before the serious focus on QRPs, the information regarding outlier detection as part of data screening was often excluded from publication, particularly if a journal page limit requirement needed to be considered. Consider, for example, Orr, Sackett, and Dubois (1991), who inspected 100 Industrial/Organizational Psychology personnel studies and found no mention of outliers. 
 
@@ -211,9 +211,7 @@ m1 <- glmer(mention.outliers ~ year  + (1 | Journal),
 
 ```
 
-Data processing resulted in a total of `r nrow(master)` experiments being coded, `r nrow(master[ master$time.pulled == "2012" , ])` of which were from 2012 or prior, and the additional `r nrow(master[ master$time.pulled == "2017" , ])` being from 2017 or prior. Investigating reporting of outliers, we found that in 2012, `r printnum(overalloutpercent$percent[2], digits = 1)`% of experiments mentioned outliers, while in 2017 `r printnum(overalloutpercent$percent[4], digits = 1)`% of experiments mentioned outliers. Actual publication year was used to predict outlier mention (yes/no) with a random intercept for journal, as described above. We found that publication year predicted outlier mentions, 
-
-When evaluted within the context of a multilevel model using the year the experiment was published to predict outlier mention (yes/no) and inclduing a random intercept for journal we find that year significantly predicts mentioning outliers, *b*= `r printnum(summary(m1)$coefficients[2,1], digits = 2)`, *SE* = `r printnum(summary(m1)$coefficients[2,2], digits = 2)`, *Z* = `r printnum(summary(m1)$coefficients[2,2], digits = 2)`, *p* <.001. Each year, experiments were `r printnum(exp(summary(m1)$coefficients[2,1])*100-100, digits = 1)`% more likely to report outliers as the previous year. 
+Data processing resulted in a total of `r nrow(master)` experiments being coded, `r nrow(master[ master$time.pulled == "2012" , ])` of which were from 2012 or prior, and the additional `r nrow(master[ master$time.pulled == "2017" , ])` being from 2017 or prior. Investigating reporting of outliers, we found that in 2012, `r printnum(overalloutpercent$percent[2], digits = 1)`% of experiments mentioned outliers, while in 2017 `r printnum(overalloutpercent$percent[4], digits = 1)`% of experiments mentioned outliers. Actual publication year was used to predict outlier mention (yes/no) with a random intercept for journal, as described above. We found that publication year predicted outlier mentions, *Z* = `r printnum(summary(m1)$coefficients[2,3], digits = 2)`, *p* `r printp(summary(m1)$coefficients[2,4])`. Each year, experiments were `r printnum(exp(summary(m1)$coefficients[2,1])*100-100, digits = 1)`% more likely to report outliers as the previous year. 
 
 ## Fields
 
@@ -335,7 +333,7 @@ m1sport <- glmer(mention.outliers ~ year  + (1 | Journal),
 #summary(m1sport)
 ```
 
-Further exploration reveals that differences in reporting between years arise between fields which can be seen in Table \@ref(tab:info-table). Figure \@ref(fig:type-graph) displays the percentage of outlier mentions of each field colored by year examined. A MLM was analyzed for each field using journal as a random intercept to determine the influence of year of publication on outlier reporting rates. Specifically, if we look at the change in reporting for each field analyzed at the level of the experiment, we find the largest changes in forensic (`r printnum(exp(summary(m1for)$coefficients[2,1])*100-100, digits = 1)` % more likely to report), social (`r printnum(exp(summary(m1soc)$coefficients[2,1])*100-100, digits = 1)`%), and I/O (`r printnum(exp(summary(m1io)$coefficients[2,1])*100-100, digits = 1)`%), followed by developmental (`r printnum(exp(summary(m1dev)$coefficients[2,1])*100-100, digits = 1)`%), counseling (`r printnum(exp(summary(m1cou)$coefficients[2,1])*100-100, digits = 1)`%), and cognitive (`r printnum(exp(summary(m1cog)$coefficients[2,1])*100-100, digits = 1)`%). In support of our hypothesis, we found that social and cognitive fields showed increases in their outlier reporting; however, it was encouraging to see positive trends in other fields as well. These analyses show that in some fields, including our overall and neurological fields, we found a decrease in reporting across years, although these changes were not significant. 
+Further exploration reveals that differences in reporting between years arise between fields which can be seen in Table \@ref(tab:info-table). Figure \@ref(fig:type-graph) displays the percentage of outlier mentions of each field colored by year examined. A MLM was analyzed for each field using journal as a random intercept to determine the influence of year of publication on outlier reporting rates. Specifically, if we look at the change in reporting for each field analyzed at the level of the experiment, we find the largest changes in forensic (`r printnum(exp(summary(m1for)$coefficients[2,1])*100-100, digits = 1)`% more likely to report), social (`r printnum(exp(summary(m1soc)$coefficients[2,1])*100-100, digits = 1)`%), and I/O (`r printnum(exp(summary(m1io)$coefficients[2,1])*100-100, digits = 1)`%), followed by developmental (`r printnum(exp(summary(m1dev)$coefficients[2,1])*100-100, digits = 1)`%), counseling (`r printnum(exp(summary(m1cou)$coefficients[2,1])*100-100, digits = 1)`%), and cognitive (`r printnum(exp(summary(m1cog)$coefficients[2,1])*100-100, digits = 1)`%). In support of our hypothesis, we found that social and cognitive fields showed increases in their outlier reporting; however, it was encouraging to see positive trends in other fields as well. These analyses show that in some fields, including our overall and neurological fields, we found a decrease in reporting across years, although these changes were not significant. 
 
 The analyses shown below were exploratory based on the findings when coding each experiment for outlier data. We explored the relationship of outlier reporting to the type of analysis used to support research hypotheses, reasons for why outliers were excluded, as well as the type of outlier excluded from the study. MAY HAVE TO REORDER HERE.
 
@@ -408,14 +406,14 @@ tableprint[ , 8] = printp(c(summary(m1cl)$coefficients[2,4],
                      summary(m1sport)$coefficients[2,4]))
 
 apa_table.latex(as.data.frame(tableprint),
+                caption = "Outlier Reporting by Field Across Years",
+                align = c("l", rep("c",7)),
                 escape = F,
                 col.names = c("Field", "\\% 12", "$N$ 12", "\\% 17", 
                               "$N$ 17", "OR", "$Z$", "$p$"))
 ```
 
 ## Analyses Type
-
-Table \@ref(tab:analysis-table) indicates the types of analyses across years that mention outliers, and Figure \@ref(fig:analysis-graph) visually depicts these findings. An increase in reporting was found for non-parametric statistics (`r printnum(exp(summary(m1non)$coefficients[2,1])*100-100, digits = 1)`%), basic statistics (`r printnum(exp(summary(m1basic)$coefficients[2,1])*100-100, digits = 1)`%), regression (`r printnum(exp(summary(m1reg)$coefficients[2,1])*100-100, digits = 1)`%), ANOVA (`r printnum(exp(summary(m1anova)$coefficients[2,1])*100-100, digits = 1)`%), and modeling (`r printnum(exp(summary(m1model)$coefficients[2,1])*100-100, digits = 1)`%). Bayesian and other statistics additionally showed a comparable increase, `r printnum(exp(summary(m1bo)$coefficients[2,1])*100-100, digits = 1)`%, which was not a significant change over years. 
 
 ```{r analysisout, include=FALSE}
 ##create longdata set for analysis
@@ -453,7 +451,7 @@ graphdata$sample = as.data.frame(table(long.test.data$time.pulled, long.test.dat
 graphdata$SE = sqrt(graphdata$percent*(100-graphdata$percent)/graphdata$sample)
 
 dotplot2 = ggplot(graphdata, aes(analysis.type, percent, color = time.pulled))
-finalgraph = dotplot2 +
+dotplot2 = dotplot2 +
   geom_pointrange(aes(ymin=percent-1.96*SE, ymax=percent+1.96*SE))+ 
   cleanup +
   xlab("Type of Analysis") +
@@ -462,6 +460,7 @@ finalgraph = dotplot2 +
   scale_color_manual(name = "Year", 
                      values = c("black", "gray")) + 
   coord_cartesian(ylim = c(0,50))
+dotplot2
 ```
 
 ```{r analysis-mlm, include=FALSE}
@@ -555,10 +554,14 @@ tableprint[ , 8] = printp(c(summary(m1basic)$coefficients[2,4],
                      summary(m1model)$coefficients[2,4],
                      summary(m1bo)$coefficients[2,4]))
 apa_table.latex(as.data.frame(tableprint),
+                caption = "Outlier Reporting by Analysis Type Across Years",
+                align = c("l", rep("c",7)),
                 escape = F,
                 col.names = c("Analysis", "\\% 12", "$N$ 12", "\\% 17", 
                               "$N$ 17", "OR", "$Z$", "$p$"))
 ```
+
+Table \@ref(tab:analysis-table) indicates the types of analyses across years that mention outliers, and Figure \@ref(fig:analyses-graph) visually depicts these findings. An increase in reporting was found for non-parametric statistics (`r printnum(exp(summary(m1non)$coefficients[2,1])*100-100, digits = 1)`%), basic statistics (`r printnum(exp(summary(m1basic)$coefficients[2,1])*100-100, digits = 1)`%), regression (`r printnum(exp(summary(m1reg)$coefficients[2,1])*100-100, digits = 1)`%), ANOVA (`r printnum(exp(summary(m1anova)$coefficients[2,1])*100-100, digits = 1)`%), and modeling (`r printnum(exp(summary(m1model)$coefficients[2,1])*100-100, digits = 1)`%). Bayesian and other statistics additionally showed a comparable increase, `r printnum(exp(summary(m1bo)$coefficients[2,1])*100-100, digits = 1)`%, which was not a significant change over years. 
 
 ## Reasons
 
@@ -620,7 +623,7 @@ m1unus <- glmer(unus ~ year + (1 | Journal),
 #summary(m1unus)
 ```
 
-We found that researchers often used multiple criterion checks for outlier coding, as one study might exclude participants for exceeding a standard deviation cut-off, while also excluding participants for low effort data. Therefore, reason coding was not unique for each experiment, and each experiment could have one to three reasons for data exclusion. Statistical reasoning was the largest reported exclusion criteria of papers that mentioned outliers at `r printnum(reasonspercent$stat.percent[2], digits = 1)`%. Next, participant reasons followed with `r printnum(reasonspercent$part.percent[2], digits = 1)`% of outlier mentions, and unusable data was coded in `r printnum(reasonspercent$unus.percent[2], digits = 1)`% of experiments that mentioned outliers. To examine the trend over time, we used a similar MLM analysis as described in the our data analytic plan, with Journal as a random intercept, year as the independent variable, and the mention of type of outlier (yes/no for participant, statistical, and unusable data) as the dependent variables separately. Statistical reasons decreased by `r printnum(abs(exp(summary(m1stat)$coefficients[2,1])*100-100), digits = 1)`%, *Z* = `r printnum(summary(m1stat)$coefficients[2,3], digits = 2)`, *p* = `r printp(summary(m1stat)$coefficients[2,4])`. Participant reasons increased over time by `r printnum(abs(exp(summary(m1part)$coefficients[2,1])*100-100), digits = 1)`%, *Z* = `r printnum(summary(m1part)$coefficients[2,3], digits = 2)`, *p* = `r printp(summary(m1part)$coefficients[2,4])`. Unusable data increased by about`r printnum(abs(exp(summary(m1unus)$coefficients[2,1])*100-100), digits = 1)`%, *Z* = `r printnum(summary(m1unus)$coefficients[2,3], digits = 2)`, *p* = `r printp(summary(m1unus)$coefficients[2,4])`. 
+We found that researchers often used multiple criterion checks for outlier coding, as one study might exclude participants for exceeding a standard deviation cut-off, while also excluding participants for low effort data. Therefore, reason coding was not unique for each experiment, and each experiment could have one to three reasons for data exclusion. Statistical reasoning was the largest reported exclusion criteria of papers that mentioned outliers at `r printnum(reasonspercent$stat.percent[2], digits = 1)`%. Next, participant reasons followed with `r printnum(reasonspercent$part.percent[2], digits = 1)`% of outlier mentions, and unusable data was coded in `r printnum(reasonspercent$unus.percent[2], digits = 1)`% of experiments that mentioned outliers. To examine the trend over time, we used a similar MLM analysis as described in the our data analytic plan, with Journal as a random intercept, year as the independent variable, and the mention of type of outlier (yes/no for participant, statistical, and unusable data) as the dependent variables separately. Statistical reasons decreased by `r printnum(abs(exp(summary(m1stat)$coefficients[2,1])*100-100), digits = 1)`%, *Z* = `r printnum(summary(m1stat)$coefficients[2,3], digits = 2)`, *p* = `r printp(summary(m1stat)$coefficients[2,4])`. Participant reasons increased over time by `r printnum(abs(exp(summary(m1part)$coefficients[2,1])*100-100), digits = 1)`%, *Z* = `r printnum(summary(m1part)$coefficients[2,3], digits = 2)`, *p* = `r printp(summary(m1part)$coefficients[2,4])`. Unusable data increased by about `r printnum(abs(exp(summary(m1unus)$coefficients[2,1])*100-100), digits = 1)`%, *Z* = `r printnum(summary(m1unus)$coefficients[2,3], digits = 2)`, *p* = `r printp(summary(m1unus)$coefficients[2,4])`. 
 
 ## Type of Outlier
 

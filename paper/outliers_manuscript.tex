@@ -64,6 +64,15 @@
 \endgroup}
 
 
+  \usepackage{graphicx}
+  \makeatletter
+  \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+  \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+  \makeatother
+  % Scale images if necessary, so that they will not overflow the page
+  % margins by default, and it is still possible to overwrite the defaults
+  % using explicit options in \includegraphics[width, height, ...]{}
+  \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
               unicode=false, % unicode breaks when used with xetex
@@ -73,7 +82,7 @@
 \fi
 \hypersetup{breaklinks=true,
             pdfauthor={},
-            pdftitle={Outrageous observations: The redheaded stepchild of data analysis},
+            pdftitle={Have reserachers increased reporting of outliers in response to the reproducability crisis?},
             colorlinks=true,
             citecolor=blue,
             urlcolor=blue,
@@ -110,38 +119,46 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 % Essential manuscript parts
-  \title{Outrageous observations: The redheaded stepchild of data analysis}
+  \title{Have reserachers increased reporting of outliers in response to the
+reproducability crisis?}
 
-  \shorttitle{Title}
+  \shorttitle{Outlier reporting}
 
 
-  \author{Erin M. Buchanan\textsuperscript{1}~\& Ernst-August Doelle\textsuperscript{1,2}}
+  \author{K. D. Valentine\textsuperscript{1}~\& Erin M. Buchanan\textsuperscript{2}}
 
   % \def\affdep{{"", ""}}%
   % \def\affcity{{"", ""}}%
 
   \affiliation{
     \vspace{0.5cm}
-          \textsuperscript{1} Wilhelm-Wundt-University\\
-          \textsuperscript{2} Konstanz Business School  }
+          \textsuperscript{1} University of Missouri\\
+          \textsuperscript{2} Missouri State University  }
 
   \authornote{
-    Add complete departmental affiliations for each author here. Each new
-    line herein must be indented, like this line.
+    K. D. Valentine is a Ph.D.~candidate at the University of Missouri. Erin
+    M. Buchanan is an Associate Professor of Quantitative Psychology at
+    Missouri State University.
     
-    Enter author note here.
-    
-    Correspondence concerning this article should be addressed to Erin M.
-    Buchanan, Postal address. E-mail:
-    \href{mailto:my@email.com}{\nolinkurl{my@email.com}}
+    Correspondence concerning this article should be addressed to K. D.
+    Valentine, 210 McAlester Hall, Columbia, MO, 65211. E-mail:
+    \href{mailto:kdvdnf@mail.missouri.edu}{\nolinkurl{kdvdnf@mail.missouri.edu}}
   }
 
 
-  \abstract{Enter abstract here. Each new line herein must be indented, like this
-line.}
-  \keywords{keywords \\
+  \abstract{The social sciences have begun to take a careful look at the way we
+process and interpret data, as many famous experiments do not appear to
+replicate (Open Science Collaboration, 2015). The Open Science
+Foundation (OSF) was founded in 2013 to promote a transparent research
+process from formation of the hypotheses to completely reproducible
+papers (Nosek et al., 2015). This project examines the impact of the
+formation of OSF and changing research culture on the publication of
+information concerning data screening methods for outliers, as the
+impact of outliers can critically change the findings and interpretation
+of experiments.}
+  \keywords{outlier, influential observation, replication \\
 
-    \indent Word count: X
+    
   }
 
 
@@ -149,16 +166,16 @@ line.}
 
 
 \usepackage{amsthm}
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
-\newtheorem{corollary}{Corollary}
-\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
 \theoremstyle{definition}
-\newtheorem{example}{Example}
+\newtheorem{example}{Example}[section]
 \theoremstyle{definition}
-\newtheorem{exercise}{Exercise}
+\newtheorem{exercise}{Exercise}[section]
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 \newtheorem*{solution}{Solution}
@@ -170,348 +187,404 @@ line.}
 
 
 
-\emph{What are outliers.} Throughout psychology's assessments of
-experimental procedures, participant observations have intrigued,
-inspired, and confused experimenters world wide. Some of these
-observations exist in such extremes that we begin to think of them as
-outliers, influential observations, or fringliers (Osborne and Overbay
-(2004); Wainer (1976)). Since they were first commented on in 1777 by
-Bernoulli, outliers have been defined as many things. Muñoz-Garcia,
-Moreno-Rebollo, and Pascual-Acosta (1990) have synthesized their own
-definition that we feel is concurrent with our work: \enquote{An outlier
-is an observation which being atypical and/or erroneous deviates
-decidedly from the general behavior of experimental data with respect to
-the criteria which is to be analyzed on it.} (pg 217)
+Psychology is undergoing a \enquote{renaissance} in which focus has
+shifted to the replication and reproducibility of current published
+reports (Nelson, Simmons, and Simonsohn, 2018; Etz \& Vandekerckhove,
+2016; Lindsay, 2015; Open Science Collaboration, 2015; van Elk et al.,
+2015). A main concern has been the difficulty in replicating phenomena,
+often attributed to publication bias (Brannick, 2012), the use and
+misuse of \emph{p}-values (Gigerenzer, 2004; Ioannidis, 2005), and
+researcher degrees of freedom (Simmons, Nelson, \& Simonsohn, 2011). In
+particular, this analysis focused on one facet of questionable research
+practices that affect potential replication (QPRs), specifically, the
+selective removal or inclusion of datapoints.
 
-Outliers can be observed in many forms, which should be outlined to
-ensure proper understanding and handling of such observations.
-Researchers have separated outliers into categories in many different
-ways over the years (Beckman and Cook (1983a); Hodge and Austin (2004);
-Muñoz-Garcia et al. (1990); ORR, SACKETT, and DUBOIS (1991); Osborne and
-Overbay (2004)). Many of the categories used to describe outliers have
-noticeable overlap. For instance, Muñoz-Garcia et al. (1990) stated that
-outliers come about by errors in the way we gather data (inappropriate
-techniques, or experimenter error), errors in preparation (improper
-hypothesis, planning, or methods), or natural variability. Shortly
-after, ORR et al. (1991) described outliers as consisting of people
-being included in an experiment who aren't part of the population,
-legitimate datapoints that are interesting because they do not fit the
-expected scheme, extreme datapoints on error components, human error in
-observation/coding, and errors in data preparation. Similarly, Hodge and
-Austin (2004) state that outliers arise, \enquote{due to mechanical
-faults, changes in system behaviour, fraudulent behaviour, human error,
-instrument error or simply through natural deviations in populations.}
-Osborne and Overbay (2004) have also specified that outliers follow from
-data errors, intentional or motivated mis-reporting, sampling error,
-standardization failure, bad assumptions about distributions, or
-legitimate data points. Taken together, we have delineated the following
-4 types of outliers for the purpose of this paper. 1. Data entry error,
-experimenter error in processing, coding, or preparing data, as well as
-motivated misreporting. 2. Participants who do not represent the
-intended population. For example, a participant who uses a DVORAK or
-ergonomic keyboard will not be appropriate in a study investigating the
-typing speeds of typical QWERTY keyboard users. 3. Valid data points
-which bring to light interesting phenomena the study was not aimed at
-capturing. For instance, the 1854 cholera epidemic in London was found
-by Dr.~John Snow to stem from a specific water well on Broad Street.
-While the majority of individuals infected lived very close to the
-contaminated well, Dr.~Snow also found an instance of cholera far away
-from the well. When he rode out to investigate this outlying case, he
-found that the woman in question had someone ride to that specific well
-to draw water for her because she liked the taste (Vinten-Johansen,
-Brody, Paneth, Rachman, \& Rip, 2003). 4. Natural deviations in the
-population.
+As outlined by Nelson et al. (2018), the social sciences turned inward
+to examine its practices due to the publication of unbelieveable data
+(Wagenmakers et al., 2011), academic fraud (Simonsohn, 2013), failures
+to replicate important findings (Doyen et al., 2012), and the beginning
+of the Open Science Framework (Open Science Collaboration, 2012). These
+combined forces led to the current focus on QRPs and \emph{p}-hacking
+and the investigation potential solutions to these problems.
+Recommendations included CAN YOU OUTLINE THESE VARIOUS PUBS HERE.
+(Cumming, 2008; Simmons, Nelson, \& Simonsohn, 2011; Asendorpf et al.,
+2013; Lakens, 2013; Benjamin et al., 2017; Lakens et al., 2018;
+Valentine, Buchanan, Scofield \& Beauchamp, 2018; Maxwell, Lau, \&
+Howard, 2015; Nosek, Spies, \& Motyl, 2012). Additionally, Klein et al.
+(2014) developed the Many Labs project to aid in data collection for
+increased power, while the Open Science Collaboration (2015) published
+their findings from a combined many labs approach about the replication
+of phenomena in psychology.
 
-\emph{Effects of outliers} These outliers can have serious effects on
-data, which can lead to imprecise data analysis (Osborne and Overbay
-(2004)), confusing results (Stevens (1984); Yuan and Bentler (2001)),
-and inappropriate conclusions (Coin (2008); Stevens (1984)). By keeping
-outliers in a dataset, analyses are more likely to have increased error
-variance (depending on sample size, ORR et al. (1991)) and biased
-estimates (Osborne and Overbay (2004)) as well as reduced effect size
-and power (ORR et al. (1991); Osborne and Overbay (2004)) which can
-alter the results of the analysis and lead to falsely supporting (Type I
-error) or denying a claim (Type II error). Additionally, incorrect
-estimates of effect lead to misleading meta-analyses or sample size
-estimates for study planning. Beyond these effects on analyses and
-conclusions these outliers can be inspirational to researchers and to
-their research models as they can encourage the diagnosis, change, and
-evolution of a research model (Beckman and Cook (1983b)). All together,
-these issues caused by outliers can lead to furthering unwarranted
-avenues of research, ignoring important information, and creating
-erroneous theories, all of which serve to weaken the sciences.
+I THINK THIS SENTENCE WILL GET INTEGRATED ABOVE. These include an
+increased (encouragement/requirement) for researchers to be transparent
+about their research practices, including not only the design and
+execution of their experiments, but especially the data preparation and
+resulting analyses.
 
-\emph{Determination of outliers}
+While we have seen vast discussion of the problems and proposed
+solutions, research has yet to determine how this new culture may have
+impacted reporting practices of researchers. Herein, we aim specifically
+to quantify the rates of reporting of outliers within psychology at two
+time points: 2012 when the replication crisis was born (Pashler \&
+Wagenmakers, 2012), and 2017, after the publication of reports
+concerning QPRs, replication, and transparency (WHAT IS THIS CITATION
+GAH NOSEK? 2012).
 
-\emph{Report of outliers} For these reasons, we aim to stress the
-importance of properly identifying outliers, their potential cause(s),
-and ways to handle the extreme responses.
+\subsection{Outliers}\label{outliers}
 
-Further, as outlined by the APA (American Psychological Association,
-2010), one should acknowledge these steps not only at the time of
-analysis, but also at the time of publication. As Kruskal, Ferguson,
-Tukey, and Gumbel (1960) stated, no matter how we treat outlying
-observations, \enquote{It is very important to say something about such
-observations in any but the most summary report. At least how many
-observations were excluded from the formal analysis, and why, should be
-given.} (pg. 1)
+Bernoulli first mentioned outliers in 1777 starting the long history of
+examining for discrepant observations (Bernoulli, 1961), which can bias
+both descriptive and inferential statistics (Cook \& Weisberg, 1980;
+Stevens, 1984). Therefore, the examination for these data points is
+essential to any analysis using these parameters, as outliers can impact
+study results. Outliers have been defined as influential observations or
+fringliers but specifically we use Munoz-Garcia, Moreno-Rebollo, and
+Pascual-Acosta (1990, pg SOMETHING)'s definition of \enquote{an
+observation which being atypical and/or erroneous deviates decidedly
+from the general behavior of experimental data with respect to the
+criteria which is to be analyzed on it}. However, the definition of
+outliers can vary from researcher to researcher, as a wide range of
+graphical and statistical options are avaliable for outlier detection
+(Beckman \& Cook, 1983; Hodge \& Austin, 2004; Orr, Sackett, \& Dubois,
+1991; Osborne \& Overbay, 2004). For example, Tabachnick and Fidell
+(2012) outline several of the most popular detection methods including
+visual data inspection, residual statistics, a set number of standard
+deviations, Mahalanobis distance, Leverage, and Cook's distances. Before
+the serious focus on QRPs, the information regarding outlier detection
+as part of data screening was often excluded from publication,
+particularly if a journal page limit requirement needed to be
+considered. Consider, for example, Orr, Sackett, and Dubois (1991), who
+inspected 100 Industrial/Organizational Psychology personnel studies and
+found no mention of outliers.
 
-However, outlier report rates in studies have indicated that researchers
-either fail to acknowledge outliers or fail to report their
-acknowledgment of outliers (Huffcutt and Arthur (1995); ORR et al.
-(1991)). Huffcutt and Arthur (1995) looked at Organizational
-Behavior/Human Resource Management meta-analytic literature since 1987.
-As they were dealing with meta-analyses, the outliers they were
-identifying consisted of study coefficients, or correlations, not
-individual data points, as outliers are usually thought of. In their
-study they found only six of fifty meta-analyses used any outlier
-treatment for study coefficients. Also, in most of these, highly
-subjective means were used to determine which study coefficients were
-outliers. Similarly, ORR et al. (1991) inspected 100
-Industrial/Organizational Psychology personnel studies and found no
-mention of outliers.
+However, outlier detection and removal is likely part of a researchers
+data screening procedure, even if it does not make the research
+publication. Lebel et al. (2013) that 11\% of psychology researchers
+stated that they had not reported excluding participants for being
+outliers in their papers. Fiedler and Schwarz (2016) suggested that more
+than a quarter of researchers decide whether to exclude data only after
+looking at the impact of doing so. Bakker and Wicherts (2014)
+investigated the effects of outliers on published analyses, and while
+they did not find that they affected the surveyed results, they do
+report that these findings are likely biased by the non-reporting of
+data screening procedures, as sample sizes and degrees of freedom often
+did not match. The lack of transparency in data manipulation and
+reporting is problematic.
 
-Although the APA and many researchers (ORR et al. (1991), \ldots{}) have
-instructed researchers to outline their data cleaning, there has been a
-dearth in recent literature investigating if these instructions are
-actually being followed. Therefore, the authors felt that the current
-study examined the results in 27 journals and 672 articles across 13
-psychological disciplines to assess if outliers are being reported.
-Given previous report rates (Huffcutt and Arthur (1995); ORR et al.
-(1991)) we expect to find little to no reporting of outliers in these
-articles. Further, we will examine how outlier reports relate to field,
-journal, analysis, and sample size. We will also investigate the methods
-and rational of outlier detection and removal.
+By keeping outliers in a dataset, analyses are more likely to have
+increased error variance (depending on sample size, Orr et al., 1991),
+biased estimates (Osborne, \& Overbay, 2004), and reduced effect size
+and power (Orr, Sackett, \& Dubois, 1991; Osborne, \& Overbay 2004),
+which can alter the results of the analysis and lead to falsely
+supporting (Type I error), or denying a claim (Type II error).
+Inconsistencies in the treatment and publicatin of outliers could also
+lead to the failures to replicate previous work, as it would be
+difficult to replicate analyses that have been \emph{p}-hacked into
+\enquote{just-significant} results (Nelson, Simmons, \& Simonsohn, 2018;
+Legget, 2013). The influence of this practice can be wide spread, as
+non-reporting of data manipulation can negatively affect meta-analyses,
+effect size, and sample size estimates for study planning. On the other
+hand, outliers do not always need to be seen as nuisance, as they will
+often be informative to researchers as they can encourage the diagnosis,
+change, and evolution of a research model (Beckman \& Cook, 1983). Taken
+together, a lack of reporting of outlier practices can lead to
+furthering unwarranted avenues of research, ignoring important
+information, creating erroneous theories, and failure to replicate, all
+of which serve to weaken the sciences. Clarifying the presence or
+absence of outliers, how they were assessed, and how they were handled,
+can improve our transparency and replicability, and ultimately help to
+strengthen our science.
+
+The current zeitgeist of increased transparency and reproducibility
+applies not only to the manner in which data is collected, but also the
+various ways the data is transformed, cleaned, pared down, and analyzed.
+Therefore, it can be argued that it is just as important for a
+researcher to state how they identified outliers within their data, how
+the outliers were handled, and how this choice of handling impacted the
+estimates and conclusions of their analyses, as it is for them to report
+their sample size. Given the timing of the renaissance, we expected to
+find a positive change in reporting ratings for outliers in 2017, as
+compared to 2012. This report spans a wide range of psychological
+sub-domains, however, we also expected the impact of the Open Science
+Collaboration (2015) publication to affect social and cognitive
+psychology more than other fields.
 
 \section{Method}\label{method}
 
 \subsection{Fields}\label{fields}
 
-A list of psychological field areas was created to begin the search for
+A list of psychological sub-domains was created to begin the search for
 appropriate journals to include. The authors brainstormed the list of
-topics (shown in Table XX) by first listing major research areas in
-psychology (i.e.~cognitive, clinical, social). Second, a list of common
-courses offered at large universities was consulted to add to the list
-of fields. Lastly, the American Psychological Association's list of
-divisions was examined for any potential missed fields. The topic list
-was created to capture large fields of psychology with small overlaps
-(i.e.~cognition and neuropsychology) while avoiding specific subfields
-of topics (i.e.~cognition, perception, and memory).
+topics (shown in Table \ref{tab:info-table}) by first listing major
+research areas in psychology (i.e., cognitive, clinical, social, etc.).
+Second, a list of common courses offered at large universities was
+consulted to add to the list of fields. Lastly, the American
+Psychological Association's list of divisions was examined for any
+potential missed fields. The topic list was created to capture large
+fields of psychology with small overlap (i.e., cognition and
+neuropsychology) while avoiding specific subfields of topics (i.e.,
+cognition, perception, and memory). Sixteen fields were initially
+identified, however only thirteen were included in final analysis due to
+limitations noted below.
 
 \subsection{Journals}\label{journals}
 
-Once these topic areas were decided, researchers used various search
+Once these fields were agreed upon, researchers used various search
 sources (Google, EBSCO host databases) to find journals that were
 dedicated to each broad topic. Journals were included if they appeared
 to publish a wide range of articles within the selected fields. A list
-of journals, publishers, and impact factors (as noted by the journal
-website) was created for each field. Two journals from each field were
-selected based on the following criteria: 1) high impact factors, 2)
-impact factors over one a minimum, 3) a mix of publishers if possible,
-and 4) availability due to university resources. These journals are
-shown in Table XX.
+of journals, publishers, and impact factors (as noted by each journals
+website in Spring of 2013 and 2018) were identified for each field. Two
+journals from each field were selected based on the following criteria:
+1) high impact factors over one at minimum, 2) a mix of publishers, if
+possible, and 3) availability due to university resources. These
+journals are shown in the online supplemental materials at
+\url{https://osf.io/52mqw/}.
 
 \subsection{Articles}\label{articles}
 
-Fifty articles from each journal were examined for data analysis. Data
-collection of articles started at the last volume publication from 2012
-and progressed backwards until fifty articles had been found. We
-excluded online first publications and started in 2012 to ensure time
-for errata and retraction of articles. Articles were including if they
-met the following criteria: 1) included data analyses, 2) included
-multiple participants or data-points, and 3) analyses were based on
-human subjects or stimuli. Therefore, we excluded theory articles,
-animal populations, and single subject designs. Based on article review,
-three fields were excluded. Applied behavior analysis articles
-predominantly included single-subject designs, evolutionary psychology
-articles were primarily theory articles, and statistics related journal
-articles were based on user created data with specific set
-characteristics. Since none of these themes fit into our analysis of
-understanding data screening with human subject samples, we excluded
-those two fields from analyses.
+Fifty articles from each journal were examined for data analysis: 25
+articles were collected beginning in Spring 2013 for 2012 and in Fall
+2017. Data collection of articles started at the last volume publication
+from the given year (2012 or 2017) and progressed backwards until 25
+articles had been found. We excluded online first publications and
+started in 2012 to ensure time for errata and retraction of articles.
+Articles were included if they met the following criteria: 1) included
+data analyses, 2) included multiple participants or data-points, and 3)
+analyses were based on human subjects or stimuli. Therefore, we excluded
+theory articles, animal populations, and single subject designs. Based
+on review for the 2012 articles, three fields were excluded. Applied
+Behavior Analysis articles predominantly included single-subject
+designs, evolutionary psychology articles were primarily theory
+articles, and statistics related journal articles were based on user
+created data with specific set characteristics. Since none of these
+themes fit into our analysis of understanding data screening with human
+subject samples, we excluded those three fields from analyses.
 
 \subsection{Data Processing}\label{data-processing}
 
-Each article was then reviewed for key components of data analyses. Each
-experiment in an article was treated separately. For each experiment,
-the type of analysis, number of participants/stimuli, and if they
-indicated outliers were coded. Types of analyses were broadly coded into
-basic statistics (descriptive statistics, z-scores, t-tests, and
-correlations), ANOVAs, regressions, chi-squares, nonparametric
-statistics, modeling, and Bayesian/other analyses. First, we coded if
-outliers were mentioned at all in article. If so, we coded outliers into
-four types: 1) people, 2) data, 3) both, and 4) none found. We found
-that a separate coding for data was important for analyses with response
+Each article was then reviewed for key components of data analysis. Each
+experiment in an article was coded separately. For each experiment, the
+type of analysis conducted, number of participants/stimuli analyzed, and
+whether or not they made any mention of outliers were coded.
+
+\subsubsection{Analysis types}\label{analysis-types}
+
+Types of analyses were broadly defined as basic statistics (descriptive
+statistics, \emph{z}-scores, \emph{t}-tests, and correlations), ANOVAs,
+regressions, chi-squares, nonparametric statistics, modeling, and
+Bayesian/other analyses.
+
+\subsubsection{Outlier coding}\label{outlier-coding}
+
+For outliers, we used a dichotomous yes/no for if they were mentioned in
+an article. Outliers were not limited to simple statistical analysis of
+discrepant responses, but we also checked for specific exclusion
+criteria that were not related to missing data or study characteristics
+(i.e., we did not consider it an outlier if they were only looking for
+older adults). If so, we coded information about outliers into four
+types: 1) people, 2) data points, 3) both, or 4) none found. The
+distinction between people and data points was if individual trials were
+eliminated or if entire participant data was eliminated. We found that a
+unique code for data points was important for analyses with response
 time studies where individual participants were not omitted but rather
-specific data trials were eliminated. Then, the author decision on what
-to do with the outliers was coded into whether they removed
-participants/stimuli or left these outliers in the analysis, as well as
-if they tested the analyses with and without these outliers for
-determination of their effect on the study. If they removed outliers, a
-new sample size was recorded. Lastly, we coded the reasoning for outlier
-detection as either participant based (i.e.~3-month old infants were too
-fussy to be included), experimenter based (i.e.~the experimental session
-was interrupted), statistical based (i.e.~three SD from the mean), and
-no listed reason.
+specific data trials were eliminated.
 
-Table XX \#\#List of Fields, Journals, and Impact Factors 2012
-
-\begin{tabular}{l|l|l|l}
-\hline
-Field & Journal & Publisher & Impact Factor\\
-\hline
-Applied Behavior Analysis & Journal of Experimental Analysis of Behavior & Wiley & 1.39\\
-\hline
-Applied Behavior Analysis & Journal of Applied Behavior Analysis & Wiley & 1.19\\
-\hline
-Clinical & Journal of Consulting and Clinical Psychology & APA & 4.85\\
-\hline
-Clinical & Journal of Clinical Psychology & Wiley & 2.12\\
-\hline
-Cognitive & Cognitive Psychology & Elsevier & 4.27\\
-\hline
-Cognitive & Journal of Experimental Psychology: Learning, Memory, and Cognition & APA & 2.85\\
-\hline
-Counseling & Journal of Counseling & APA & 3.23\\
-\hline
-Counseling & The Counseling Psychologist & Sage & 1.82\\
-\hline
-Developmental & Journal of Experimental Child Psychology & Elsevier & 3.23\\
-\hline
-Developmental & Journal of Youth and Adolescence & Springer & 2.72\\
-\hline
-Educational & Journal of Educational Psychology & APA & 3.08\\
-\hline
-Educational & Contemporary Educational Psychology & Elsevier & 2.2\\
-\hline
-Environmental & Journal of Environmental Psychology & Elsevier & 2.93\\
-\hline
-Environmental & Environment and Behavior & Sage & 1.27\\
-\hline
-Evolutionary & Evolution and Human Behavior & Elsevier & 3.11\\
-\hline
-Evolutionary & Evolutionary Psychology & Open Access & 1.06\\
-\hline
-Forensics & Psychology, Public Policy, and Law & APA & 1.93\\
-\hline
-Forensics & Law and Human Bevhavior & Spring & 2.16\\
-\hline
-Industrial Organization & Organizational Behavior and Human Decision Process & Elsevier & 3.94\\
-\hline
-Industrial Organization & Personnel Psychology & Wiley & 2.93\\
-\hline
-Neurological/Physiological & Neuropsychology & APA & 3.82\\
-\hline
-Neurological/Physiological & Cognitive, Affective, and Behavioral Neuroscience & Springer & 3.57\\
-\hline
-Social & Journal of Personality and Social Psychology & APA & 5.08\\
-\hline
-Social & Journal of Experimental Social Psychology & Elsevier & 2.31\\
-\hline
-Sports & Journal of Sport \& Exercise Psychology & Human Kinetics & 2.66\\
-\hline
-Sports & Sociology of Sport Journal & Human Kinetics & 1\\
-\hline
-Statistics & Special Section of the Psychological Bulletin & APA & 14.46\\
-\hline
-Statistics & Structural Equation Modeling & Taylor \& Francis & 4.71\\
-\hline
-Overview & Psychonomic Bulletin \& Review & Springer & 2.25\\
-\hline
-Overview & Psychonomic Science & Sage & 4.43\\
-\hline
-Overview & Psychological Assessment & APA & 2.99\\
-\hline
-\end{tabular}
-
-\emph{Note.} Impact factors as of tme of data collection (Spring 2013).
-
-\subsection{Participants}\label{participants}
-
-\subsection{Material}\label{material}
-
-\subsection{Procedure}\label{procedure}
-
-\subsection{Data analysis}\label{data-analysis}
+Then, for those articles that mentioned outliers, the author's decision
+for how to handle the outliers was coded into whether they removed
+participants/stimuli, left these outliers in the analysis, or winsorized
+the data points. Experiments were coded for whether they tested the
+analyses with, without, or both for determination of their effect on the
+study. If they removed outliers, a new sample size was recorded;
+although, this data was not analyzed, as we determined it was conflated
+with removal of other types of data unrelated to the interest of this
+paper (i.e., missing data). Lastly, we coded the reasoning for outlier
+detection as one or more of the following: 1) Statistical reason (i.e.,
+used numbers to define odd or deviant behavior in responding, such as
+\emph{z}-score or Mahalanobis distance scores), 2) Participant error
+(i.e., failed attention checks, did not follow instructions, or low
+quality data because of participant problems), and 3) Unusable data
+(i.e., inside knowledge of the study or experimenter/technological
+problems).
 
 \section{Results}\label{results}
 
+\subsection{Data Analytic Plan}\label{data-analytic-plan}
+
+KD IS GOING TO DO A THING HERE. Be sure to explain the MLMS.\\
+Chi-Square tests were used to analyze the associations between
+variables. When a chi-square analysis suggested that the approximation
+may be incorrect a Fisher's Exact test will be analyzed as well and both
+will be reported. Frequencies were used to describe the outliers
+mentioned.
+
+\subsection{Overall Outliers}\label{overall-outliers}
+
+Data processing resulted in a total of 2234 experiments being coded,
+1085 of which were from 2012 or prior, and the additional 1149 being
+from 2017 or prior. Investigating reporting of outliers, we found that
+in 2012, 15.7\% of experiments mentioned outliers, while in 2017 25.1\%
+of experiments mentioned outliers. Actual publication year was used to
+predict outlier mention (yes/no) with a random intercept for journal, as
+described above. We found that publication year predicted outlier
+mentions, \emph{Z} = 5.82, \emph{p} \textless{} .001. Each year,
+experiments were 13.6\% more likely to report outliers as the previous
+year.
+
+\subsection{Fields}\label{fields-1}
+
+Further exploration reveals that differences in reporting between years
+arise between fields which can be seen in Table \ref{tab:info-table}.
+Figure \ref{fig:type-graph} displays the percentage of outlier mentions
+of each field colored by year examined. A MLM was analyzed for each
+field using journal as a random intercept to determine the influence of
+year of publication on outlier reporting rates. Specifically, if we look
+at the change in reporting for each field analyzed at the level of the
+experiment, we find the largest changes in forensic (44.9\% more likely
+to report), social (33.7\%), and I/O (34.9\%), followed by developmental
+(19.6\%), counseling (19.8\%), and cognitive (15.2\%). In support of our
+hypothesis, we found that social and cognitive fields showed increases
+in their outlier reporting; however, it was encouraging to see positive
+trends in other fields as well. These analyses show that in some fields,
+including our overall and neurological fields, we found a decrease in
+reporting across years, although these changes were not significant.
+
+The analyses shown below were exploratory based on the findings when
+coding each experiment for outlier data. We explored the relationship of
+outlier reporting to the type of analysis used to support research
+hypotheses, reasons for why outliers were excluded, as well as the type
+of outlier excluded from the study. MAY HAVE TO REORDER HERE.
+
+\begin{figure}
+\centering
+\includegraphics{outliers_manuscript_files/figure-latex/type-graph-1.pdf}
+\caption{\label{fig:type-graph}Percent of outlier mentions by sub-domain
+field and year examined. Error bars represent 95\% confidence interval.}
+\end{figure}
+
+\begin{table}[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:info-table}Outlier Reporting by Field Across Years}
+\begin{tabular}{lccccccc}
+\toprule
+Field & \% 12 & $N$ 12 & \% 17 & $N$ 17 & OR & $Z$ & $p$\\
+\midrule
+Clinical & 9.3 & 54 & 12.0 & 50 & 1.06 & 0.43 & .665\\
+Cognitive & 31.1 & 164 & 49.6 & 135 & 1.15 & 3.05 & .002\\
+Counseling & 14.3 & 56 & 28.1 & 57 & 1.20 & 1.91 & .056\\
+Developmental & 20.0 & 70 & 34.4 & 61 & 1.20 & 2.20 & .028\\
+Educational & 8.9 & 56 & 12.1 & 58 & 1.07 & 0.54 & .586\\
+Environmental & 12.1 & 58 & 12.1 & 58 & 1.01 & 0.05 & .957\\
+Forensics & 3.2 & 62 & 18.6 & 70 & 1.45 & 2.50 & .012\\
+IO & 5.8 & 104 & 19.4 & 124 & 1.35 & 3.04 & .002\\
+Methods & 13.6 & 66 & 11.7 & 60 & 1.01 & 0.08 & .933\\
+Neuro & 30.5 & 59 & 17.9 & 56 & 0.87 & -1.55 & .121\\
+Overview & 21.9 & 114 & 18.9 & 132 & 0.96 & -0.64 & .523\\
+Social & 9.8 & 164 & 33.8 & 231 & 1.34 & 5.08 & < .001\\
+Sports & 6.9 & 58 & 12.3 & 57 & 1.08 & 0.64 & .522\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\subsection{Analyses Type}\label{analyses-type}
+
+\begin{figure}
+\centering
+\includegraphics{outliers_manuscript_files/figure-latex/analyses-graph-1.pdf}
+\caption{\label{fig:analyses-graph}Percent of outlier mentions by analysis
+type and year examined. Error bars represent 95\% confidence interval.}
+\end{figure}
+
+\begin{table}[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:analysis-table}Outlier Reporting by Analysis Type Across Years}
+\begin{tabular}{lccccccc}
+\toprule
+Analysis & \% 12 & $N$ 12 & \% 17 & $N$ 17 & OR & $Z$ & $p$\\
+\midrule
+Basic Statistics & 15.0 & 407 & 31.0 & 507 & 1.23 & 5.86 & < .001\\
+ANOVA & 19.6 & 469 & 31.8 & 466 & 1.14 & 4.40 & < .001\\
+Regression & 12.0 & 209 & 22.1 & 244 & 1.15 & 2.62 & .009\\
+Chi-Square & 19.6 & 112 & 23.8 & 172 & 1.04 & 0.59 & .557\\
+Non-Parametric & 6.2 & 64 & 25.5 & 47 & 1.38 & 2.67 & .008\\
+Modeling & 12.0 & 217 & 21.9 & 407 & 1.12 & 2.20 & .028\\
+Bayesian or Other & 13.2 & 53 & 25.9 & 143 & 1.23 & 1.61 & .107\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{center}
+\end{table}
+
+Table \ref{tab:analysis-table} indicates the types of analyses across
+years that mention outliers, and Figure \ref{fig:analyses-graph}
+visually depicts these findings. An increase in reporting was found for
+non-parametric statistics (38.2\%), basic statistics (22.6\%),
+regression (15.1\%), ANOVA (14.5\%), and modeling (11.7\%). Bayesian and
+other statistics additionally showed a comparable increase, 23.5\%,
+which was not a significant change over years.
+
+\subsection{Reasons}\label{reasons}
+
+We found that researchers often used multiple criterion checks for
+outlier coding, as one study might exclude participants for exceeding a
+standard deviation cut-off, while also excluding participants for low
+effort data. Therefore, reason coding was not unique for each
+experiment, and each experiment could have one to three reasons for data
+exclusion. Statistical reasoning was the largest reported exclusion
+criteria of papers that mentioned outliers at 57.9\%. Next, participant
+reasons followed with 50.4\% of outlier mentions, and unusable data was
+coded in 6.3\% of experiments that mentioned outliers. To examine the
+trend over time, we used a similar MLM analysis as described in the our
+data analytic plan, with Journal as a random intercept, year as the
+independent variable, and the mention of type of outlier (yes/no for
+participant, statistical, and unusable data) as the dependent variables
+separately. Statistical reasons decreased by 8.4\%, \emph{Z} = -1.91,
+\emph{p} = .056. Participant reasons increased over time by 13.7\%,
+\emph{Z} = 2.92, \emph{p} = .003. Unusable data increased by about
+5.3\%, \emph{Z} = 0.59, \emph{p} = .557.
+
+\subsection{Type of Outlier}\label{type-of-outlier}
+
+In our review, the majority of outliers mentioned referred to people
+(65.9\%) as opposed to data points (25.3\%), or both people and data
+points (5.7\%), and a final (3.1\%) of experiments mentioned outliers
+but did not specify a type, just that they found none. The trends across
+years were examined for mentioning outliers (yes/no) for both people and
+data points, dropping the both and none found categories due to small
+size. Therefore, the dependent variable was outlier mention where the
+\enquote{yes} category indicated either the people or data point
+categories separately. The mentions of excluding participants increased
+across years, 17.2\%, \emph{Z} = 6.03, \emph{p} \textless{} .001, while
+the mention of data point exclusion was consistent across years, 4.5\%,
+\emph{Z} = 1.11, \emph{p} = .268. When handling these data, some
+experiments chose to winzorize the data (0.7\%), most analyzed the data
+without the observations (86.2\%), some analyzed the data with the
+observations (7.2\%), and some conducted analyses both with and without
+the observations (3.3\%).
+
 \section{Discussion}\label{discussion}
+
+While modest improvments in reporting can be seen in some fields,
+overall the outlook is still bleak. (OH GOOD GRIEF YOU). Some may argue
+that use of the precious word limit dictated by journals to describe
+such acts as outlier identification and handling may be irrational.
+However, we contest that given the current availability and use of
+online supplements and appendixes, as well as the invent of the Open
+Science Framework (OSF; cite) which allows researchers the ability to
+upload any number of additional resources and supplements that can be
+easily referenced in their manuscripts in as little as 4 words: See
+supplement at osf.io/52mqw.
 
 \newpage
 
 \section{References}\label{references}
 
 \setlength{\parindent}{-0.5in} \setlength{\leftskip}{0.5in}
-
-\hypertarget{refs}{}
-\hypertarget{ref-Beckman1983a}{}
-Beckman, R. J., \& Cook, R. D. (1983a). Outlier..........s.
-\emph{Technometrics}, \emph{25}(2), 119.
-doi:\href{https://doi.org/10.2307/1268541}{10.2307/1268541}
-
-\hypertarget{ref-Beckman1983}{}
-Beckman, R. J., \& Cook, R. D. (1983b). {[}Outlier..........s{]}:
-Response. \emph{Technometrics}, \emph{25}(2), 161.
-doi:\href{https://doi.org/10.2307/1268548}{10.2307/1268548}
-
-\hypertarget{ref-Coin2008}{}
-Coin, D. (2008). Testing normality in the presence of outliers.
-\emph{Statistical Methods and Applications}, \emph{17}(1), 3--12.
-doi:\href{https://doi.org/10.1007/s10260-007-0046-8}{10.1007/s10260-007-0046-8}
-
-\hypertarget{ref-Hodge2004}{}
-Hodge, V. J., \& Austin, J. (2004). A survey of outlier detection
-methodologies. \emph{Artificial Intelligence Review}, \emph{22}(2),
-85--126.
-doi:\href{https://doi.org/10.1007/s10462-004-4304-y}{10.1007/s10462-004-4304-y}
-
-\hypertarget{ref-Huffcutt1995}{}
-Huffcutt, A. I., \& Arthur, W. (1995). Development of a new outlier
-statistic for meta-analytic data. \emph{Journal of Applied Psychology},
-\emph{80}(2), 327--334.
-doi:\href{https://doi.org/10.1037//0021-9010.80.2.327}{10.1037//0021-9010.80.2.327}
-
-\hypertarget{ref-Kruskal1960a}{}
-Kruskal, W., Ferguson, T. S., Tukey, J. W., \& Gumbel, E. J. (1960).
-Discussion of the Papers of Messrs. Anscombe and Daniel.
-\emph{Technometrics}, \emph{2}(2), 157--166.
-doi:\href{https://doi.org/10.1080/00401706.1960.10489890}{10.1080/00401706.1960.10489890}
-
-\hypertarget{ref-Munoz-Garcia1990}{}
-Muñoz-Garcia, J., Moreno-Rebollo, J. L., \& Pascual-Acosta, A. (1990).
-Outliers: A formal approach. \emph{International Statistical Review /
-Revue Internationale de Statistique}, \emph{58}(3), 215--226.
-doi:\href{https://doi.org/10.2307/1403805}{10.2307/1403805}
-
-\hypertarget{ref-ORR1991}{}
-ORR, J. M., SACKETT, P. R., \& DUBOIS, C. L. Z. (1991). Outlier
-detection and treatment in I / O psychology: A survey of researcher
-beliefs and empirical illustration. \emph{Personnel Psychology},
-\emph{44}(3), 473--486.
-doi:\href{https://doi.org/10.1111/j.1744-6570.1991.tb02401.x}{10.1111/j.1744-6570.1991.tb02401.x}
-
-\hypertarget{ref-Osborne2004}{}
-Osborne, J. W., \& Overbay, A. (2004). The power of outliers (and why
-researchers should always check for them). \emph{Practical Assessment,
-Research \& Evaluation}, \emph{9}(6), 1--12.
-
-\hypertarget{ref-Stevens1984}{}
-Stevens, J. P. (1984). Outliers and influential data points in
-regression analysis. \emph{Psychological Bulletin}, \emph{95}(2),
-334--344.
-doi:\href{https://doi.org/10.1037/0033-2909.95.2.334}{10.1037/0033-2909.95.2.334}
-
-\hypertarget{ref-Wainer1976}{}
-Wainer, H. (1976). Robust statistics: A survey and some prescriptions.
-\emph{Journal of Educational Statistics}, \emph{1}(4), 285.
-doi:\href{https://doi.org/10.2307/1164985}{10.2307/1164985}
-
-\hypertarget{ref-Yuan2001}{}
-Yuan, K. H., \& Bentler, P. M. (2001). Effect of outliers on estimators
-and tests in covariance structure analysis. \emph{British Journal of
-Mathematical and Statistical Psychology}, \emph{54}(1), 161--175.
-doi:\href{https://doi.org/10.1348/000711001159366}{10.1348/000711001159366}
 
 
 
