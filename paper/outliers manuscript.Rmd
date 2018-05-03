@@ -664,8 +664,14 @@ We found that researchers often used multiple criterion checks for outlier codin
 
 # Discussion
 
-While modest improvements in reporting can be seen in some fields, overall the outlook is still bleak. (OH GOOD GRIEF YOU).
-Some may argue that use of the precious word limit dictated by journals to describe such acts as outlier identification and handling may be irrational. However, we contest that given the current availability and use of online supplements and appendixes, as well as the invent of the Open Science Framework (OSF; cite) which allows researchers the ability to upload any number of additional resources and supplements that can be easily referenced in their manuscripts in as little as 4 words: See supplement at osf.io/52mqw.
+We hypothesized that report rates for outliers would increase overall in experiments from 2012 to 2017, and we largely we found support for this hypothesis. We additionally hypothesized larger increases in report rates of outliers for the domains of social and cognitive psychology. This, too, bore out within our results. While modest improvements in reporting can be seen in almost all fields, it is worthwhile to note that in 2017 the average proportion of experiments reporting outliers was still only x%, with some fields as low as x%. While the effort of many fields should not be overlooked, we suggest that there is still a large amount of room for improvement overall. 
+
+While there may be many reasons an individual experiment does not speak to outliers (i.e. in the Bayesian framework these data points are treated the same as other data points), we believe that given the frequentist nature of most psychological work there are many more reasons that an experiment should take the time and word length to express the presence or absence of these data. Some may argue that use of the precious word limit dictated by journals to describe such choices as identification and handling of outliers may be irrational. However, we contest that given the current availability and use of online supplements and appendixes, as well as the invent of the Open Science Framework (OSF; Center for Open Science, 2011) which allows researchers the ability to upload any number of additional resources and supplements that can be easily referenced in manuscripts.
+
+We implore researchers not to overlook the importance of visualizing your data and identifying data—statically or otherwise—that may not fall within the expected range or pattern of the sample. Currently, there are a plethora of online tools that can assist even the most junior researcher in the cleaning of data, including outlier detection and handling, for almost any type of analysis. From online courses (cite) to YouTube videos that walk you through the process step-by-step (cite), we believe that if the failure to report these outliers is due to a lack of learning, that this could quickly be fixed on a case-by-case basis. (I know this is awful but I’m sick, so give me a break, it’s a start.)
+
+Further, we implore those who are reviewers and editors to think critically about this idea. If no mention is made of outlier inspection within an article, ask the researchers why this was so. 
+
 
 \newpage
 
