@@ -45,6 +45,12 @@ output            : papaja::apa6_word
 library("papaja")
 ```
 
+#Clinical 
+
+##Journal of Clinical Psychology
+
+###2012 
+
     1)	@Anderson2012
     2)	@Britton2012
     3)	@Brown2012a
@@ -70,6 +76,9 @@ library("papaja")
     23)	@Viana2012
     24)	@Yu-HsinLiao2012
     25)	@Zhang2012a
+
+###2107 
+
     1)	@Allan2017
     2)	@Arrieta2017
     3)	@Busscher2017
