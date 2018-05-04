@@ -1,5 +1,5 @@
 ---
-title             : "Have reserachers increased reporting of outliers in response to the reproducability crisis?"
+title             : "Have researchers increased reporting of outliers in response to the reproducability crisis?"
 shorttitle        : "Outlier reporting"
 
 author: 
