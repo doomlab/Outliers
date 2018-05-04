@@ -44,872 +44,1357 @@ output            : papaja::apa6_word
 ```{r load_packages, include = FALSE}
 library("papaja")
 ```
-#Methods
 
-##Behavior Research Methods
-
-###2012
-
-@Dahmani2012
-@Dennett2012
-@Clark2012
-@Izura2012
-@Steiner2012
-@Schock2012
-@Ferre2012
-@Brodeur2012
-@Lemhofer2012
-@Ellis-Davies2012
-@Umla-Runge2012
-@Steenbergen2012
-@Kusev2012
-@Leveau2012
-@Liu2012
-@Amsel2012
-@Armstrong2012
-@Angeleri2012
-@Dewhurst2012
-@Schock2012a
-@Schroder2012a
-@Ross2012
-@Kuperman2012
-@Xiao2012
-@Nishimoto2012
-@Sathyan2012
-@Bestgen2012
-
-###2017
-
-
-##Psychological Methods
-
-###2012
-@Harder2010
-@Shadish2011
-@Yuan2010
-@Widaman2012
-@McArdle2009
-@Gonzalez2008
-@Linting2007
-@Bartels2007
-@Preacher2011
-@Voelkle2012
-@Deboeck2009
-@Steiner2010
-@Ludtke2011
-@Ludtke2008
-@Jahng2008
-@Ozechowski2007
-@KleinEntink2009
-@Tonidandel2009
-@Muthen2012
-@Weijters2010
-@Nahum-Shani2012
-@Meade2012
-@Nahum-Shani2012a
-@Bauer2009
-@Hong2012
-
-###2017
-
-
-#Clinical
-
-##Journal of Clinical Psychology
-
-###2012
-@Anderson2012
-@Britton2012
-@Brown2012a
-@Dempsey2012
-@Giromini2012
-@Hamm2012
-@Harris2012
-@Jazaieri2012
-@Kapson2012
-@Kim2012
-@Leith2012
-@Marty2012
-@Meinzer2012
-@Nel2012
-@Osman2012
-@Park2012a
-@Quek2012
-@Skopp2012a
-@Skopp2012
-@Tanner2012
-@Troister2012
-@Vanderveen2012
-@Viana2012
-@Yu-HsinLiao2012
-@Zhang2012a
-
-###2017
-
-
-##Journal of Consulting and Clinical Psychology
-
-###2012
-@Sibley2012
-@Lewin2012
-@Grilo2012
-@Guan2012
-@Pistorello2012
-@Liverant2012
-@Applebaum2012
-@Manne2012
-@Arch2012
-@Sheeber2012
-@Best2012
-@Hinshaw2012
-@Meuret2012
-@Brown2012
-@McManus2012
-@Borsari2012
-@Levenson2012
-@Galovski2012
-@Strunk2012
-@Siddique2012
-@Bowler2012
-@Cook2012
-@Wolitzky-Taylor2012
-@Cullen2012
-@Elbogen2012
-
-###2017
-
-#Cognitive
-
-##Cognitive Psychology
-
-###2012
-@Vandierendonck2012
-@Cimpian2012
-@Clifton2012
-@Kemp2012
-@Endress2011
-@Rottman2012
-@Bonawitz2012
-@Taylor2012
-@White2011
-@Schneider2012
-@Snedeker2012
-@Hay2011
-@Reingold2012
-@Goodwin2011
-@Cohn2012
-@Creel2012a
-@Austerweil2011
-@Frank2012
-@Lombrozo2012
-@Leslie2012
-@Goschke2012
-@Gennari2012
-@VandenBroeck2012
-@Pachur2012
-@Thompson2011a
-
-###2017
-
-
-##Journal of Experimental Child Psychology: Learning, Memory, and Cognition
-
-###2012
-@Farrell2012
-@Perfect2012
-@Johnson2012a
-@Potts2012
-@Bodner2012
-@Sutton2012
-@Worthy2012
-@Renkewitz2012
-@Miller2012
-@Clapper2012
-@Yang2012
-@Hutchison2012
-@Witzel2012
-@Atalay2012
-@Huff2012
-@Pratte2012
-@Bell2012
-@Bell2012a
-@Unsworth2012
-@Bonin2012
-@Chuderski2012
-@Peterson2012
-@Read2012
-@Pansky2012
-@Coelho2012
-
-###2017
-
-
-#Counseling
-
-##Journal of Counseling
-
-###2012
-@Salahuddin2011
-@Bailey2011
-@Nadal2011
-@Poteat2011
-@Mercer2011
-@Cragun2012
-@Wei2012
-@Wang2012a
-@Marmarosh2012
-@Anders2012
-@DelaPena2012
-@Boswell2012
-@Velez2012
-@Lin2012
-@McDermott2013
-@Laska2013
-@Wong2013
-@Duffy2013a
-@Sherry2013
-@Cheng2013
-@Mohr2013
-@Tylka2013
-@Cramer2013
-@Hammer2013
-@Duffy2013
-
-###2017
-
-
-##The Counseling Psychologist
-
-###2012
-@Pope-Davis2002
-@Baskin2010
-@Pruitt2010
-@Seo2010
-@Owen2010
-@Smith2011
-@Latta2011
-@Carr2011a
-@Todd2011a
-@Szymanski2011
-@Thompson2011
-@Valdez2011
-@Lee2011
-@Baskin2011
-@Wu2012
-@Shen-Miller2012
-@Smith2012
-@Rice2012
-@Gati2012
-@Duffy2012
-@Kaplan2012
-@Klinger2012
-@Perry2012
-@Chavez-Korell2012
-
-###2017
-
-
-#Developmental
-
-##Journal of Experimental Child Psychology
-
-###2012
-@Benenson2012
-@Boulton2012
-@Principe2012
-@Joh2012
-@Bailey2012
-@Kuwabara2012
-@Creel2012
-@Poarch2012
-@DeCaro2012
-@Neuenschwander2012
-@Geary2012
-@Hallett2012
-@Morita2012
-@Bauer2012
-@Takahashi2012
-@VonHolzen2012
-@Zosh2012
-@MacchiCassia2012
-@Valentin2012
-@Mann2012
-@Sigelman2012
-@Rat-Fischer2012
-@Kirkham2012
-@Gurland2012
-@Fu2012
-
-###2017
-
-
-##Journal of Youth and Adolescence
-
-###2012
-@Chen2012
-@Kim-Spoon2012
-@Caughy2012
-@Bissell-Havran2012
-@Stein2012
-@Koning2012
-@Al-Yagon2012
-@Lam2012
-@Wickrama2012
-@BomanIV2012
-@Bastaits2012
-@Malmberg2012
-@Estrada-Martinez2012
-@Maynard2012
-@Salas-Wright2012
-@Nichols2012
-@Larsen2012
-@Poulin2012
-@Lopez-Romero2012
-@Wang2012
-@Pisani2012
-@Chien2012
-@Chiu2012
-@Leversen2012
-@Kiesner2012
-
-###2017
-
-
-#Education
-
-##Contemporary Educational Psychology
-
-###2012
-@Kauffman2011
-@Reeve2011
-@Carr2011
-@Madjar2011
-@PytlikZillig2011
-@Faircloth2012
-@Bol2012
-@Elmore2012
-@Booth2012
-@Schwinger2012
-@Greene2012
-@Stupnisky2012
-@Job2012
-@Kercood2012
-@Martin2012
-@Dumont2012
-@Reznitskaya2012
-@Thoman2012
-@Rich2012
-@Yeager2012
-@Bernacki2012
-@Germeijs2012
-@Lerkkanen2012
-@Sinai2012
-
-###2017
-
-
-##Journal of Educational Psychology
-
-###2012
-@Piasta2012
-@Li2012a
-@Poteat2012
-@EngeldeAbreu2012
-@Swanson2012
-@Hannon2012
-@Darwich2012
-@Vadasy2012
-@Jang2012
-@Hughes2012
-@Bugg2012
-@Tolar2012
-@McNeil2012
-@VanderKooy-Hofland2012
-@Spinath2012
-@Papadopoulos2012
-@Arya2012
-@DeNaeghel2012
-@Collie2012
-@Zhou2012
-@Harber2012
-@Casillas2012
-@Fiorella2012
-@Ryan2012
-@Vitaro2012
-
-###2017
-
-
-#Environmental
-
-##Environment and Behavior
-
-###2012
-
-@Long2012
-@Dills2012
-@Wilkerson2012
-@Cleland2012
-@Staiano2012
-@Lu2012
-@Bourque2012
-@Asah2012
-@Larco2012
-@Ullan2012
-@Johnson2012
-@Botetzagias2012
-@Caperello2012
-@DeMontigny2012
-@Dazkir2012
-@Misra2012
-@Fritsche2012
-@Sugiyama2012
-@Breetzke2012
-@Costa2012
-@Berry2012
-@VanRompay2012
-@Hovardas2012
-
-###2017
-
-
-##Journal of Environmental Psychology
-
-###2012
-@Francis2012
-@Gueguen2012
-@Werner2012
-@Richetin2012
-@Venables2012
-@Monti2012
-@Tobler2012
-@Smith2012b
-@Oshio2012
-@Milfont2012
-@Honold2012
-@Toet2012
-@Wells2012
-@Belojevic2012
-@Matthies2012
-@Wynveen2012
-@Mourshed2012
-@Haans2012
-@Ojala2012
-@Murtagh2012
-@Truelove2012
-@Hund2012
-@Mahdjoubi2012
-@Brunye2012
-@Alkhresheh2012
-
-###2017
-
-
-#Everything
-
-##Psychological Assessment
-
-###2012
-@Dibble2012
-@Schry2012
-@Arbisi2012
-@Ebesutani2012
-@Miller2012a
-@Allen2012a
-@Conrad2012
-@Mossman2012
-@Jayawickreme2012
-@Herzberg2012
-@Resendes2012
-@Wilson2012
-@Tonkin2012
-@Waiyavutti2012
-@Fledderus2012
-@DeMartini2012
-@Melas2012
-@Woltz2012
-@Hale-Smith2012
-@Allen2012
-@Naragon-Gainey2012
-@Barbot2012
-@Mattson2012
-@Martins2012
-@Chiesi2012
-
-###2017
-
-
-##Psychonomic Bulletin and Review
-
-###2012
-@Li2012
-@Doi2012
-@Darling2012
-@Huff2012a
-@Campbell2012
-@Finlayson2012
-@Zentall2012
-@Liu2012a
-@Duncan2012
-@Roper2012
-@Vatterott2012
-@Reynolds2012
-@Pohl2012
-@Papesh2012
-@Kaushanskaya2012
-@Wang2012c
-@Ries2012
-@Kiernan2012
-@Murphy2012
-@Trueblood2012
-@Perea2012
-@May2012
-@Apel2012
-@Vaughn2012
-
-###2017
-
-
-##Psychological Science
-
-###2012
-@Chow2012
-@DeSteno2012
-@Oishi2012
-@Wu2012a
-@Berntsen2012
-@Legault2012
-@Sherman2012
-@Galesic2012
-@Chabris2012
-@Rossano2012
-@McCabe2012
-@Sanders2012
-@Riva2012
-@Dennett2012a
-@Rodeheffer2012
-@Leder2012
-@Stallen2012
-@Thiruchselvam2012
-@Borra2012
-@Thompson2012
-@Buehner2012
-@Korjoukov2012
-@Lin2012a
-@Weems2012
-@Rink2012
-
-###2017
-
-
-#Forensic
-
-##Law and Human Behavior
-
-###2012
-@Reidy2012
-@Sauerland2012
-@Pezdek2012
-@Quinlivan2011
-@Scurich2012
-@Seto2012
-@Walters2012
-@Walters2012a
-@Boccaccini2011
-@TenBrinke2012
-@Eastwood2011
-@Levenson2012a
-@Dysart2012
-@Kennealy2012
-@VanderKnaap2012
-@Palmer2012
-@Mansour2012
-@Olver2012
-@Callahan2013
-@EnoLouden2013
-@Madon2013
-@Peters2013
-
-###2017
-
-
-##Psychology, Public Policy and Law
-
-##2012
-@Mokros2010
-@Ballard2011
-@Brank2011
-@Braver2011
-@Brubacher2011
-@Lussier2011
-@Nysse-Carris2011
-@Schweitzer2011
-@Towfigh2011
-@Aharoni2012
-@Lee2012b
-@McLawsen2012
-@Piquero2012
-@Redlich2012
-@Vincent2012
-@Vrij2012
-@Wiener2012
-@Bornstein2013
-@Haegerich2013
-@Hildebrand2013
-@Pickel2013
-@Watson2013
-
-#2017
-
-
-#IO
-
-##Organizational Behavior and Human Decision Process
-
-###2012
-@Molinsky2012
-@Polman2012
-@Welsh2012
-@Beck2012
-@Polman2012a
-@VanIttersum2012
-@Staats2012
-@Miles2012
-@Sluss2012
-@Wang2012b
-@Whitman2012
-@Gino2012
-@Fishbach2012
-@Conlon2012
-@Dane2012
-@Hsee2012
-@Chua2012
-@Unkelbach2012
-@Young2012
-@Milkman2012
-@Spranger2012
-@Bilgin2012
-@Hannah2012
-@Kraus2012
-@Rolison2012
-
-###2017
-
-
-##Personnel Psychology
-
-###2012
-@Dragoni2011
-@Sumanth2011
-@Carlson2011
-@Dobrow2011
-@Oreg2011
-@Hirschfeld2011
-@Mackenzie2011
-@Barnes2012
-@Huo2012
-@Hoffman2012
-@Sonnentag2012
-@Moore2012
-@Seo2012
-@Griepentrog2012
-@Takeuchi2012
-@Tangirala2012
-@Avery2012
-@Ragins2012
-@Levashina2012
-@Peterson2012a
-@Cucina2012
-@Zhang2012
-@Dierdorff2012
-@OBoyle2012
-@Mawritz2012
-
-###2017
-
-
-#Neuro
-
-##Cognitive, Affective, and Behavioral Neuroscience
-
-###2012
-@Parvaz2012
-@Savine2012
-@Basten2012
-@Jaeger2012
-@Whitmer2012a
-@Park2012
-@Kunde2012
-@Hartley2012
-@Koban2012
-@Fukunaga2012
-@Vendetti2012
-@Dunn2012
-@Fuentes2012
-@Stocco2012
-@VanWell2012
-@Halsband2012
-@Elman2012
-@Schroder2012
-@Heitland2012
-@Anton2012
-@Garcea2012
-@Plessow2012
-@Balconi2012
-@Weinberg2012
-@Whitmer2012
-
-###2017
-
-
-##Neuroscience
-
-###2012
-@Levy-Gigi2012
-@Mace2012
-@Lee2012a
-@Perri2012
-@Libon2012
-@Sutter2012
-@Bate2012
-@Nicholls2012
-@Guillaume2012
-@Gabay2012
-@Pontifex2012
-@Karalunas2012
-@Butcher2012
-@Roberts2012
-@Smith2012a
-@Harakeh2012
-@Janos2012
-@Lane2012
-@Ronchi2012
-@Serrien2012
-@Asp2012
-@Greer2012
-
-###2017
-
-
-#Social
-
-##Journal of Experimental Social Psychology
-
-###2012
-@Alos-Ferrer2012
-@Kushlev2012
-@VanLeeuwen2012
-@Preston2012
-@Hartson2012
-@Ramos2012
-@Fay2012
-@Ratcliff2012
-@Gollwitzer2012
-@Rios2012
-@OBrien2012
-@Todd2012
-@Callan2012
-@Santos2012
-@Chen2012a
-@Ferreira2012
-@Stephens2012
-@Landau2012
-@Wakslak2012
-@Devine2012
-@Kendrick2012
-@Hebl2012
-@Lelkes2012
-@Hess2012
-@Eibach2012
-
-###2017
-
-
-##Journal of Personality and Social Psychology
-
-###2012
-@Piff2012
-@Galak2012
-@Effron2012
-@Tadmor2012
-@Kochanska2012
-@Ma-Kellams2012
-@Levine2012
-@Lemay2012
-@Rattan2012
-@Chan2012
-@Gable2012
-@Paluck2012
-@Lee2012
-@Leikas2012
-
-###2017
-
-
-#Sports
-
-##Journal of Sport & Exercise Psychology
-
-###2012
-@Mosewich2011
-@Arthur2011
-@Sapieja2011
-@Quested2011
-@Smith2011a
-@Freeman2011
-@Conroy2011
-@Chang2011a
-@Chang2011
-@Bartholomew2011
-@Cheng2011
-@Williams2012
-@Aelterman2012
-@Boucard2012
-@Hyde2012
-@Parry2012
-@Maltby2012
-@Kavussanu2012
-@Chan2012a
-@VandePolP2012
-@Englert2012
-@Kee2012
-@Finez2012
-@Flora2012
-
-###2017
-
-
-##Sociology of Sport Journal
-
-###2012
-@Tucker2001
-@Miller2002
-@Goldsmith2003
-@Cunningham2004
-@Walk2005
-@Ward2008
-@Miller2009
-@May2009
-@Christensen2009
-@Pringle2009
-@McGrath2009
-@Nixon2010
-@Comeaux2010
-@Hanold2010
-@Harrison2011
-@Denham2011
-@Purdy2011
-@Shakib2011
-@Brown2011
-@Dagkas2012
-@White2012
-@Parsons2012
-@Meier2012
-@Mennesson2012
-@Cunningham2012
-
-###2017
-
+    1)	@Anderson2012
+    2)	@Britton2012
+    3)	@Brown2012a
+    4)	@Dempsey2012
+    5)	@Giromini2012
+    6)	@Hamm2012
+    7)	@Harris2012
+    8)	@Jazaieri2012
+    9)	@Kapson2012
+    10)	@Kim2012
+    11)	@Leith2012
+    12)	@Marty2012
+    13)	@Meinzer2012
+    14)	@Nel2012
+    15)	@Osman2012
+    16)	@Park2012a
+    17)	@Quek2012
+    18)	@Skopp2012
+    19)	@Skopp2012a
+    20)	@Tanner2012
+    21)	@Troister2012
+    22)	@Vanderveen2012
+    23)	@Viana2012
+    24)	@Yu-HsinLiao2012
+    25)	@Zhang2012a
+    1)	@Allan2017
+    2)	@Arrieta2017
+    3)	@Busscher2017
+    4)	@DaSilva2017
+    5)	@Elliott2017
+    6)	@Finlay-Jones2017
+    7)	@Flannery2017
+    8)	@Fleming2017
+    9)	@Glickman2017
+    10)	@Hazlett-Stevens2017
+    11)	@Johnson2017
+    12)	@Locke2017
+    13)	@Lutz2017
+    14)	@Maguen2017
+    15)	@Miguel2017
+    16)	@Nicolai2017
+    17)	@Resnik2017
+    18)	@Richtberg2017
+    19)	@Romano2017
+    20)	@Shaw2017
+    21)	@Shigemoto2017
+    22)	@Ung2017
+    23)	@Vissers2017
+    24)	@Westbrook2017
+    25)	@Wilson2017
+    1)	@Applebaum2012
+    2)	@Arch2012
+    3)	@Best2012
+    4)	@Borsari2012
+    5)	@Bowler2012
+    6)	@Brown2012
+    7)	@Cook2012
+    8)	@Cullen2012
+    9)	@Elbogen2012
+    10)	@Galovski2012
+    11)	@Grilo2012
+    12)	@Guan2012
+    13)	@Hinshaw2012
+    14)	@Levenson2012
+    15)	@Lewin2012
+    16)	@Liverant2012
+    17)	@Manne2012
+    18)	@McManus2012
+    19)	@Meuret2012
+    20)	@Pistorello2012
+    21)	@Sheeber2012
+    22)	@Sibley2012
+    23)	@Siddique2012
+    24)	@Strunk2012
+    25)	@Wolitzky-Taylor2012
+    1)	@Andover2017
+    2)	@Baumann2017
+    3)	@BennebroekEvertsz2017a
+    4)	@Bentley2017
+    5)	@Berman2017
+    6)	@Boswell2017a
+    7)	@Chambless2017a
+    8)	@Comer2017a
+    9)	@Cooper2017a
+    10)	@Crits-Christoph2017a
+    11)	@Driessen2017
+    12)	@Felder2017a
+    13)	@Foa2017a
+    14)	@Hill2017
+    15)	@Lau2017
+    16)	@Leykin2017a
+    17)	@MacDonald2017a
+    18)	@Miller2017
+    19)	@Muehlenkamp2017
+    20)	@Owens2017a
+    21)	@Puspitasari2017a
+    22)	@Schacht2017a
+    23)	@Schmidt2017a
+    24)	@Stephens2017a
+    25)	@Stice2017a
+    1)	@Austerweil2011
+    2)	@Bonawitz2012
+    3)	@Cimpian2012
+    4)	@Clifton2012
+    5)	@Cohn2012
+    6)	@Creel2012a
+    7)	@Endress2011
+    8)	@Frank2012
+    9)	@Gennari2012
+    10)	@Goodwin2011
+    11)	@Goschke2012
+    12)	@Hay2011
+    13)	@Kemp2012
+    14)	@Leslie2012
+    15)	@Lombrozo2012
+    16)	@Pachur2012
+    17)	@Reingold2012
+    18)	@Rottman2012
+    19)	@Schneider2012
+    20)	@Snedeker2012
+    21)	@Taylor2012
+    22)	@Thompson2011a
+    23)	@VandenBroeck2012
+    24)	@Vandierendonck2012
+    25)	@White2011
+    1)	@Baker2016
+    2)	@Chang2016
+    3)	@Chen2017
+    4)	@Cheung2017
+    5)	@Cohen2016
+    6)	@Coley2017
+    7)	@Dasgupta2017
+    8)	@Endress2017
+    9)	@Heck2017
+    10)	@Herbort2017
+    11)	@Khodadadi2017
+    12)	@Klc2017
+    13)	@MacDonald2017
+    14)	@Meder2017
+    15)	@Molouki2017
+    16)	@Ojalehto2017
+    17)	@Pachur2017
+    18)	@Park2017a
+    19)	@Plonsky2017
+    20)	@Rieth2017
+    21)	@Samara2017
+    22)	@Sexton2017
+    23)	@Tardiff2017
+    24)	@Tillman2017
+    25)	@Xu2017a
+    1)	@Atalay2012
+    2)	@Bell2012
+    3)	@Bell2012a
+    4)	@Bodner2012
+    5)	@Bonin2012
+    6)	@Chuderski2012
+    7)	@Clapper2012
+    8)	@Coelho2012
+    9)	@Farrell2012
+    10)	@Huff2012
+    11)	@Hutchison2012
+    12)	@Johnson2012a
+    13)	@Miller2012
+    14)	@Pansky2012
+    15)	@Perfect2012
+    16)	@Peterson2012
+    17)	@Potts2012
+    18)	@Pratte2012
+    19)	@Read2012
+    20)	@Renkewitz2012
+    21)	@Sutton2012
+    22)	@Unsworth2012
+    23)	@Witzel2012
+    24)	@Worthy2012
+    25)	@Yang2012
+    1)	@Bhatia2017
+    2)	@Boone2017
+    3)	@Bosker2017
+    4)	@Busler2017
+    5)	@Davies2017
+    6)	@DeFreitas2017
+    7)	@Faber2017
+    8)	@Flores2017
+    9)	@Hintz2017
+    10)	@Kenett2017
+    11)	@Khateb2017
+    12)	@Kowalski2017
+    13)	@Ostarek2017
+    14)	@Peterson2017
+    15)	@Pierce2017
+    16)	@Rajsic2017
+    17)	@Rummel2017
+    18)	@Selmeczy2017
+    19)	@Silva2017
+    20)	@Whiffen2017
+    21)	@Wiese2017
+    22)	@Wu2016
+    23)	@Yamaguchi2017
+    24)	@Yang2017
+    25)	@Zhao2017
+    1)	@Anders2012
+    2)	@Bailey2011
+    3)	@Boswell2012
+    4)	@Cheng2013
+    5)	@Cragun2012
+    6)	@Cramer2013
+    7)	@DelaPena2012
+    8)	@Duffy2013
+    9)	@Duffy2013a
+    10)	@Hammer2013
+    11)	@Laska2013
+    12)	@Lin2012
+    13)	@Marmarosh2012
+    14)	@McDermott2013
+    15)	@Mercer2011
+    16)	@Mohr2013
+    17)	@Nadal2011
+    18)	@Poteat2011
+    19)	@Salahuddin2011
+    20)	@Sherry2013
+    21)	@Tylka2013
+    22)	@Velez2012
+    23)	@Wang2012a
+    24)	@Wei2012
+    25)	@Wong2013
+    1)	@Altenstein-Yamanaka2017
+    2)	@Arczynski2017
+    3)	@Bernard2017
+    4)	@Budge2017
+    5)	@Carrera2017
+    6)	@Cheng2017
+    7)	@Cobb2017
+    8)	@Cokley2017
+    9)	@Cornish2017
+    10)	@Dorociak2017
+    11)	@Douglass2017
+    12)	@Duffy2017
+    13)	@Garcia2017
+    14)	@Garriott2017
+    15)	@Hu2017
+    16)	@Kahn2017
+    17)	@Katz-Wise2017
+    18)	@Keum2017
+    19)	@Kivlighan2017
+    20)	@Lannin2017
+    21)	@McClintock2017
+    22)	@Okun2017
+    23)	@Rappaport2017
+    24)	@Xiao2017
+    25)	@Xu2017
+    1)	@Baskin2010
+    2)	@Baskin2011
+    3)	@Carr2011a
+    4)	@Chavez-Korell2012
+    5)	@Duffy2012
+    6)	@Gati2012
+    7)	@Kaplan2012
+    8)	@Klinger2012
+    9)	@Latta2011
+    10)	@Lee2011
+    11)	@Owen2010
+    12)	@Perry2012
+    13)	@Pruitt2010
+    14)	@Rice2012
+    15)	@Seo2010
+    16)	@Shen-Miller2012
+    17)	@Smith2011
+    18)	@Smith2012
+    19)	@Szymanski2010
+    20)	@Szymanski2011
+    21)	@Thompson2011
+    22)	@Todd2011a
+    23)	@Valdez2011
+    24)	@Vogel2010
+    25)	@Wu2012
+    1)	@Allan2016
+    2)	@Budge2016
+    3)	@Cheng2016
+    4)	@Conover2017
+    5)	@Drob2016
+    6)	@Frankfurt2016
+    7)	@Gattamorta2016
+    8)	@Goldberg2016
+    9)	@Heath2016
+    10)	@Hermannsdottir2016
+    11)	@Lefevor2017
+    12)	@Liao2016
+    13)	@Liao2017
+    14)	@Liu2016
+    15)	@McDermott2017
+    16)	@Santos2017
+    17)	@Shea2017
+    18)	@Shin2016
+    19)	@Silva2017
+    20)	@Szymanski2017
+    21)	@Tuliao2016
+    22)	@VanDaalen2017
+    23)	@Velez2016
+    24)	@Vogel2017
+    25)	@Watson2016
+    1)	@Bailey2012
+    2)	@Bauer2012
+    3)	@Benenson2012
+    4)	@Boulton2012
+    5)	@Creel2012
+    6)	@DeCaro2012
+    7)	@Fu2012
+    8)	@Geary2012
+    9)	@Gurland2012
+    10)	@Hallett2012
+    11)	@Joh2012
+    12)	@Kirkham2012
+    13)	@Kuwabara2012
+    14)	@MacchiCassia2012
+    15)	@Mann2012
+    16)	@Morita2012
+    17)	@Neuenschwander2012
+    18)	@Poarch2012
+    19)	@Principe2012
+    20)	@Rat-Fischer2012
+    21)	@Sigelman2012
+    22)	@Takahashi2012
+    23)	@Valentin2012
+    24)	@VonHolzen2012
+    25)	@Zosh2012
+    1)	@Altani2017
+    2)	@Atkinson2017
+    3)	@Austin2017
+    4)	@Blakely-McClure2018
+    5)	@Buckler2017
+    6)	@Cottini2018
+    7)	@DeJesus2017
+    8)	@Doebel2018
+    9)	@Friend2017
+    10)	@Gobel2018
+    11)	@Hakvoort2017
+    12)	@Hasni2017
+    13)	@Kim2017
+    14)	@Lipowski2017
+    15)	@Liu2017
+    16)	@Liu2018
+    17)	@Michaelides2017
+    18)	@Needham2017
+    19)	@Russo2017
+    20)	@Schmidt2017
+    21)	@Simms2018
+    22)	@VandeVondervoort2017
+    23)	@Westley2017
+    24)	@White2017
+    25)	@Wong2017
+    1)	@Al-Yagon2012
+    2)	@Bastaits2012
+    3)	@Bissell-Havran2012
+    4)	@BomanIV2012
+    5)	@Caughy2012
+    6)	@Chen2012
+    7)	@Chien2012
+    8)	@Chiu2012
+    9)	@Estrada-Martinez2012
+    10)	@Kiesner2012
+    11)	@Kim-Spoon2012
+    12)	@Koning2012
+    13)	@Lam2012
+    14)	@Larsen2012
+    15)	@Leversen2012
+    16)	@Lopez-Romero2012
+    17)	@Malmberg2012
+    18)	@Maynard2012
+    19)	@Nichols2012
+    20)	@Pisani2012
+    21)	@Poulin2012
+    22)	@Salas-Wright2012
+    23)	@Stein2012
+    24)	@Wang2012
+    25)	@Wickrama2012
+    1)	@Amemiya2017
+    2)	@Andrews2017
+    3)	@Bhargava2017
+    4)	@Bonache2017
+    5)	@Burke2017
+    6)	@Gommans2017
+    7)	@Hadiwijaya2017
+    8)	@Ja2017
+    9)	@Jensen2017
+    10)	@Kleemans2017
+    11)	@Luyckx2017
+    12)	@Meisel2017
+    13)	@Meldrum2017
+    14)	@Mundt2017
+    15)	@Nieuwenhuis2017
+    16)	@Obsuth2017
+    17)	@Racz2017
+    18)	@Reyes2017
+    19)	@Sentse2017
+    20)	@Shulman2017
+    21)	@Silva2017
+    22)	@Slater2017
+    23)	@Wang2017
+    24)	@Zapolski2017
+    25)	@Zimmerman2017
+    1)	@Bernacki2012
+    2)	@Bol2012
+    3)	@Booth2012
+    4)	@Carr2011
+    5)	@Dumont2012
+    6)	@Elmore2012
+    7)	@Faircloth2012
+    8)	@Germeijs2012
+    9)	@Gniewosz2012
+    10)	@Greene2012
+    11)	@Job2012
+    12)	@Kauffman2011
+    13)	@Kercood2012
+    14)	@Lerkkanen2012
+    15)	@Madjar2011
+    16)	@Martin2012
+    17)	@PytlikZillig2011
+    18)	@Reeve2011
+    19)	@Reznitskaya2012
+    20)	@Rich2012
+    21)	@Schwinger2012
+    22)	@Sinai2012
+    23)	@Stupnisky2012
+    24)	@Thoman2012
+    25)	@Yeager2012
+    1)	@Baker2017
+    2)	@Barzilai2017
+    3)	@Boehme2017
+    4)	@Chan2017
+    5)	@Ching2017
+    6)	@Gilbert2017
+    7)	@Ho2017
+    8)	@Korpipaa2017
+    9)	@Kostons2017
+    10)	@Lewis2017
+    11)	@Litalien2017
+    12)	@Litalien2017a
+    13)	@Losch2017
+    14)	@Murphy2017
+    15)	@Parong2017
+    16)	@Paulick2017
+    17)	@Riggs2017
+    18)	@Robinson2017
+    19)	@Ruiz-Alfonso2017
+    20)	@Rutherford2017
+    21)	@Schnotz2017
+    22)	@Silinskas2017
+    23)	@Voss2017
+    24)	@Warburton2017
+    25)	@Zee2017
+    1)	@Arya2012
+    2)	@Bugg2012
+    3)	@Casillas2012
+    4)	@Collie2012
+    5)	@Darwich2012
+    6)	@DeNaeghel2012
+    7)	@EngeldeAbreu2012
+    8)	@Fiorella2012
+    9)	@Hannon2012
+    10)	@Harber2012
+    11)	@Hughes2012
+    12)	@Jang2012
+    13)	@Li2012a
+    14)	@McNeil2012
+    15)	@Papadopoulos2012
+    16)	@Piasta2012
+    17)	@Poteat2012
+    18)	@Ryan2012
+    19)	@Spinath2012
+    20)	@Swanson2012
+    21)	@Tolar2012
+    22)	@Vadasy2012
+    23)	@VanderKooy-Hofland2012
+    24)	@Vitaro2012
+    25)	@Zhou2012
+    1)	@Arens2017
+    2)	@Bailey2017
+    3)	@Bottiani2017
+    4)	@Brandenburg2017
+    5)	@Ching2017
+    6)	@Cooc2017
+    7)	@Dumont2017
+    8)	@Fiorella2017
+    9)	@Fishman2017
+    10)	@Geary2017
+    11)	@Goodrich2017
+    12)	@Hendrickx2017
+    13)	@Hurst2017
+    14)	@Kaiser2017
+    15)	@Ladd2017
+    16)	@LanguageandReadingResearchConsortium2017
+    17)	@Liu2017
+    18)	@Muenks2017
+    19)	@Ramirez2017
+    20)	@Retnowati2017
+    21)	@Schenke2017
+    22)	@Sticca2017
+    23)	@Vollet2017
+    24)	@Wijekumar2017
+    25)	@Wong2017
+    1)	@Asah2012
+    2)	@Berry2012
+    3)	@Boarnet2011
+    4)	@Botetzagias2012
+    5)	@Bourque2012
+    6)	@Bramston2011
+    7)	@Breetzke2012
+    8)	@Caperello2012
+    9)	@Cleland2012
+    10)	@Costa2012
+    11)	@Dazkir2012
+    12)	@DeMontigny2012
+    13)	@Dills2012
+    14)	@Fritsche2012
+    15)	@Hovardas2012
+    16)	@Johnson2012
+    17)	@Larco2012
+    18)	@Long2012
+    19)	@Lu2012
+    20)	@Misra2012
+    21)	@Staiano2012
+    22)	@Sugiyama2012
+    23)	@Ullan2012
+    24)	@VanRompay2012
+    25)	@Wilkerson2012
+    1)	@Anderson2017
+    2)	@Appel-Meulenbroek2017
+    3)	@Barrett2017
+    4)	@Benjamin2017
+    5)	@Byrka2017
+    6)	@Crawford2017
+    7)	@Davis2017
+    8)	@Ecklund2017
+    9)	@Garcia-Mira2017
+    10)	@Kabo2017
+    11)	@Kanakri2017
+    12)	@Klatte2017
+    13)	@Lymeus2017
+    14)	@Rollings2017
+    15)	@Sachdeva2017
+    16)	@Scannell2017
+    17)	@Seebauer2017
+    18)	@Smalls2017
+    19)	@Smith2017
+    20)	@Switzer2017
+    21)	@Tifferet2017
+    22)	@Vaid2017
+    23)	@VandenBerg2017
+    24)	@Watkins2017
+    25)	@Wyles2017
+    1)	@Alkhresheh2012
+    2)	@Belojevic2012
+    3)	@Brunye2012
+    4)	@Francis2012
+    5)	@Gueguen2012
+    6)	@Haans2012
+    7)	@Honold2012
+    8)	@Hund2012
+    9)	@Mahdjoubi2012
+    10)	@Matthies2012
+    11)	@Milfont2012
+    12)	@Monti2012
+    13)	@Mourshed2012
+    14)	@Murtagh2012
+    15)	@Ojala2012
+    16)	@Oshio2012
+    17)	@Richetin2012
+    18)	@Smith2012b
+    19)	@Tobler2012
+    20)	@Toet2012
+    21)	@Truelove2012
+    22)	@Venables2012
+    23)	@Wells2012
+    24)	@Werner2012
+    25)	@Wynveen2012
+    1)	@Andrade2017
+    2)	@Carfora2017
+    3)	@Casado2017
+    4)	@Collado2017
+    5)	@Davydenko2017
+    6)	@Ernst2017
+    7)	@Grønhøj2017
+    8)	@Hahn2017
+    9)	@Jansen2017
+    10)	@Janssen2016
+    11)	@Junot2017
+    12)	@Kangur2017
+    13)	@Klein2017
+    14)	@Leygue2017
+    15)	@Meleady2017
+    16)	@Nordfjærn2017
+    17)	@Paundra2017
+    18)	@Perez-Lopez2017
+    19)	@Ro2017
+    20)	@Sporrel2017
+    21)	@Stefanelli2017
+    22)	@Ulset2017
+    23)	@VandenBroek2017
+    24)	@Zerella2017
+    25)	@Zijlstra2017
+    1)	@Block
+    2)	@Boccaccini2011
+    3)	@Callahan2013
+    4)	@Dysart2012
+    5)	@Eastwood2011
+    6)	@EnoLouden2013
+    7)	@Gromet2012
+    8)	@Kennealy2012
+    9)	@Levenson2012a
+    10)	@Madon2013
+    11)	@Mansour2012
+    12)	@Olver2012
+    13)	@Palmer2012
+    14)	@Peters2013
+    15)	@Pezdek2012
+    16)	@Quinlivan2011
+    17)	@Reidy2012
+    18)	@Sauerland2012
+    19)	@Scurich2012
+    20)	@Seto2012
+    21)	@TenBrinke2012
+    22)	@Thomas2013
+    23)	@VanderKnaap2012
+    24)	@Walters2012
+    25)	@Walters2012a
+    1)	@Cash2017
+    2)	@Dargis2017
+    3)	@Dawson2017
+    4)	@Fine2017
+    5)	@Fine2017a
+    6)	@Hein2017
+    7)	@Holland2017
+    8)	@Kassin2017
+    9)	@King2017a
+    10)	@Kois2017
+    11)	@Kubiak2017
+    12)	@Lavis2017
+    13)	@Madon2017
+    14)	@Nijdam-Jones2017
+    15)	@Rosenfeld2017
+    16)	@Ruva2017
+    17)	@Sauer2017
+    18)	@SchreiberCompo2017
+    19)	@Seto2017
+    20)	@Silver2017
+    21)	@Stolzenberg2017
+    22)	@Sweet2017
+    23)	@Viljoen2017
+    24)	@Williams2017
+    25)	@Zebel2017
+    1)	@Aharoni2012
+    2)	@Ballard2011
+    3)	@Batastini2011
+    4)	@Bornstein2013
+    5)	@Brank2011
+    6)	@Braver2011
+    7)	@Brubacher2011
+    8)	@Elliott2011
+    9)	@Haegerich2013
+    10)	@Hildebrand2013
+    11)	@Lee2012b
+    12)	@Lussier2011
+    13)	@McLawsen2012
+    14)	@Mokros2010
+    15)	@Nysse-Carris2011
+    16)	@Pickel2013
+    17)	@Piquero2012
+    18)	@Redlich2011
+    19)	@Redlich2012
+    20)	@Schweitzer2011
+    21)	@Towfigh2011
+    22)	@Vincent2012
+    23)	@Vrij2012
+    24)	@Watson2013
+    25)	@Wiener2012
+    1)	@Alvarez2016
+    2)	@Cantone2017
+    3)	@Cavanagh2017
+    4)	@Davidson2017
+    5)	@Dopp2017
+    6)	@Eisen2017
+    7)	@Evans2017b
+    8)	@Evans2017c
+    9)	@Fabricius2017
+    10)	@Fine2017
+    11)	@Gongola2017
+    12)	@Helm2017
+    13)	@Helmus2017
+    14)	@Humphreys2017
+    15)	@Jaeger2017
+    16)	@Koehler2016
+    17)	@Kubiak2017
+    18)	@London2017
+    19)	@Nahari2017
+    20)	@Salerno2017
+    21)	@Schmittat2016
+    22)	@Socia2016
+    23)	@Szojka2017
+    24)	@Wachi2017
+    25)	@Zottoli2016
+    1)	@Beck2012
+    2)	@Bilgin2012
+    3)	@Chua2012
+    4)	@Conlon2012
+    5)	@Dane2012
+    6)	@Fishbach2012
+    7)	@Gino2012
+    8)	@Hannah2012
+    9)	@Hsee2012
+    10)	@Kraus2012
+    11)	@Miles2012
+    12)	@Milkman2012
+    13)	@Molinsky2012
+    14)	@Polman2012
+    15)	@Polman2012a
+    16)	@Rolison2012
+    17)	@Sluss2012
+    18)	@Spranger2012
+    19)	@Staats2012
+    20)	@Unkelbach2012
+    21)	@VanIttersum2012
+    22)	@Wang2012b
+    23)	@Welsh2012
+    24)	@Whitman2012
+    25)	@Young2012
+    1)	@Basu2017
+    2)	@Chang2017
+    3)	@Chartier2017
+    4)	@Daniels2017
+    5)	@Guarana2017
+    6)	@Hershcovis2017
+    7)	@Huang2017
+    8)	@Humphrey2017
+    9)	@Johnson2017
+    10)	@Kennedy2017
+    11)	@Kim2017
+    12)	@Lee2017
+    13)	@Lount2017
+    14)	@Lu2017
+    15)	@Luan2017
+    16)	@Ma2017
+    17)	@Martin2017
+    18)	@McCarthy2017
+    19)	@Newark2017
+    20)	@Park2017
+    21)	@Rodell2017
+    22)	@Sitzmann2017
+    23)	@Tang2017
+    24)	@Wiltermuth2017
+    25)	@Zingoni2017
+    1)	@Avery2012
+    2)	@Barnes2012
+    3)	@Carlson2011
+    4)	@Cucina2012
+    5)	@Dierdorff2012
+    6)	@Dobrow2011
+    7)	@Dragoni2011
+    8)	@Griepentrog2012
+    9)	@Hirschfeld2011
+    10)	@Hoffman2012
+    11)	@Huo2012
+    12)	@Levashina2012
+    13)	@Mackenzie2011
+    14)	@Mawritz2012
+    15)	@Moore2012
+    16)	@OBoyle2012
+    17)	@Oreg2011
+    18)	@Peterson2012a
+    19)	@Ragins2012
+    20)	@Seo2012
+    21)	@Sonnentag2012
+    22)	@Sumanth2011
+    23)	@Takeuchi2012
+    24)	@Tangirala2012
+    25)	@Zhang2012
+    1)	@Chao2017
+    2)	@Dahling2016
+    3)	@Deng2016
+    4)	@Deng2017
+    5)	@Dumas2017
+    6)	@Fang2017
+    7)	@Gonzalez-Mule2017
+    8)	@Huang2017
+    9)	@Jansen2016
+    10)	@Kauppila2016
+    11)	@Mandeville2016
+    12)	@Marcus2017
+    13)	@Methot2016
+    14)	@Ng2016
+    15)	@Pohler2016
+    16)	@Porter2016
+    17)	@Quade2017
+    18)	@Raghuram2017
+    19)	@Ragins2017
+    20)	@Seibert2017
+    21)	@Sui2016
+    22)	@Triana2017
+    23)	@Wayne2017
+    24)	@Welbourne2017
+    25)	@Zhan2016
+    1)	@Amsel2012
+    2)	@Armstrong2012
+    3)	@Bestgen2012
+    4)	@Brodeur2012
+    5)	@Clark2012
+    6)	@Dahmani2012
+    7)	@Dennett2012
+    8)	@Dewhurst2012
+    9)	@Ellis-Davies2012
+    10)	@Ferre2012
+    11)	@Izura2012
+    12)	@Kuperman2012
+    13)	@Kusev2012
+    14)	@Lemhofer2012
+    15)	@Leveau2012
+    16)	@Liu2012
+    17)	@Nishimoto2012
+    18)	@Ross2012
+    19)	@Sathyan2012
+    20)	@Schock2012
+    21)	@Schock2012a
+    22)	@Schroder2012a
+    23)	@Steenbergen2012
+    24)	@Steiner2012
+    25)	@Xiao2012
+    1)	@Brankaer2016
+    2)	@Brascamp2017a
+    3)	@Brunet2016
+    4)	@Brust-Renck2016
+    5)	@Constantinescu2017
+    6)	@Dawel2017
+    7)	@DeChiusole2016
+    8)	@Diedenhofen2017
+    9)	@Forsythe2016
+    10)	@Garrido2016
+    11)	@Grant2017a
+    12)	@Hoffmann2016
+    13)	@Keil2017
+    14)	@Lou2017
+    15)	@Meuwissen2017
+    16)	@Michaowski2016
+    17)	@Nystrom2017
+    18)	@Semmelmann2017
+    19)	@Sense2013
+    20)	@Takano2017
+    21)	@Tse2017
+    22)	@Wen2016
+    23)	@Wolsiefer2017
+    24)	@Yao2017
+    25)	@Yu2016
+    1)	@Bartels2007
+    2)	@Bauer2009
+    3)	@Deboeck2009
+    4)	@Gonzalez2008
+    5)	@Harder2010
+    6)	@Hong2012
+    7)	@Jahng2008
+    8)	@KleinEntink2009
+    9)	@Linting2007
+    10)	@Ludtke2008
+    11)	@Ludtke2011
+    12)	@McArdle2009
+    13)	@Meade2012
+    14)	@Muthen2012
+    15)	@Nahum-Shani2012
+    16)	@Nahum-Shani2012a
+    17)	@Ozechowski2007
+    18)	@Preacher2011
+    19)	@Shadish2011
+    20)	@Steiner2010
+    21)	@Tonidandel2009
+    22)	@Voelkle2012
+    23)	@Weijters2010
+    24)	@Widaman2012
+    25)	@Yuan2010
+    1)	@Anders2016
+    2)	@Bauer2016
+    3)	@Beaton2016
+    4)	@Bockenholt2017
+    5)	@Cham2016
+    6)	@Chapman2016
+    7)	@Chiusole2015
+    8)	@Dziak2015
+    9)	@Eid2016
+    10)	@Geiser2015
+    11)	@Jones2015
+    12)	@Jones2016
+    13)	@Kosinski2013
+    14)	@Kuha2015
+    15)	@Landers2016
+    16)	@Liu2016a
+    17)	@Liu2017a
+    18)	@Miller2016
+    19)	@Montoya2017
+    20)	@Oberski2015
+    21)	@Preacher2015
+    22)	@Rodriguez2016
+    23)	@Schuurman2016
+    24)	@Shrout2017
+    25)	@Stanley2016
+    1)	@Anton2012
+    2)	@Balconi2012
+    3)	@Basten2012
+    4)	@Dunn2012
+    5)	@Elman2012
+    6)	@Fuentes2012
+    7)	@Fukunaga2012
+    8)	@Garcea2012
+    9)	@Halsband2012
+    10)	@Hartley2012
+    11)	@Heitland2012
+    12)	@Jaeger2012
+    13)	@Koban2012
+    14)	@Kunde2012
+    15)	@Park2012
+    16)	@Parvaz2012
+    17)	@Plessow2012
+    18)	@Savine2012
+    19)	@Schroder2012
+    20)	@Stocco2012
+    21)	@VanWell2012
+    22)	@Vendetti2012
+    23)	@Weinberg2012
+    24)	@Whitmer2012
+    25)	@Whitmer2012a
+    1)	@Anderson2017
+    2)	@Budhiraja2017
+    3)	@Cui2017
+    4)	@Deak2017
+    5)	@Debbane2017
+    6)	@DeBellis2017
+    7)	@DelZotto2017
+    8)	@Herron2017
+    9)	@Lusk2017
+    10)	@MacLeod2017
+    11)	@Marrero2017
+    12)	@Pornpattananangkul2017
+    13)	@Qi2017
+    14)	@Reznik2017
+    15)	@Riem2017
+    16)	@Schutte2017
+    17)	@Soltanlou2017
+    18)	@Stites2017
+    19)	@Tomlin2017
+    20)	@Toyama2017
+    21)	@Umemoto2017
+    22)	@VanderMeulen2017
+    23)	@Vergara-Martinez2017
+    24)	@Vlaev2017
+    25)	@Wylie2017
+    1)	@Asp2012
+    2)	@Bate2012
+    3)	@Butcher2012
+    4)	@Buxbaum
+    5)	@Gabay2012
+    6)	@Greer2012
+    7)	@Guillaume2012
+    8)	@Harakeh2012
+    9)	@Janos2012
+    10)	@Karalunas2012
+    11)	@Lane2012
+    12)	@Lee2012a
+    13)	@Levy-Gigi2012
+    14)	@Libon2012
+    15)	@Mace2012
+    16)	@Nicholls2012
+    17)	@Perri2012
+    18)	@Pontifex2012
+    19)	@Roberts2012
+    20)	@Ronchi2012
+    21)	@Schmitter-Edgecombe2012
+    22)	@Serrien2012
+    23)	@Smith2012a
+    24)	@Spitz2012
+    25)	@Sutter2012
+    1)	@Abreu-Mendoza2017
+    2)	@Andruchow2017
+    3)	@Benoit2017
+    4)	@Bitan2017
+    5)	@Christodoulou2016
+    6)	@Dewar2017
+    7)	@Dissanayaka2017
+    8)	@Durber2017
+    9)	@Faulkner2017
+    10)	@Gamond2017
+    11)	@Gomez2017
+    12)	@Goodwin2017
+    13)	@Heinrichs2017
+    14)	@Impairment2017
+    15)	@Lundqvist2017
+    16)	@Millar2017
+    17)	@Parthasarathy2017
+    18)	@Pluta2017
+    19)	@Raimo2017
+    20)	@Reynolds2017
+    21)	@Riva2017
+    22)	@Salazar2017
+    23)	@Segal2017
+    24)	@Treble-barna2017
+    25)	@Uren2017
+    1)	@Allen2012
+    2)	@Allen2012a
+    3)	@Arbisi2012
+    4)	@Barbot2012
+    5)	@Chiesi2012
+    6)	@Conrad2012
+    7)	@DeMartini2012
+    8)	@Dibble2012
+    9)	@Ebesutani2012
+    10)	@Fledderus2012
+    11)	@Hale-Smith2012
+    12)	@Herzberg2012
+    13)	@Jayawickreme2012
+    14)	@Martins2012
+    15)	@Mattson2012
+    16)	@Melas2012
+    17)	@Miller2012a
+    18)	@Mossman2012
+    19)	@Naragon-Gainey2012
+    20)	@Resendes2012
+    21)	@Schry2012
+    22)	@Tonkin2012
+    23)	@Waiyavutti2012
+    24)	@Wilson2012
+    25)	@Woltz2012
+    1)	@Boccaccini2017
+    2)	@Burgess2017
+    3)	@Carr2016
+    4)	@Coates2016
+    5)	@Crenshaw2016
+    6)	@Ellis2017
+    7)	@Evans2017
+    8)	@Garey2017
+    9)	@Gomez2017
+    10)	@Harris2017
+    11)	@Lawing2017
+    12)	@Marshall2017
+    13)	@Morgan2016
+    14)	@Mowle2016
+    15)	@Naragon-Gainey2017
+    16)	@Ng2017
+    17)	@Perrault2017
+    18)	@Rettenberger2017
+    19)	@Rogge2017
+    20)	@Shiyko2017
+    21)	@Sleep2016
+    22)	@Sunderland2017
+    23)	@Weiss2017
+    24)	@Young2016
+    25)	@Zwaanswijk2016
+    1)	@Berntsen2012
+    2)	@Borra2012
+    3)	@Buehner2012
+    4)	@Chabris2012
+    5)	@Chow2012
+    6)	@Dennett2012a
+    7)	@DeSteno2012
+    8)	@Galesic2012
+    9)	@Korjoukov2012
+    10)	@Leder2012
+    11)	@Legault2012
+    12)	@Lin2012a
+    13)	@McCabe2012
+    14)	@Oishi2012
+    15)	@Rink2012
+    16)	@Riva2012
+    17)	@Rodeheffer2012
+    18)	@Rossano2012
+    19)	@Sanders2012
+    20)	@Sherman2012
+    21)	@Stallen2012
+    22)	@Thiruchselvam2012
+    23)	@Thompson2012
+    24)	@Weems2012
+    25)	@Wu2012a
+    1)	@Baek2017
+    2)	@Bannard2017
+    3)	@Batterink2017
+    4)	@Borhani2017
+    5)	@Brod2017
+    6)	@Carr2017
+    7)	@Caruso2017
+    8)	@Caselli2017
+    9)	@Daly2017
+    10)	@Dankner2017
+    11)	@Farmer2017
+    12)	@FeldmanHall2017
+    13)	@Foster2017
+    14)	@Jenkins2017
+    15)	@Lages2017
+    16)	@Lapate2017
+    17)	@Lloyd2017
+    18)	@Lopez-Perez2017
+    19)	@Mathot2017
+    20)	@McNulty2017
+    21)	@Middlebrooks2017
+    22)	@Nilsson2017
+    23)	@Ort2017
+    24)	@Ramscar2017
+    25)	@Shen2017
+    1)	@Apel2012
+    2)	@Campbell2012
+    3)	@Darling2012
+    4)	@Doi2012
+    5)	@Duncan2012
+    6)	@Finlayson2012
+    7)	@Henderson2012
+    8)	@Huff2012a
+    9)	@Kaushanskaya2012
+    10)	@Kiernan2012
+    11)	@Li2012
+    12)	@Liu2012a
+    13)	@May2012
+    14)	@Murphy2012
+    15)	@Papesh2012
+    16)	@Perea2012
+    17)	@Pohl2012
+    18)	@Reynolds2012
+    19)	@Ries2012
+    20)	@Roper2012
+    21)	@Trueblood2012
+    22)	@Vatterott2012
+    23)	@Vaughn2012
+    24)	@Wang2012c
+    25)	@Zentall2012
+    1)	@Berggren2016
+    2)	@Brown2016
+    3)	@Conaway2016
+    4)	@Denison2017
+    5)	@DeValk2016
+    6)	@Dowd2017
+    7)	@Du2016
+    8)	@Eskenazi2016
+    9)	@Heuer2016
+    10)	@Hoyos2017
+    11)	@Jonas2017
+    12)	@Marcet2016
+    13)	@Rindal2017
+    14)	@Roer2016
+    15)	@Rogers2016
+    16)	@Rubio-Fernandez2016
+    17)	@Scholz2017
+    18)	@Searston2016
+    19)	@Sheremata2016
+    20)	@Thibodeau2017
+    21)	@Undorf2016
+    22)	@Wang2016
+    23)	@Wang2016a
+    24)	@Weeks2016
+    25)	@Zanini2016
+    1)	@Alos-Ferrer2012
+    2)	@Callan2012
+    3)	@Chen2012a
+    4)	@Devine2012
+    5)	@Eibach2012
+    6)	@Fay2012
+    7)	@Ferreira2012
+    8)	@Gollwitzer2012
+    9)	@Hartson2012
+    10)	@Hebl2012
+    11)	@Hess2012
+    12)	@Kendrick2012
+    13)	@Kushlev2012
+    14)	@Landau2012
+    15)	@Lelkes2012
+    16)	@OBrien2012
+    17)	@Preston2012
+    18)	@Ramos2012
+    19)	@Ratcliff2012
+    20)	@Rios2012
+    21)	@Santos2012
+    22)	@Stephens2012
+    23)	@Todd2012
+    24)	@VanLeeuwen2012
+    25)	@Wakslak2012
+    1)	@Bang2017
+    2)	@Burns2017
+    3)	@Carter2017
+    4)	@Cassidy2017
+    5)	@Chatard2017
+    6)	@Cowgill2017
+    7)	@Danbold2017
+    8)	@Dang2018
+    9)	@Deska2018
+    10)	@Eller2017
+    11)	@Evans2017a
+    12)	@Frimer2017
+    13)	@Grossmann2017
+    14)	@Hunter2017
+    15)	@Kirby2017
+    16)	@Leander2017
+    17)	@Parker2018
+    18)	@Robinson2017
+    19)	@Rocklage2017
+    20)	@Roese2017
+    21)	@Rom2018
+    22)	@Schaumberg2017
+    23)	@Wenzel2017
+    24)	@Wilson2018
+    25)	@Zhu2017
+    1)	@Ainsworth
+    2)	@Anderson2012a
+    3)	@Becker2012
+    4)	@Blankenship
+    5)	@Chan2012
+    6)	@Effron2012
+    7)	@Gable2012
+    8)	@Galak2012
+    9)	@Granqvist
+    10)	@Kochanska2012
+    11)	@Lee2012
+    12)	@Leikas2012
+    13)	@Lemay2012
+    14)	@Levine2012
+    15)	@Locke
+    16)	@Ma-Kellams2012
+    17)	@Nestler
+    18)	@Paluck2012
+    19)	@Piff2012
+    20)	@Rattan2012
+    21)	@Schwartz
+    22)	@Sullivan
+    23)	@Tadmor2012
+    24)	@Tormala2012
+    25)	@Woodcock
+    1)	@Bai2017
+    2)	@Bjornsdottir2017
+    3)	@Borghuis2017
+    4)	@Chou2017
+    5)	@Cortland2017
+    6)	@Gawronski2017
+    7)	@Gebauer2016
+    8)	@Gordon2017
+    9)	@Hehman2017
+    10)	@Huang2017
+    11)	@Jones2017
+    12)	@Klein2017
+    13)	@Kober2017
+    14)	@Landy2017
+    15)	@Miller2017
+    16)	@Motyl2017
+    17)	@Neal2017
+    18)	@Savani2017
+    19)	@Schriber2016
+    20)	@Slepian2017
+    21)	@Stanton2017
+    22)	@Thrash2017
+    23)	@White2017
+    24)	@Wilson2017
+    25)	@Zeinoun2017
+    1)	@Aelterman2012
+    2)	@Arthur2011
+    3)	@Bartholomew2011
+    4)	@Boucard2012
+    5)	@Brunet2011
+    6)	@Chan2012a
+    7)	@Chang2011
+    8)	@Chang2011a
+    9)	@Cheng2011
+    10)	@Conroy2011
+    11)	@Englert2012
+    12)	@Finez2012
+    13)	@Flora2012
+    14)	@Freeman2011
+    15)	@Hyde2012
+    16)	@Kavussanu2012
+    17)	@Kee2012
+    18)	@Maltby2012
+    19)	@Mosewich2011
+    20)	@Parry2012
+    21)	@Quested2011
+    22)	@Sapieja2011
+    23)	@Smith2011a
+    24)	@VandePolP2012
+    25)	@Williams2012
+    1)	@Arnautovska2017
+    2)	@Benson2017
+    3)	@Berry2016
+    4)	@Brewer2017
+    5)	@Callow2017a
+    6)	@Crust2016
+    7)	@DeMuynck2017a
+    8)	@Dimmock2016
+    9)	@Furley2016
+    10)	@Gray2016
+    11)	@Huysmans2017
+    12)	@Kay2017
+    13)	@Krinski2017
+    14)	@Lebeau2016
+    15)	@Matosic2016
+    16)	@McDavid2017
+    17)	@Paoli2017
+    18)	@Riciputi2016
+    19)	@Sparks2017
+    20)	@Stenling2016
+    21)	@Sun2016
+    22)	@Tamminen2016
+    23)	@VanBavel2017
+    24)	@Wang2016b
+    25)	@Zestcott2016
+    1)	@Brown2011
+    2)	@Christensen2009
+    3)	@Comeaux2010
+    4)	@Cunningham2004
+    5)	@Cunningham2012
+    6)	@Dagkas2012
+    7)	@Denham2011
+    8)	@Goldsmith2003
+    9)	@Hanold2010
+    10)	@Harrison2011
+    11)	@May2009
+    12)	@McGrath2009
+    13)	@Meier2012
+    14)	@Mennesson2012
+    15)	@Miller2002
+    16)	@Miller2009
+    17)	@Nixon2010
+    18)	@Parsons2012
+    19)	@Pringle2009
+    20)	@Purdy2011
+    21)	@Shakib2011
+    22)	@Tucker2001
+    23)	@Walk2005
+    24)	@Ward2008
+    25)	@White2012
+    1)	@Cohen2016
+    2)	@Cooper2017
+    3)	@Darby2017
+    4)	@Dzikus2017
+    5)	@Fry2017
+    6)	@Hayton2017
+    7)	@Lawrence2016
+    8)	@Liechty2016
+    9)	@Love2017
+    10)	@Lund2017
+    11)	@Macarthur2017
+    12)	@Musto2016
+    13)	@Nakamura2016
+    14)	@Nieri2016
+    15)	@Rankin-Wright2016
+    16)	@Renfrow2016
+    17)	@Safai2016
+    18)	@Sanchez2016
+    19)	@Sanderson2015
+    20)	@Sandvik2017
+    21)	@Scherer2016
+    22)	@Sirna2016
+    23)	@Szto2016
+    24)	@Tajrobehkar2016
+    25)	@Wood2016
 
 
 \newpage
