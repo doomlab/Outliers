@@ -77,7 +77,7 @@ library("papaja")
     24)	@Yu-HsinLiao2012
     25)	@Zhang2012a
 
-###2107 
+###2017 
 
     1)	@Allan2017
     2)	@Arrieta2017
@@ -104,6 +104,11 @@ library("papaja")
     23)	@Vissers2017
     24)	@Westbrook2017
     25)	@Wilson2017
+    
+##Journal of Consulting and Clinical Psychology
+
+###2012
+
     1)	@Applebaum2012
     2)	@Arch2012
     3)	@Best2012
@@ -129,6 +134,9 @@ library("papaja")
     23)	@Siddique2012
     24)	@Strunk2012
     25)	@Wolitzky-Taylor2012
+    
+###2017
+
     1)	@Andover2017
     2)	@Baumann2017
     3)	@BennebroekEvertsz2017a
@@ -154,6 +162,13 @@ library("papaja")
     23)	@Schmidt2017a
     24)	@Stephens2017a
     25)	@Stice2017a
+    
+#Cognitive
+
+##Cognitive Psychology
+
+###2012
+
     1)	@Austerweil2011
     2)	@Bonawitz2012
     3)	@Cimpian2012
@@ -179,6 +194,9 @@ library("papaja")
     23)	@VandenBroeck2012
     24)	@Vandierendonck2012
     25)	@White2011
+
+###2017
+
     1)	@Baker2016
     2)	@Chang2016
     3)	@Chen2017
@@ -204,6 +222,11 @@ library("papaja")
     23)	@Tardiff2017
     24)	@Tillman2017
     25)	@Xu2017a
+
+##Journal of Experimental Psychology: Learning, Memory, and Cognition
+
+###2012
+
     1)	@Atalay2012
     2)	@Bell2012
     3)	@Bell2012a
@@ -229,6 +252,9 @@ library("papaja")
     23)	@Witzel2012
     24)	@Worthy2012
     25)	@Yang2012
+    
+###2017
+
     1)	@Bhatia2017
     2)	@Boone2017
     3)	@Bosker2017
@@ -254,6 +280,13 @@ library("papaja")
     23)	@Yamaguchi2017
     24)	@Yang2017
     25)	@Zhao2017
+
+#Counseling
+
+##Journal of Counseling Psychology
+
+###2012
+
     1)	@Anders2012
     2)	@Bailey2011
     3)	@Boswell2012
@@ -279,6 +312,9 @@ library("papaja")
     23)	@Wang2012a
     24)	@Wei2012
     25)	@Wong2013
+    
+###2017
+
     1)	@Altenstein-Yamanaka2017
     2)	@Arczynski2017
     3)	@Bernard2017
@@ -304,6 +340,11 @@ library("papaja")
     23)	@Rappaport2017
     24)	@Xiao2017
     25)	@Xu2017
+    
+##The Counseling Psychologist
+
+###2012
+
     1)	@Baskin2010
     2)	@Baskin2011
     3)	@Carr2011a
@@ -329,6 +370,9 @@ library("papaja")
     23)	@Valdez2011
     24)	@Vogel2010
     25)	@Wu2012
+
+###2017
+
     1)	@Allan2016
     2)	@Budge2016
     3)	@Cheng2016
@@ -354,6 +398,13 @@ library("papaja")
     23)	@Velez2016
     24)	@Vogel2017
     25)	@Watson2016
+
+#Developmental
+
+##Journal of Experimental Child Psychology
+
+###2012
+
     1)	@Bailey2012
     2)	@Bauer2012
     3)	@Benenson2012
@@ -379,6 +430,9 @@ library("papaja")
     23)	@Valentin2012
     24)	@VonHolzen2012
     25)	@Zosh2012
+
+###2017
+
     1)	@Altani2017
     2)	@Atkinson2017
     3)	@Austin2017
@@ -404,6 +458,11 @@ library("papaja")
     23)	@Westley2017
     24)	@White2017
     25)	@Wong2017
+    
+##Journal of Youth and Adolescence
+
+###2012
+
     1)	@Al-Yagon2012
     2)	@Bastaits2012
     3)	@Bissell-Havran2012
@@ -429,6 +488,9 @@ library("papaja")
     23)	@Stein2012
     24)	@Wang2012
     25)	@Wickrama2012
+
+###2017
+
     1)	@Amemiya2017
     2)	@Andrews2017
     3)	@Bhargava2017
@@ -454,6 +516,13 @@ library("papaja")
     23)	@Wang2017
     24)	@Zapolski2017
     25)	@Zimmerman2017
+
+#Educational
+
+##Contemporary Educational Psychology
+
+###2012
+
     1)	@Bernacki2012
     2)	@Bol2012
     3)	@Booth2012
@@ -479,6 +548,9 @@ library("papaja")
     23)	@Stupnisky2012
     24)	@Thoman2012
     25)	@Yeager2012
+
+###2017
+
     1)	@Baker2017
     2)	@Barzilai2017
     3)	@Boehme2017
@@ -504,6 +576,11 @@ library("papaja")
     23)	@Voss2017
     24)	@Warburton2017
     25)	@Zee2017
+
+##Journal of Educational Psychology
+
+###2012
+
     1)	@Arya2012
     2)	@Bugg2012
     3)	@Casillas2012
@@ -529,6 +606,9 @@ library("papaja")
     23)	@VanderKooy-Hofland2012
     24)	@Vitaro2012
     25)	@Zhou2012
+
+###2017
+
     1)	@Arens2017
     2)	@Bailey2017
     3)	@Bottiani2017
@@ -554,6 +634,13 @@ library("papaja")
     23)	@Vollet2017
     24)	@Wijekumar2017
     25)	@Wong2017
+
+#Environmental
+
+##Environment and Behavior
+
+###2012
+
     1)	@Asah2012
     2)	@Berry2012
     3)	@Boarnet2011
@@ -579,6 +666,9 @@ library("papaja")
     23)	@Ullan2012
     24)	@VanRompay2012
     25)	@Wilkerson2012
+
+###2017
+
     1)	@Anderson2017
     2)	@Appel-Meulenbroek2017
     3)	@Barrett2017
@@ -604,6 +694,11 @@ library("papaja")
     23)	@VandenBerg2017
     24)	@Watkins2017
     25)	@Wyles2017
+
+##Journal of Environmental Psychology
+
+###2012
+
     1)	@Alkhresheh2012
     2)	@Belojevic2012
     3)	@Brunye2012
@@ -629,6 +724,9 @@ library("papaja")
     23)	@Wells2012
     24)	@Werner2012
     25)	@Wynveen2012
+
+###2017
+
     1)	@Andrade2017
     2)	@Carfora2017
     3)	@Casado2017
@@ -654,6 +752,13 @@ library("papaja")
     23)	@VandenBroek2017
     24)	@Zerella2017
     25)	@Zijlstra2017
+
+#Forensics
+
+##Law and Human Behavior
+
+###2012
+
     1)	@Block
     2)	@Boccaccini2011
     3)	@Callahan2013
@@ -679,6 +784,9 @@ library("papaja")
     23)	@VanderKnaap2012
     24)	@Walters2012
     25)	@Walters2012a
+
+###2017
+
     1)	@Cash2017
     2)	@Dargis2017
     3)	@Dawson2017
@@ -704,6 +812,11 @@ library("papaja")
     23)	@Viljoen2017
     24)	@Williams2017
     25)	@Zebel2017
+
+##Psychology, Public Policy, and Law
+
+###2012
+
     1)	@Aharoni2012
     2)	@Ballard2011
     3)	@Batastini2011
@@ -729,6 +842,9 @@ library("papaja")
     23)	@Vrij2012
     24)	@Watson2013
     25)	@Wiener2012
+
+###2017
+
     1)	@Alvarez2016
     2)	@Cantone2017
     3)	@Cavanagh2017
@@ -754,6 +870,13 @@ library("papaja")
     23)	@Szojka2017
     24)	@Wachi2017
     25)	@Zottoli2016
+
+#Industrial-Organizational
+
+##Organizational Behavior and Human Decision Processes
+
+###2012
+
     1)	@Beck2012
     2)	@Bilgin2012
     3)	@Chua2012
@@ -779,6 +902,9 @@ library("papaja")
     23)	@Welsh2012
     24)	@Whitman2012
     25)	@Young2012
+
+###2017
+
     1)	@Basu2017
     2)	@Chang2017
     3)	@Chartier2017
@@ -804,6 +930,11 @@ library("papaja")
     23)	@Tang2017
     24)	@Wiltermuth2017
     25)	@Zingoni2017
+
+##Personnel Psychology
+
+###2012
+
     1)	@Avery2012
     2)	@Barnes2012
     3)	@Carlson2011
@@ -829,6 +960,9 @@ library("papaja")
     23)	@Takeuchi2012
     24)	@Tangirala2012
     25)	@Zhang2012
+
+###2017
+
     1)	@Chao2017
     2)	@Dahling2016
     3)	@Deng2016
@@ -854,6 +988,13 @@ library("papaja")
     23)	@Wayne2017
     24)	@Welbourne2017
     25)	@Zhan2016
+
+#Methods
+
+##Behavior Research Methods
+
+###2012
+
     1)	@Amsel2012
     2)	@Armstrong2012
     3)	@Bestgen2012
@@ -879,6 +1020,9 @@ library("papaja")
     23)	@Steenbergen2012
     24)	@Steiner2012
     25)	@Xiao2012
+
+###2017
+
     1)	@Brankaer2016
     2)	@Brascamp2017a
     3)	@Brunet2016
@@ -904,6 +1048,11 @@ library("papaja")
     23)	@Wolsiefer2017
     24)	@Yao2017
     25)	@Yu2016
+
+##Psychological Methods
+
+###2012
+
     1)	@Bartels2007
     2)	@Bauer2009
     3)	@Deboeck2009
@@ -929,6 +1078,9 @@ library("papaja")
     23)	@Weijters2010
     24)	@Widaman2012
     25)	@Yuan2010
+
+###2017
+
     1)	@Anders2016
     2)	@Bauer2016
     3)	@Beaton2016
@@ -954,6 +1106,13 @@ library("papaja")
     23)	@Schuurman2016
     24)	@Shrout2017
     25)	@Stanley2016
+
+#Neuro
+
+##Cognitive, Affective, & Behavioral Neuroscience
+
+###2012
+
     1)	@Anton2012
     2)	@Balconi2012
     3)	@Basten2012
@@ -979,6 +1138,9 @@ library("papaja")
     23)	@Weinberg2012
     24)	@Whitmer2012
     25)	@Whitmer2012a
+
+###2017
+
     1)	@Anderson2017
     2)	@Budhiraja2017
     3)	@Cui2017
@@ -1004,6 +1166,11 @@ library("papaja")
     23)	@Vergara-Martinez2017
     24)	@Vlaev2017
     25)	@Wylie2017
+
+##Neuropsychology
+
+###2012
+
     1)	@Asp2012
     2)	@Bate2012
     3)	@Butcher2012
@@ -1029,6 +1196,10 @@ library("papaja")
     23)	@Smith2012a
     24)	@Spitz2012
     25)	@Sutter2012
+
+
+###2017
+
     1)	@Abreu-Mendoza2017
     2)	@Andruchow2017
     3)	@Benoit2017
@@ -1054,6 +1225,13 @@ library("papaja")
     23)	@Segal2017
     24)	@Treble-barna2017
     25)	@Uren2017
+
+#Overview
+
+##Psychological Assessment
+
+###2012
+
     1)	@Allen2012
     2)	@Allen2012a
     3)	@Arbisi2012
@@ -1079,6 +1257,9 @@ library("papaja")
     23)	@Waiyavutti2012
     24)	@Wilson2012
     25)	@Woltz2012
+
+###2017
+
     1)	@Boccaccini2017
     2)	@Burgess2017
     3)	@Carr2016
@@ -1104,6 +1285,11 @@ library("papaja")
     23)	@Weiss2017
     24)	@Young2016
     25)	@Zwaanswijk2016
+
+##Psychological Science
+
+###2012
+
     1)	@Berntsen2012
     2)	@Borra2012
     3)	@Buehner2012
@@ -1129,6 +1315,9 @@ library("papaja")
     23)	@Thompson2012
     24)	@Weems2012
     25)	@Wu2012a
+
+###2017
+
     1)	@Baek2017
     2)	@Bannard2017
     3)	@Batterink2017
@@ -1154,6 +1343,11 @@ library("papaja")
     23)	@Ort2017
     24)	@Ramscar2017
     25)	@Shen2017
+
+##Psychonomic Bulletin and Review
+
+###2012
+
     1)	@Apel2012
     2)	@Campbell2012
     3)	@Darling2012
@@ -1179,6 +1373,9 @@ library("papaja")
     23)	@Vaughn2012
     24)	@Wang2012c
     25)	@Zentall2012
+
+###2017
+
     1)	@Berggren2016
     2)	@Brown2016
     3)	@Conaway2016
@@ -1204,6 +1401,13 @@ library("papaja")
     23)	@Wang2016a
     24)	@Weeks2016
     25)	@Zanini2016
+
+#Social
+
+##Journal of Experimental Social Psychology
+
+###2012
+
     1)	@Alos-Ferrer2012
     2)	@Callan2012
     3)	@Chen2012a
@@ -1229,6 +1433,9 @@ library("papaja")
     23)	@Todd2012
     24)	@VanLeeuwen2012
     25)	@Wakslak2012
+
+###2017
+
     1)	@Bang2017
     2)	@Burns2017
     3)	@Carter2017
@@ -1254,6 +1461,11 @@ library("papaja")
     23)	@Wenzel2017
     24)	@Wilson2018
     25)	@Zhu2017
+
+##Journal of Personality and Social Psychology
+
+###2012
+
     1)	@Ainsworth
     2)	@Anderson2012a
     3)	@Becker2012
@@ -1279,6 +1491,9 @@ library("papaja")
     23)	@Tadmor2012
     24)	@Tormala2012
     25)	@Woodcock
+
+###2017
+
     1)	@Bai2017
     2)	@Bjornsdottir2017
     3)	@Borghuis2017
@@ -1304,6 +1519,13 @@ library("papaja")
     23)	@White2017
     24)	@Wilson2017
     25)	@Zeinoun2017
+
+#Sports
+
+##Journal of Sport and Exercise Psychology
+
+###2012
+
     1)	@Aelterman2012
     2)	@Arthur2011
     3)	@Bartholomew2011
@@ -1329,6 +1551,9 @@ library("papaja")
     23)	@Smith2011a
     24)	@VandePolP2012
     25)	@Williams2012
+
+###2017
+
     1)	@Arnautovska2017
     2)	@Benson2017
     3)	@Berry2016
@@ -1354,6 +1579,11 @@ library("papaja")
     23)	@VanBavel2017
     24)	@Wang2016b
     25)	@Zestcott2016
+    
+##Sociology of Sport Journal
+
+###2012
+
     1)	@Brown2011
     2)	@Christensen2009
     3)	@Comeaux2010
@@ -1379,6 +1609,9 @@ library("papaja")
     23)	@Walk2005
     24)	@Ward2008
     25)	@White2012
+
+###2017
+
     1)	@Cohen2016
     2)	@Cooper2017
     3)	@Darby2017
