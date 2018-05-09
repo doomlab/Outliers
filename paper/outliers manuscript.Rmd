@@ -21,7 +21,8 @@ author_note: |
  K. D. Valentine is a Ph.D. candidate at the University of Missouri. Erin M. Buchanan is an Associate Professor of Quantitative Psychology at Missouri State University. 
   
 abstract: |
-  The social sciences have begun to take a careful look at the way we process and interpret data, as many famous experiments do not appear to replicate (Open Science Collaboration, 2015). The Open Science Foundation (OSF) was founded in 2013 to promote a transparent research process from formation of the hypotheses to completely reproducible papers (Nosek et al., 2015). This project examines the impact of the formation of OSF and changing research culture on the publication of information concerning data screening methods for outliers, as the impact of outliers can critically change the findings and interpretation of experiments.
+  Psychology is undergoing a "renaissance" in which focus has shifted to the replication and reproducibility of current published reports. While we have seen vast discussion of the problems and proposed solutions, research has yet to determine how this new culture may have impacted reporting practices of researchers. As outliers can bias both descriptive and inferential statistics, the examination for these data points is essential to any analysis using these parameters, as outliers can impact study results. We quantified the rates of reporting of outliers within psychology at two time points: 2012 when the replication crisis was born, and 2017, after the publication of reports concerning QPRs, replication, and transparency. A total of 2234 experiments were identified and analyzed, finding an increase in reporting of outliers (from only 15.7% of experiments mentioning outliers in 2012 to 25.1% in 2017). We further delve into differences in changing reporting rates given the psychological field, or statistical analysis that experiment employed. Further, we inspect whether outliers mentioned are people or data points, and what reasons authors gave for stating the observation was deviant. 
+
   
 keywords          : "outlier, influential observation, replication"
 
@@ -605,6 +606,7 @@ While these findings assist in showing the improvements made by this renaissance
 \newpage
 
 # References
+
 
 \setlength{\parindent}{-0.5in}
 \setlength{\leftskip}{0.5in}
