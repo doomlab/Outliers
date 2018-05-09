@@ -391,7 +391,7 @@ library("papaja")
   16) @Santos2017
   17) @Shea2017
   18) @Shin2016
-  19) @Silva2017
+  19) @Silva2017a
   20) @Szymanski2017
   21) @Tuliao2016
   22) @VanDaalen2017
@@ -511,7 +511,7 @@ library("papaja")
   18) @Reyes2017
   19) @Sentse2017
   20) @Shulman2017
-  21) @Silva2017
+  21) @Silva2017b
   22) @Slater2017
   23) @Wang2017
   24) @Zapolski2017
@@ -613,7 +613,7 @@ library("papaja")
   2) @Bailey2017
   3) @Bottiani2017
   4) @Brandenburg2017
-  5) @Ching2017
+  5) @Ching2017a
   6) @Cooc2017
   7) @Dumont2017
   8) @Fiorella2017
@@ -625,7 +625,7 @@ library("papaja")
   14) @Kaiser2017
   15) @Ladd2017
   16) @LanguageandReadingResearchConsortium2017
-  17) @Liu2017
+  17) @Liu2017a
   18) @Muenks2017
   19) @Ramirez2017
   20) @Retnowati2017
@@ -633,7 +633,7 @@ library("papaja")
   22) @Sticca2017
   23) @Vollet2017
   24) @Wijekumar2017
-  25) @Wong2017
+  25) @Wong2017a
 
 #Environmental
 
@@ -854,14 +854,14 @@ library("papaja")
   7) @Evans2017b
   8) @Evans2017c
   9) @Fabricius2017
-  10) @Fine2017
+  10) @Fine2017b
   11) @Gongola2017
   12) @Helm2017
   13) @Helmus2017
   14) @Humphreys2017
   15) @Jaeger2017
   16) @Koehler2016
-  17) @Kubiak2017
+  17) @Kubiak2017a
   18) @London2017
   19) @Nahari2017
   20) @Salerno2017
@@ -913,9 +913,9 @@ library("papaja")
   6) @Hershcovis2017
   7) @Huang2017
   8) @Humphrey2017
-  9) @Johnson2017
+  9) @Johnson2017a
   10) @Kennedy2017
-  11) @Kim2017
+  11) @Kim2017a
   12) @Lee2017
   13) @Lount2017
   14) @Lu2017
@@ -970,7 +970,7 @@ library("papaja")
   5) @Dumas2017
   6) @Fang2017
   7) @Gonzalez-Mule2017
-  8) @Huang2017
+  8) @Huang2017a
   9) @Jansen2016
   10) @Kauppila2016
   11) @Mandeville2016
@@ -1097,7 +1097,7 @@ library("papaja")
   14) @Kuha2015
   15) @Landers2016
   16) @Liu2016a
-  17) @Liu2017a
+  17) @Liu2017b
   18) @Miller2016
   19) @Montoya2017
   20) @Oberski2015
@@ -1141,7 +1141,7 @@ library("papaja")
 
 ###2017
 
-  1) @Anderson2017
+  1) @Anderson2017a
   2) @Budhiraja2017
   3) @Cui2017
   4) @Deak2017
@@ -1268,7 +1268,7 @@ library("papaja")
   6) @Ellis2017
   7) @Evans2017
   8) @Garey2017
-  9) @Gomez2017
+  9) @Gomez2017a
   10) @Harris2017
   11) @Lawing2017
   12) @Marshall2017
@@ -1453,7 +1453,7 @@ library("papaja")
   15) @Kirby2017
   16) @Leander2017
   17) @Parker2018
-  18) @Robinson2017
+  18) @Robinson2017a
   19) @Rocklage2017
   20) @Roese2017
   21) @Rom2018
@@ -1503,12 +1503,12 @@ library("papaja")
   7) @Gebauer2016
   8) @Gordon2017
   9) @Hehman2017
-  10) @Huang2017
+  10) @Huang2017b
   11) @Jones2017
-  12) @Klein2017
+  12) @Klein2017a
   13) @Kober2017
   14) @Landy2017
-  15) @Miller2017
+  15) @Miller2017a
   16) @Motyl2017
   17) @Neal2017
   18) @Savani2017
@@ -1516,8 +1516,8 @@ library("papaja")
   20) @Slepian2017
   21) @Stanton2017
   22) @Thrash2017
-  23) @White2017
-  24) @Wilson2017
+  23) @White2017a
+  24) @Wilson2017a
   25) @Zeinoun2017
 
 #Sports
@@ -1612,7 +1612,7 @@ library("papaja")
 
 ###2017
 
-  1) @Cohen2016
+  1) @Cohen2016a
   2) @Cooper2017
   3) @Darby2017
   4) @Dzikus2017
