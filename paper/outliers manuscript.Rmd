@@ -10,7 +10,15 @@ author:
     email         : "kdvdnf@mail.missouri.edu"
   - name          : "Erin M. Buchanan"
     affiliation   : "2"
-
+  - name          : "Arielle Cunningham"
+    affiliation   : "2"
+  - name          : "Tabetha Hopke"
+    affiliation   : "2"
+  - name          : "Addie Wikowsky"
+    affiliation   : "2"
+  - name          : "Haley Wilson"
+    affiliation   : "2"
+    
 affiliation:
   - id            : "1"
     institution   : "University of Missouri"
@@ -18,12 +26,10 @@ affiliation:
     institution   : "Missouri State University"
 
 author_note: |
- K. D. Valentine is a Ph.D. candidate at the University of Missouri. Erin M. Buchanan is an Associate Professor of Quantitative Psychology at Missouri State University. 
+ K. D. Valentine is a Ph.D. candidate at the University of Missouri. Erin M. Buchanan is an Associate Professor of Quantitative Psychology at Missouri State University. ADD HERE STUFF AND THINGS. 
   
 abstract: |
-  Psychology is undergoing a "renaissance" in which focus has shifted to the replication and reproducibility of current published reports. While we have seen vast discussion of the problems and proposed solutions, research has yet to determine how this new culture may have impacted reporting practices of researchers. As outliers can bias both descriptive and inferential statistics, the examination for these data points is essential to any analysis using these parameters, as outliers can impact study results. We quantified the rates of reporting of outliers within psychology at two time points: 2012 when the replication crisis was born, and 2017, after the publication of reports concerning QPRs, replication, and transparency. A total of 2234 experiments were identified and analyzed, finding an increase in reporting of outliers (from only 15.7% of experiments mentioning outliers in 2012 to 25.1% in 2017). We further delve into differences in changing reporting rates given the psychological field, or statistical analysis that experiment employed. Further, we inspect whether outliers mentioned are people or data points, and what reasons authors gave for stating the observation was deviant. We conclude that while report rates are improving overall, there is still much room for improvement in the reporting practices of psychological scientists which can only aid in strengthening our science.
- 
-
+  Psychology is undergoing a "renaissance" in which focus has shifted to the replication and reproducibility of current published reports. While we have seen discussion of the problems and proposed solutions, research has yet to determine how this new culture may have impacted reporting practices of researchers. As outliers can bias both descriptive and inferential statistics, the examination for these data points is essential to any analysis using these parameters. We quantified the rates of reporting of outliers within psychology at two time points: 2012 when the replication crisis was born, and 2017, after the publication of reports concerning questionable research practices, replication, and transparency. A total of 2234 experiments were identified and analyzed, finding an increase in reporting of outliers from only 15.7% of experiments mentioning outliers in 2012 to 25.1% in 2017. We further delve into differences across years given the psychological field or statistical analysis that experiment employed. Further, we inspect whether outliers mentioned are people or data points, and what reasons authors gave for stating the observation was deviant. We conclude that while report rates are improving overall, there is still room for improvement in the reporting practices of psychological scientists which can only aid in strengthening our science.
   
 keywords          : "outlier, influential observation, replication"
 
@@ -595,9 +601,11 @@ We found that researchers often used multiple criterion checks for outlier codin
 
 # Discussion
 
-We hypothesized that report rates for outliers would increase overall in experiments from 2012 to 2017, and we largely we found support for this hypothesis. We additionally hypothesized larger increases in report rates of outliers for the domains of social and cognitive psychology. This, too, bore out within our results. While modest improvements in reporting can be seen in almost all fields, it is worthwhile to note that in 2017 the average proportion of experiments reporting outliers was still only x%, with some fields as low as x%. While the effort of many fields should not be overlooked, we suggest that there is still a large amount of room for improvement overall. 
+We hypothesized that report rates for outliers would increase overall in experiments from 2012 to 2017, and we largely found support for this hypothesis. We additionally hypothesized larger increases in report rates of outliers for the domains of social and cognitive psychology. This, too, bore out within our results. While modest improvements in reporting can be seen in almost all fields, it is worthwhile to note that in 2017 the average proportion of experiments reporting outliers was still only x%, with some fields as low as x%. While the effort of many fields should not be overlooked, we suggest that there is still a large amount of room for improvement overall. 
 
-While there may be many reasons an individual experiment does not speak to outliers (i.e. in the Bayesian framework these data points are treated the same as other data points), we believe that given the frequentist nature of most psychological work there are many more reasons that an experiment should take the time and word length to express the presence or absence of these data. Some may argue that use of the precious word limit dictated by journals to describe such choices as identification and handling of outliers may be irrational. However, we contest that given the current availability and use of online supplements and appendixes, as well as the invent of the Open Science Framework (OSF; Center for Open Science, 2011) which allows researchers the ability to upload any number of additional resources and supplements that can be easily referenced in manuscripts.
+STUFF HERE ABOUT THE STUFF. 
+
+While there may be many reasons an individual experiment does not speak to outliers, we believe that given the frequentist nature of most psychological work there are many more reasons that an experiment should take the time and word length to express the presence or absence of these data. Some may argue that use of the precious word limit dictated by journals to describe such choices as identification and handling of outliers may be irrational. However, we contest that given the current availability and use of online supplements and appendixes, as well as the invent of the Open Science Framework (OSF; Center for Open Science, 2011) which allows researchers the ability to upload any number of additional resources and supplements that can be easily referenced in manuscripts. BAKKER STUFF HERE ABOUT HOW IT NEEDS TO GO INTO THE PAPER. 
 
 We implore researchers not to overlook the importance of visualizing your data and identifying data—statically or otherwise—that may not fall within the expected range or pattern of the sample. Currently, there are a plethora of online tools that can assist even the most junior researcher in the cleaning of data, including outlier detection and handling, for almost any type of analysis. From online courses (cite) to YouTube videos that walk you through the process step-by-step (cite), we believe that if the failure to report these outliers is due to a lack of learning, that this could quickly be fixed on a case-by-case basis. Further, we implore those who are reviewers and editors to think critically about this idea. If no mention is made of outlier inspection within an article, perhaps it is worthwhile to ask the researchers why this was so. 
 
