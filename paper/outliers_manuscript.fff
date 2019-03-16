@@ -3,8 +3,7 @@
 
 \centering
 \includegraphics{outliers_manuscript_files/figure-latex/type-graph-1.pdf}
-\caption{\label{fig:type-graph}Percent of outlier mentions by sub-domain
-field and year examined. Error bars represent 95\% confidence interval.}
+\caption{\label{fig:type-graph}Percent of outlier mentions by sub-domain field and year examined. Error bars represent 95\% confidence interval.}
 \end{figure*}
 \efloatseparator
  
@@ -13,8 +12,7 @@ field and year examined. Error bars represent 95\% confidence interval.}
 
 \centering
 \includegraphics{outliers_manuscript_files/figure-latex/analyses-graph-1.pdf}
-\caption{\label{fig:analyses-graph}Percent of outlier mentions by analysis
-type and year examined. Error bars represent 95\% confidence interval.}
+\caption{\label{fig:analyses-graph}Percent of outlier mentions by analysis type and year examined. Error bars represent 95\% confidence interval.}
 \end{figure*}
 \efloatseparator
  
