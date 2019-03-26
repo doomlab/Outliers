@@ -6,8 +6,8 @@ author:
   - name          : "K. D. Valentine"
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
-    address       : "210 McAlester Hall, Columbia, MO, 65211"
-    email         : "kdvdnf@mail.missouri.edu"
+    address       : "100 Cambridge St., Boston, MA 02114"
+    email         : "kvalentine2@mgh.harvard.edu"
   - name          : "Erin M. Buchanan"
     affiliation   : "2"
   - name          : "Arielle Cunningham"
@@ -45,6 +45,7 @@ lineno            : yes
 
 lang              : "english"
 class             : "man"
+mask              : no
 output            : papaja::apa6_pdf
 replace_ampersands: yes
 csl               : apa6.csl
@@ -619,6 +620,9 @@ Given the frequentist nature of most psychological work, and the impact those ou
 We recommend that those researchers who create reporting guidelines and checklists ensure that they address the need to discuss if outliers were identified, and if so, how outliers were identified, how these outliers were handled, and any differences that arose in conclusions when outliers were excluded/included. We believe this information should be included in every single publication that includes human subjects data (even simply to report that no outliers were found). We implore researchers not to overlook the importance of visualizing their data and identifying data that may not fall within the expected range or pattern of the sample. We suggest that all researchers implement relevant checklists or guidelines (a list of which can be found at https://osf.io/kgnva/wiki/home/) when handling, analyzing, and reporting their data as following these types of checklists has been shown to make a modest improvement in some reporting practices [@Caron2017; @Macleod2017]. Additionally, there are online tools that can assist even the most junior researcher in the cleaning of data, including outlier detection and handling, for almost any type of analysis. From online courses (e.g., Coursera.org, DataCamp.com), free software with plugins [e.g., JASP and jamovi; @JASP2018; @jamovi2018], and YouTube tutorials that detail the step by step procedures (available from the second author at StatsTools.com), inexperienced researchers can learn more and better their reporting and statistical practices. Further, we recommend that those who are reviewers and editors consider data screening procedures when assessing research articles and request this information be added when it is absent from a report. This article spotlights the positive changes that are occurring as researchers are actively reshaping reporting practices in response to the conversation around transparency. We believe that these results present a positive outlook for the future of the psychological sciences, especially when coupled with the training, reviewer feedback, and incentive structure change, that can only improve our science.
 
 \newpage
+#Open Practices Statement 
+
+The data and materials for this manuscript are available at https://osf.io/52mqw/ and no hypotheses were preregistered.
 
 # References
 
