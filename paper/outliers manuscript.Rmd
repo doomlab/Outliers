@@ -4,27 +4,29 @@ shorttitle        : "Outlier reporting"
 
 author: 
   - name          : "K. D. Valentine"
-    affiliation   : "1"
+    affiliation   : "1, 2"
     corresponding : yes    # Define only one corresponding author
     address       : "100 Cambridge St., Boston, MA 02114"
     email         : "kvalentine2@mgh.harvard.edu"
   - name          : "Erin M. Buchanan"
-    affiliation   : "2"
+    affiliation   : "3"
   - name          : "Arielle Cunningham"
-    affiliation   : "3"
+    affiliation   : "4"
   - name          : "Tabetha Hopke"
-    affiliation   : "3"
+    affiliation   : "4"
   - name          : "Addie Wikowsky"
-    affiliation   : "3"
+    affiliation   : "4"
   - name          : "Haley Wilson"
-    affiliation   : "3"
+    affiliation   : "4"
     
 affiliation:
   - id            : "1"
     institution   : "Massachusetts General Hospital"
   - id            : "2"
-    institution   : "Harrisburg University of Science and Technology"
+    institution   : "Harvard Medical School"
   - id            : "3"
+    institution   : "Harrisburg University of Science and Technology"
+  - id            : "4"
     institution   : "Missouri State University"
 
 author_note: |
@@ -33,7 +35,7 @@ author_note: |
 abstract: |
   Psychology is currently experiencing a "renaissance" where the replication and reproducibility of published reports are at the forefront of conversations in the field. While researchers have worked to discuss possible problems and solutions, work has yet to uncover how this new culture may have altered reporting practices in the social sciences. As outliers and other errant data points can bias both descriptive and inferential statistics, the search for these data points is essential to any analysis using these parameters. We quantified the rates of reporting of outliers and other data within psychology at two time points: 2012 when the replication crisis was born, and 2017, after the publication of reports concerning replication, questionable research practices, and transparency. A total of 2235 experiments were identified and analyzed, finding an increase in reporting from only 15.7% of experiments in 2012 to 25.0% in 2017. We investigated differences across years given the psychological field or statistical analysis that experiment employed. Further, we inspected whether data exclusions mentioned were whole participant observations or data points, and what reasons authors gave for stating the observation was deviant. We conclude that while report rates are improving overall, there is still room for improvement in the reporting practices of psychological scientists which can only aid in strengthening our science.
   
-keywords          : "outlier, influential observation, replication"
+keywords          : "outlier, influential observation, replication, methods, reporting, meta science, psychology"
 
 bibliography      : ["outliers.bib"]
 
@@ -43,9 +45,10 @@ tablelist         : no
 footnotelist      : no
 lineno            : yes
 
+
 lang              : "english"
 class             : "man"
-mask              : no
+mask              : yes
 output            : papaja::apa6_pdf
 replace_ampersands: yes
 csl               : apa6.csl
@@ -149,6 +152,15 @@ m1 <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
 #summary(m1)
+
+#reviewer 2 asked for what would happen if we treat year as binary:
+m1.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+#summary(m1.r2)
+#no change
 ```
 
 Data processing resulted in a total of `r nrow(master)` experiments being coded, `r nrow(master[ master$time.pulled == "2012" , ])` of which were from 2012 or prior, with the additional `r nrow(master[ master$time.pulled == "2017" , ])` being from 2017 or prior. Investigating reporting of outliers, we found that in 2012, `r printnum(overalloutpercent$percent[2], digits = 1)`% of experiments mentioned outliers, while in 2017, `r printnum(overalloutpercent$percent[4], digits = 1)`% of experiments mentioned outliers. Actual publication year was used to predict outlier mention (yes/no) with a random intercept for journal and article, as described above. We found that publication year predicted outlier mentions, *Z* = `r printnum(summary(m1)$coefficients[2,3], digits = 2)`, *p* = `r printp(summary(m1)$coefficients[2,4])`. Each year, experiments were `r printnum(exp(summary(m1)$coefficients[2,1])*100-100, digits = 1)`% more likely to report outliers as the previous year. 
@@ -187,6 +199,13 @@ m1cl <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
             control = glmerControl(optimizer = "bobyqa"),
             nAGQ = 0)
 #summary(m1cl)
+
+m1cl.r2 <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=clin.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+#summary(m1cl.r2)
 
 m1cog <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
             data=cog.master, 
@@ -620,9 +639,7 @@ Given the frequentist nature of most psychological work, and the impact those ou
 We recommend that those researchers who create reporting guidelines and checklists ensure that they address the need to discuss if outliers were identified, and if so, how outliers were identified, how these outliers were handled, and any differences that arose in conclusions when outliers were excluded/included. We believe this information should be included in every single publication that includes human subjects data (even simply to report that no outliers were found). We implore researchers not to overlook the importance of visualizing their data and identifying data that may not fall within the expected range or pattern of the sample. We suggest that all researchers implement relevant checklists or guidelines (a list of which can be found at https://osf.io/kgnva/wiki/home/) when handling, analyzing, and reporting their data as following these types of checklists has been shown to make a modest improvement in some reporting practices [@Caron2017; @Macleod2017]. Additionally, there are online tools that can assist even the most junior researcher in the cleaning of data, including outlier detection and handling, for almost any type of analysis. From online courses (e.g., Coursera.org, DataCamp.com), free software with plugins [e.g., JASP and jamovi; @JASP2018; @jamovi2018], and YouTube tutorials that detail the step by step procedures (available from the second author at StatsTools.com), inexperienced researchers can learn more and better their reporting and statistical practices. Further, we recommend that those who are reviewers and editors consider data screening procedures when assessing research articles and request this information be added when it is absent from a report. This article spotlights the positive changes that are occurring as researchers are actively reshaping reporting practices in response to the conversation around transparency. We believe that these results present a positive outlook for the future of the psychological sciences, especially when coupled with the training, reviewer feedback, and incentive structure change, that can only improve our science.
 
 \newpage
-#Open Practices Statement 
 
-The data and materials for this manuscript are available at https://osf.io/52mqw/ and no hypotheses were preregistered.
 
 # References
 

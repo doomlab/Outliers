@@ -1,0 +1,597 @@
+---
+title             : "Have psychologists increased reporting of outliers in response to the reproducibility crisis?"
+shorttitle        : "Outlier reporting"
+
+author: 
+  - name          : "K. D. Valentine"
+    affiliation   : "1, 2"
+    corresponding : yes    # Define only one corresponding author
+    address       : "100 Cambridge St., Boston, MA 02114"
+    email         : "kvalentine2@mgh.harvard.edu"
+  - name          : "Erin M. Buchanan"
+    affiliation   : "3"
+  - name          : "Arielle Cunningham"
+    affiliation   : "4"
+  - name          : "Tabetha Hopke"
+    affiliation   : "4"
+  - name          : "Addie Wikowsky"
+    affiliation   : "4"
+  - name          : "Haley Wilson"
+    affiliation   : "4"
+    
+affiliation:
+  - id            : "1"
+    institution   : "Massachusetts General Hospital"
+  - id            : "2"
+    institution   : "Harvard Medical School"
+  - id            : "3"
+    institution   : "Harrisburg University of Science and Technology"
+  - id            : "4"
+    institution   : "Missouri State University"
+
+author_note: |
+ K. D. Valentine is a Postdoctoral Research Fellow at the Health Decision Sciences Center at Massachusetts General Hospital. Erin M. Buchanan is an Professor of Cognitive Analytics at Harrisburg University of Science and Technology. Arielle Cunningham, Tabetha Hopke, Addie Wikowsky, and Haley Wilson are master's candidates at Missouri State University. 
+  
+abstract: |
+  Psychology is currently experiencing a "renaissance" where the replication and reproducibility of published reports are at the forefront of conversations in the field. While researchers have worked to discuss possible problems and solutions, work has yet to uncover how this new culture may have altered reporting practices in the social sciences. As outliers and other errant data points can bias both descriptive and inferential statistics, the search for these data points is essential to any analysis using these parameters. We quantified the rates of reporting of outliers and other data within psychology at two time points: 2012 when the replication crisis was born, and 2017, after the publication of reports concerning replication, questionable research practices, and transparency. A total of 2235 experiments were identified and analyzed, finding an increase in reporting from only 15.7% of experiments in 2012 to 25.0% in 2017. We investigated differences across years given the psychological field or statistical analysis that experiment employed. Further, we inspected whether data exclusions mentioned were whole participant observations or data points, and what reasons authors gave for stating the observation was deviant. We conclude that while report rates are improving overall, there is still room for improvement in the reporting practices of psychological scientists which can only aid in strengthening our science.
+  
+keywords          : "outlier, influential observation, replication, methods, reporting, meta science, psychology"
+
+bibliography      : ["outliers.bib"]
+
+figsintext        : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : yes
+
+
+lang              : "english"
+class             : "man"
+mask              : yes
+output            : papaja::apa6_pdf
+replace_ampersands: yes
+csl               : apa6.csl
+---
+
+```{r load_packages, include = FALSE}
+library("papaja")
+library(knitr)
+library(dplyr)
+library(lme4)
+library(ggplot2)
+library(reshape)
+knitr::opts_chunk$set(cache = TRUE)
+
+##load the dataset
+master = read.csv("outliers complete.csv")
+
+##graph clean up code
+cleanup = theme(panel.grid.major = element_blank(), 
+              panel.grid.minor = element_blank(), 
+              panel.background = element_blank(), 
+              axis.line = element_line(colour = "black"), 
+              legend.key = element_rect(fill = "white"),
+              text = element_text(size = 15))
+```
+
+## Overall Outliers
+
+```{r overallout, include = TRUE}
+##clean up the mention column 
+master$mention.outliers = factor(master$mention.outliers,
+                      levels = c("no", "yes"),
+                      labels = c("No", "Yes"))
+
+##create a data frame of the percentages by type
+oaoutsummary = table(master$mention.outliers, master$time.pulled)
+oaoutsummary = as.data.frame(oaoutsummary)
+colnames(oaoutsummary) = c("mention.outliers", "time.pulled", "Freq")
+master$time.pulled=as.factor(master$time.pulled)
+overalloutpercent = as.data.frame(group_by(oaoutsummary, time.pulled) %>%
+  mutate(percent = Freq/sum(Freq)*100))
+
+##examine the model
+m1 <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1)
+
+#reviewer 2 asked for what would happen if we treat year as binary:
+m1.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1.r2)
+#no change
+```
+
+
+## Fields
+
+```{r fieldout, include = FALSE}
+
+##create a data frame of the percentages by time and type
+outsummary = table(master$mention.outliers, master$time.pulled, master$Type)
+outsummary = as.data.frame(outsummary)
+colnames(outsummary) = c("mention.outliers", "time.pulled", "Type", "Freq")
+
+outpercent = as.data.frame(group_by(outsummary, time.pulled, Type) %>%
+  mutate(percent = Freq/sum(Freq)*100))
+```
+
+```{r field-mlm, include = TRUE}
+clin.master=master[which(master$Type=="Clinical"),]
+cog.master=master[which(master$Type=="Cognitive"),]
+coun.master=master[which(master$Type=="Counseling"),]
+dev.master=master[which(master$Type=="Developmental"),]
+edu.master=master[which(master$Type=="Educational"),]
+envi.master=master[which(master$Type=="Environmental"),]
+for.master=master[which(master$Type=="Forensics"),]
+io.master=master[which(master$Type=="IO"),]
+meth.master=master[which(master$Type=="Methods"),]
+neu.master=master[which(master$Type=="Neuro"),]
+over.master=master[which(master$Type=="Overview"),]
+soc.master=master[which(master$Type=="Social"),]
+sport.master=master[which(master$Type=="Sports"),]
+
+m1cl <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=clin.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1cl)
+
+m1cl.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=clin.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1cl.r2)
+
+m1cog <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=cog.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1cog)
+
+m1cog.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=cog.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1cog.r2)
+
+m1cou <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=coun.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1cou)
+
+m1cou.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=coun.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1cou.r2)
+
+m1dev <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=dev.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1dev)
+
+m1dev.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=dev.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1dev.r2)
+
+m1edu <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=edu.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1edu)
+
+m1edu.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=edu.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1edu.r2)
+
+m1envi <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=envi.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1envi)
+
+m1envi.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=envi.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1envi.r2)
+
+m1for <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=for.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1for)
+
+m1for.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=for.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1for.r2)
+
+m1io <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=io.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1io)
+
+m1io.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=io.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1io.r2)
+#one crosses p<.05 (p=.04) with continous, but not with dichotomous (p=.06)
+
+m1meth <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=meth.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1meth)
+
+m1meth.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=meth.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1meth.r2)
+
+m1neu <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=neu.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1neu)
+
+m1neu.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=neu.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1neu.r2)
+
+m1over <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=over.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1over)
+
+m1over.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=over.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1over.r2)
+
+m1soc <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=soc.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1soc)
+
+m1soc.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=soc.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1soc.r2)
+
+m1sport <- glmer(mention.outliers ~ year  + (1 | Journal) + (1 | article),
+            data=sport.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1sport)
+
+m1sport.r2 <- glmer(mention.outliers ~ time.pulled  + (1 | Journal) + (1 | article),
+            data=sport.master, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1sport.r2)
+```
+
+## Analyses Type
+
+```{r analysisout, include=FALSE}
+##create longdata set for analysis
+long.test=master[,c("Journal","year", "article", "time.pulled", "Type", "mention.outliers", "peopleor.data.points",
+                    "take.out.or.leave.in", "run.with.or.without", 
+                    "Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
+                    "Modeling", "BayesOther" )]
+
+long.test.data=melt(long.test, 
+                    id = c("Journal","year", "article", "time.pulled", "Type",
+                           "mention.outliers", "peopleor.data.points", "take.out.or.leave.in", "run.with.or.without"),
+                    measured = c("Basics", "ANOVA" , "Regression", "ChiSquare", "Nonparametric", 
+                                 "Modeling", "BayesOther"))
+colnames(long.test.data)=c("Journal","year", "article", "time.pulled", 
+                           "Type","mention.outliers", "peopleor.data.points", "take.out.or.leave.in",
+                           "run.with.or.without", "analysis", "used")
+##only use times that they used it or we are doubling up 
+long.test.data = subset(long.test.data, used == 1)
+
+##create a data frame of the percentages
+analysessummary = table(long.test.data$mention.outliers, long.test.data$time.pulled, long.test.data$analysis)
+analysessummary = as.data.frame(analysessummary)
+colnames(analysessummary) = c("mention.outliers", "time.pulled",  "analysis.type", "Freq")
+
+analysespercent = as.data.frame(group_by(analysessummary, time.pulled, analysis.type) %>%
+  mutate(percent = Freq/sum(Freq)*100))
+```
+
+```{r analysis-mlm, include=TRUE}
+#now need to see if they vary by analysis
+basic.data=long.test.data[which(long.test.data$analysis=="Basics"),]
+anova.data=long.test.data[which(long.test.data$analysis=="ANOVA"),]
+reg.data=long.test.data[which(long.test.data$analysis=="Regression"),]
+chi.data=long.test.data[which(long.test.data$analysis=="ChiSquare"),]
+nonpar.data=long.test.data[which(long.test.data$analysis=="Nonparametric"),]
+model.data=long.test.data[which(long.test.data$analysis=="Modeling"),]
+bo.data=long.test.data[which(long.test.data$analysis=="BayesOther"),]
+
+m1basic <- glmer(mention.outliers ~ year + (1 | Journal) + (1 | article),
+            data=basic.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1basic)
+
+m1basic.r2 <- glmer(mention.outliers ~ time.pulled + (1 | Journal) + (1 | article),
+            data=basic.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1basic.r2)
+
+m1anova <- glmer(mention.outliers ~ year + (1 | Journal) + (1 | article),
+            data=anova.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1anova)
+
+m1anova.r2 <- glmer(mention.outliers ~ time.pulled + (1 | Journal) + (1 | article),
+            data=anova.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1anova.r2)
+
+m1reg <- glmer(mention.outliers ~ year + (1 | Journal) + (1 | article),
+            data=reg.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1reg)
+
+m1reg.r2 <- glmer(mention.outliers ~ time.pulled + (1 | Journal) + (1 | article),
+            data=reg.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1reg.r2)
+
+m1chi <- glmer(mention.outliers ~ year + (1 | Journal) + (1 | article),
+            data=chi.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1chi)
+
+m1chi.r2 <- glmer(mention.outliers ~ time.pulled + (1 | Journal) + (1 | article),
+            data=chi.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1chi.r2)
+
+m1non <- glmer(mention.outliers ~ year + (1 | Journal) + (1 | article),
+            data=nonpar.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1non)
+
+m1non.r2 <- glmer(mention.outliers ~ time.pulled + (1 | Journal) + (1 | article),
+            data=nonpar.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1non.r2)
+
+m1model <- glmer(mention.outliers ~ year + (1 | Journal) + (1 | article),
+            data=model.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1model)
+
+m1model.r2 <- glmer(mention.outliers ~ time.pulled + (1 | Journal) + (1 | article),
+            data=model.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1model.r2)
+
+m1bo <- glmer(mention.outliers ~ year + (1 | Journal) + (1 | article),
+            data=bo.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1bo)
+
+m1bo.r2 <- glmer(mention.outliers ~ time.pulled + (1 | Journal) + (1 | article),
+            data=bo.data, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1bo.r2)
+```
+
+## Type of Outlier
+
+```{r typeout, include=FALSE}
+peep_data = subset(master, mention.outliers == "Yes")
+
+##create a data frame of the percentages
+peep_datasummary = table(peep_data$peopleor.data.points)
+
+peep_datasummary = as.data.frame(peep_datasummary)
+colnames(peep_datasummary) = c("code", "Freq")
+
+peep_datapercent = as.data.frame(group_by(peep_datasummary) %>%
+  mutate(percent = Freq/sum(Freq)*100))
+```
+
+```{r type-mlm, include=TRUE}
+##people versus no outliers
+people = subset(master, peopleor.data.points == "people" | peopleor.data.points == "")
+datapoints = subset(master, peopleor.data.points == "data points" | peopleor.data.points == "")
+
+m1people <- glmer(mention.outliers ~ year + (1 | Journal) + (1 | article),
+            data=people, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1people)
+
+m1people.r2 <- glmer(mention.outliers ~ time.pulled + (1 | Journal) + (1 | article),
+            data=people, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1people.r2)
+
+m1dp <- glmer(mention.outliers ~ year + (1 | Journal) + (1 | article),
+            data=datapoints, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1dp)
+
+m1dp.r2 <- glmer(mention.outliers ~ time.pulled + (1 | Journal) + (1 | article),
+            data=datapoints, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1dp.r2)
+
+
+```
+
+## Reason for Exclusion
+
+```{r reasonsout, include=FALSE}
+table(master$reason.code)
+reasons = subset(master, mention.outliers == "Yes")
+
+##create reason columns
+reasons$part = 0
+reasons$part[ grep("part", reasons$reason.code)] = 1
+reasons$stat = 0
+reasons$stat[ grep("stat", reasons$reason.code)] = 1
+reasons$unus = 0
+reasons$unus[ grep("unus", reasons$reason.code)] = 1
+
+##create a data frame of the percentages
+reasonssummary = table(reasons$part)
+reasonssummary = as.data.frame(reasonssummary)
+colnames(reasonssummary) = c("yesno", "part.freq")
+reasonssummary$stat.freq = as.data.frame(table(reasons$stat))$Freq
+reasonssummary$unus.freq = as.data.frame(table(reasons$unus))$Freq
+
+reasonspercent = as.data.frame(group_by(reasonssummary) %>%
+  mutate(part.percent = part.freq/sum(part.freq)*100) %>%
+  mutate(stat.percent = stat.freq/sum(stat.freq)*100) %>%
+  mutate(unus.percent = unus.freq/sum(unus.freq)*100))
+```
+
+```{r reason-mlm, include=TRUE}
+reasondata = master[ master$mention.outliers == "Yes", c("Journal", "year", "reason.code", "article", "time.pulled")]
+
+##create reason columns
+reasondata$part = 0
+reasondata$part[ grep("part", reasondata$reason.code)] = 1
+reasondata$stat = 0
+reasondata$stat[ grep("stat", reasondata$reason.code)] = 1
+reasondata$unus = 0
+reasondata$unus[ grep("unus", reasondata$reason.code)] = 1
+
+m1part <- glmer(part ~ year + (1 | Journal) + (1 | article),
+            data=reasondata, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1part)
+
+m1part.r2 <- glmer(part ~ time.pulled + (1 | Journal) + (1 | article),
+            data=reasondata, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1part.r2)
+
+m1stat <- glmer(stat ~ year + (1 | Journal) + (1 | article),
+            data=reasondata, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1stat)
+
+m1stat.r2 <- glmer(stat ~ time.pulled + (1 | Journal) + (1 | article),
+            data=reasondata, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1stat.r2)
+
+m1unus <- glmer(unus ~ year + (1 | Journal) + (1 | article),
+            data=reasondata, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1unus)
+
+m1unus.r2 <- glmer(unus ~ time.pulled + (1 | Journal) + (1 | article),
+            data=reasondata, 
+            family=binomial(link="logit"),
+            control = glmerControl(optimizer = "bobyqa"),
+            nAGQ = 0)
+summary(m1unus.r2)
+```
+
+
+
+

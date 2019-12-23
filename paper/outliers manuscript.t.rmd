@@ -1,0 +1,49 @@
+---
+title             : "Have psychologists increased reporting of outliers in response to the reproducibility crisis?"
+shorttitle        : "Outlier reporting"
+
+author: 
+  - name          : "K. D. Valentine"
+    affiliation   : "1, 2"
+    corresponding : yes    # Define only one corresponding author
+    address       : "100 Cambridge St., Boston, MA 02114"
+    email         : "kvalentine2@mgh.harvard.edu"
+  - name          : "Erin M. Buchanan"
+    affiliation   : "3"
+  - name          : "Arielle Cunningham"
+    affiliation   : "4"
+  - name          : "Tabetha Hopke"
+    affiliation   : "4"
+  - name          : "Addie Wikowsky"
+    affiliation   : "4"
+  - name          : "Haley Wilson"
+    affiliation   : "4"
+    
+affiliation:
+  - id            : "1"
+    institution   : "Massachusetts General Hospital"
+  - id            : "2"
+    institution   : "Harvard Medical School"
+  - id            : "3"
+    institution   : "Harrisburg University of Science and Technology"
+  - id            : "4"
+    institution   : "Missouri State University"
+
+author_note: |
+ K. D. Valentine is a Postdoctoral Research Fellow at the Health Decision Sciences Center at Massachusetts General Hospital. Erin M. Buchanan is an Professor of Cognitive Analytics at Harrisburg University of Science and Technology. Arielle Cunningham, Tabetha Hopke, Addie Wikowsky, and Haley Wilson are master's candidates at Missouri State University. 
+  
+
+
+figsintext        : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : yes
+
+lang              : "english"
+class             : "man"
+mask              : no
+output            : papaja::apa6_pdf
+replace_ampersands: yes
+csl               : apa6.csl
+---

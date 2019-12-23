@@ -1,0 +1,62 @@
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:info-table}Outlier Reporting by Field Across Years}
+\begin{tabular}{lccccccc}
+\toprule
+Field & \% 12 & $N$ 12 & \% 17 & $N$ 17 & OR & $Z$ & $p$\\
+\midrule
+Clinical & 9.3 & 54 & 12.0 & 50 & 1.06 & 0.43 & .666\\
+Cognitive & 31.1 & 164 & 49.6 & 135 & 1.17 & 0.92 & .357\\
+Counseling & 14.3 & 56 & 28.1 & 57 & 1.20 & 1.80 & .072\\
+Developmental & 20.0 & 70 & 34.4 & 61 & 1.22 & 1.41 & .158\\
+Educational & 8.9 & 56 & 12.1 & 58 & 1.07 & 0.55 & .585\\
+Environmental & 12.1 & 58 & 12.1 & 58 & 1.01 & 0.05 & .957\\
+Forensics & 3.2 & 62 & 18.6 & 70 & 1.44 & 2.32 & .020\\
+IO & 5.8 & 104 & 18.5 & 124 & 1.34 & 2.02 & .043\\
+Methods & 13.6 & 66 & 11.5 & 61 & 1.00 & 0.01 & .992\\
+Neuro & 30.5 & 59 & 17.9 & 56 & 0.88 & -1.22 & .224\\
+Overview & 21.9 & 114 & 18.9 & 132 & 0.94 & -0.39 & .695\\
+Social & 9.8 & 164 & 33.8 & 231 & 1.41 & 2.54 & .011\\
+Sports & 6.9 & 58 & 12.3 & 57 & 1.06 & 0.49 & .625\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} $N$ represents number of experiments for each category.}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table*}
+\efloatseparator
+ 
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:analysis-table}Outlier Reporting by Analysis Type Across Years}
+\begin{tabular}{lccccccc}
+\toprule
+Analysis & \% 12 & $N$ 12 & \% 17 & $N$ 17 & OR & $Z$ & $p$\\
+\midrule
+Basic Statistics & 15.0 & 406 & 31.0 & 507 & 1.24 & 3.04 & .002\\
+ANOVA & 19.6 & 469 & 31.5 & 466 & 1.15 & 2.51 & .012\\
+Regression & 12.0 & 208 & 22.1 & 244 & 1.13 & 2.13 & .033\\
+Chi-Square & 19.6 & 112 & 23.8 & 172 & 1.10 & 0.80 & .424\\
+Non-Parametric & 6.2 & 64 & 25.5 & 47 & 1.33 & 2.03 & .043\\
+Modeling & 12.0 & 217 & 21.8 & 408 & 1.17 & 2.12 & .034\\
+Bayesian or Other & 13.2 & 53 & 25.9 & 143 & 1.25 & 0.86 & .389\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} $N$ represents number of experiments for each category.}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table*}
+\efloatseparator
+ 
