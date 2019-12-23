@@ -170,7 +170,7 @@ scientists which can only aid in strengthening our science.
 Psychology is undergoing a \enquote{renaissance} in which focus has
 shifted to the replication and reproducibility of current published
 reports (Etz \& Vandekerckhove, 2016; Lindsay, 2015; Nelson, Simmons, \&
-Simonsohn, 2018; Open Science Collaboration, 2015; van Elk et al.,
+Simonsohn, 2018; Open Science Collaboration, 2015; Van Elk et al.,
 2015). A main concern has been the difficulty in replicating phenomena,
 often attributed to publication bias (Ferguson \& Brannick, 2012), the
 use and misuse of \emph{p}-values (Gigerenzer, 2004; Ioannidis, 2005),
@@ -181,7 +181,7 @@ selective removal or inclusion of data points.
 
 As outlined by Nelson et al. (2018), the social sciences turned inward
 to examine their practices due to the publication of unbelievable data
-(Wagenmakers, Wetzels, Borsboom, \& van der Maas, 2011), academic fraud
+(Wagenmakers, Wetzels, Borsboom, \& Maas, 2011), academic fraud
 (Simonsohn, 2013), failures to replicate important findings (Doyen,
 Klein, Pichon, \& Cleeremans, 2012), and the beginning of the Open
 Science Framework (Nosek, 2015). These combined forces led to the
@@ -275,8 +275,8 @@ et al. (2013) found that 11\% of psychology researchers stated that they
 had not reported excluding participants for being outliers in their
 papers. Fiedler and Schwarz (2016) suggested that more than a quarter of
 researchers decide whether to exclude data only after looking at the
-impact of doing so. ({\textbf{???}}) investigated the effects of
-outliers on published analyses, and while they did not find that they
+impact of doing so. Bakker and Wicherts (2014a) investigated the effects
+of outliers on published analyses, and while they did not find that they
 affected the surveyed results, they did report that these findings are
 likely biased by the non-reporting of data screening procedures in some
 articles, as sample sizes and degrees of freedom often did not match.
@@ -286,37 +286,38 @@ and reporting is problematic.
 By keeping outliers in a dataset, analyses are more likely to have
 increased error variance (depending on sample size, Orr et al., 1991),
 biased estimates (Osborne \& Overbay, 2004), and either increased
-({\textbf{???}}, {\textbf{???}}) or reduced effect size and power (Orr
-et al., 1991; Osborne \& Overbay, 2004), which can alter the results of
-the analysis and lead to falsely supporting (Type I error), or denying a
-claim (Type II error). Conversely, removing outliers unjustly or when
-they represent true responses in the variable can also lead to a
-decrease in variance and an increase in Type I errors ({\textbf{???}}).
-For example, ({\textbf{???}}) recently reported on the impact of the
-removal of outliers from a study on video game gun violence. In the
-published study, ({\textbf{???}}) suggested that playing a game with gun
-violence lead to more gun-violent behaviors than playing a game with
-sword- or no violence. However, their results stem from the removal of
-two player dyads. As Hilgard demonstrated, inclusion of even one of
-these dyads would have made all of their \enquote{marginal} results
-\enquote{nonsignificant}, and their \enquote{significant} results
-\enquote{marginal}. Inconsistencies in the treatment and publication of
-outliers could also lead to failures to replicate previous work, as it
-would be difficult to replicate analyses that have been \emph{p}-hacked
-into \enquote{just-significant} results (Leggett, Thomas, Loetscher, \&
-Nicholls, 2013; Nelson et al., 2018). The influence of this practice can
-be wide spread, as non-reporting of data manipulation can negatively
-affect meta-analyses, effect sizes, and sample size estimates for study
-planning. On the other hand, outliers do not always need to be seen as
-nuisance, as they will often be informative to researchers because they
-can encourage the diagnosis, change, and evolution of a research model
-(Beckman \& Cook, 1983). Taken together, a lack of reporting of outlier
-practices can lead to furthering unwarranted avenues of research,
-ignoring important information, creating erroneous theories, and failure
-to replicate, all of which serve to weaken the sciences. Clarifying the
-presence or absence of outliers, how they were assessed, and how they
-were handled can improve our transparency and replicability, and
-ultimately help to strengthen our science.
+(Buchanan \& Scofield, 2018; Hilgard, 2019) or reduced effect size and
+power (Orr et al., 1991; Osborne \& Overbay, 2004), which can alter the
+results of the analysis and lead to falsely supporting (Type I error),
+or denying a claim (Type II error). Conversely, removing outliers
+unjustly or when they represent true responses in the variable can also
+lead to a decrease in variance and an increase in Type I errors (Bakker
+\& Wicherts, 2014b). For example, Hilgard (2019) recently reported on
+the impact of the removal of outliers from a study on video game gun
+violence. In the published study, Chang and Bushman (2019) suggested
+that playing a game with gun violence lead to more gun-violent behaviors
+than playing a game with sword- or no violence. However, their results
+stem from the removal of two player dyads. As Hilgard demonstrated,
+inclusion of even one of these dyads would have made all of their
+\enquote{marginal} results \enquote{nonsignificant}, and their
+\enquote{significant} results \enquote{marginal}. Inconsistencies in the
+treatment and publication of outliers could also lead to failures to
+replicate previous work, as it would be difficult to replicate analyses
+that have been \emph{p}-hacked into \enquote{just-significant} results
+(Leggett, Thomas, Loetscher, \& Nicholls, 2013; Nelson et al., 2018).
+The influence of this practice can be wide spread, as non-reporting of
+data manipulation can negatively affect meta-analyses, effect sizes, and
+sample size estimates for study planning. On the other hand, outliers do
+not always need to be seen as nuisance, as they will often be
+informative to researchers because they can encourage the diagnosis,
+change, and evolution of a research model (Beckman \& Cook, 1983). Taken
+together, a lack of reporting of outlier practices can lead to
+furthering unwarranted avenues of research, ignoring important
+information, creating erroneous theories, and failure to replicate, all
+of which serve to weaken the sciences. Clarifying the presence or
+absence of outliers, how they were assessed, and how they were handled
+can improve our transparency and replicability, and ultimately help to
+strengthen our science.
 
 The current zeitgeist of increased transparency and reproducibility
 applies not only to the manner in which data is collected, but also the
@@ -443,10 +444,10 @@ problems).
 Because each article constituted multiple data points within the dataset
 which were each nested within a particular journal and article, a
 multilevel model (MLM) was used to control for correlated error (Gelman,
-2006). The Pinheiro, Bates, Debroy, Sarkar, and Team (2017) \emph{nlme}
-package in \emph{R} was used to calculate these analyses. A maximum
-likelihood logistic multilevel model was used to examine how the year in
-which the experiment was published predicted the likelihood of
+2006). The Pinheiro, Bates, Debroy, Sarkar, and R Core Team (2017)
+\emph{nlme} package in \emph{R} was used to calculate these analyses. A
+maximum likelihood logistic multilevel model was used to examine how the
+year in which the experiment was published predicted the likelihood of
 mentioning outliers (yes/no) while including a random intercept for
 journal and article. This model was analyzed over all of the data, as
 well as broken down by sub-fields or analyses in order to glean a more
@@ -510,7 +511,7 @@ excluded from the study.
 
 \begin{figure}
 \centering
-\includegraphics{outliers_manuscript_files/figure-latex/type-graph-1.pdf}
+\includegraphics{type-graph-1.png}
 \caption{\label{fig:type-graph}Percent of outlier mentions by sub-domain
 field and year examined. Error bars represent 95\% confidence interval.}
 \end{figure}
@@ -550,7 +551,7 @@ Sports & 6.9 & 58 & 12.3 & 57 & 1.06 & 0.49 & .625\\
 
 \begin{figure}
 \centering
-\includegraphics{outliers_manuscript_files/figure-latex/analyses-graph-1.pdf}
+\includegraphics{analyses-graph-1.png}
 \caption{\label{fig:analyses-graph}Percent of outlier mentions by analysis
 type and year examined. Error bars represent 95\% confidence interval.}
 \end{figure}
@@ -684,10 +685,10 @@ manuscripts with permanent identifiers (i.e., weblinks and DOIs).
 Potentially, if journal or reviewer comments indicate shortening data
 analyses sections, the detailed specifics of these plans can be shifted
 to these online resources. While the best practice may be to include
-this information in the published article (as ({\textbf{???}}) note that
-sample size and degrees of freedom are often inconsistent and difficult
-to follow in publications), online materials can be useful when that
-option is restricted.
+this information in the published article (as Bakker and Wicherts
+(2014a) note that sample size and degrees of freedom are often
+inconsistent and difficult to follow in publications), online materials
+can be useful when that option is restricted.
 
 We recommend that those researchers who create reporting guidelines and
 checklists ensure that they address the need to discuss if outliers were
@@ -703,24 +704,24 @@ checklists or guidelines (a list of which can be found at
 \url{https://osf.io/kgnva/wiki/home/}) when handling, analyzing, and
 reporting their data as following these types of checklists has been
 shown to make a modest improvement in some reporting practices (Caron,
-March, Cohen, \& Schmidt, 2017; Macleod \& The NPQIP Collaborative
-Group, 2017). Additionally, there are online tools that can assist even
-the most junior researcher in the cleaning of data, including outlier
-detection and handling, for almost any type of analysis. From online
-courses (e.g., Coursera.org, DataCamp.com), free software with plugins
-(Jamovi project, 2018; e.g., JASP and jamovi; JASP Team, 2018), and
-YouTube tutorials that detail the step by step procedures (available
-from the second author at StatsTools.com), inexperienced researchers can
-learn more and better their reporting and statistical practices.
-Further, we recommend that those who are reviewers and editors consider
-data screening procedures when assessing research articles and request
-this information be added when it is absent from a report. This article
-spotlights the positive changes that are occurring as researchers are
-actively reshaping reporting practices in response to the conversation
-around transparency. We believe that these results present a positive
-outlook for the future of the psychological sciences, especially when
-coupled with the training, reviewer feedback, and incentive structure
-change, that can only improve our science.
+March, Cohen, \& Schmidt, 2017; Macleod, 2017). Additionally, there are
+online tools that can assist even the most junior researcher in the
+cleaning of data, including outlier detection and handling, for almost
+any type of analysis. From online courses (e.g., Coursera.org,
+DataCamp.com), free software with plugins (e.g., JASP and jamovi; JASP
+Team, 2018; project, 2018), and YouTube tutorials that detail the step
+by step procedures (available from the second author at StatsTools.com),
+inexperienced researchers can learn more and better their reporting and
+statistical practices. Further, we recommend that those who are
+reviewers and editors consider data screening procedures when assessing
+research articles and request this information be added when it is
+absent from a report. This article spotlights the positive changes that
+are occurring as researchers are actively reshaping reporting practices
+in response to the conversation around transparency. We believe that
+these results present a positive outlook for the future of the
+psychological sciences, especially when coupled with the training,
+reviewer feedback, and incentive structure change, that can only improve
+our science.
 
 \newpage
 
@@ -740,6 +741,18 @@ doi:\href{https://doi.org/10.1002/per.1919}{10.1002/per.1919}
 Aust, F., \& Barth, M. (2017). papaja: Create APA manuscripts with R
 Markdown. Retrieved from \url{https://github.com/crsh/papaja}
 
+\hypertarget{ref-Bakker2014}{}
+Bakker, M., \& Wicherts, J. M. (2014a). Outlier removal and the relation
+with reporting errors and quality of psychological research. \emph{PLoS
+ONE}, \emph{9}(7), 1--9.
+doi:\href{https://doi.org/10.1371/journal.pone.0103360}{10.1371/journal.pone.0103360}
+
+\hypertarget{ref-Bakker2014a}{}
+Bakker, M., \& Wicherts, J. M. (2014b). Outlier removal, sum scores, and
+the inflation of the type I error rate in independent samples t tests:
+The power of alternatives and recommendations. \emph{Psychological
+Methods}, \emph{19}(3), 409.
+
 \hypertarget{ref-Beckman1983}{}
 Beckman, R. J., \& Cook, R. D. (1983). {[}Outlier..........s{]}:
 Response. \emph{Technometrics}, \emph{25}(2), 161.
@@ -758,12 +771,24 @@ several discrepant observations and the formation therefrom of the most
 likely induction. \emph{Biometrika}, \emph{48}(1-2), 3--18.
 doi:\href{https://doi.org/10.1093/biomet/48.1-2.3}{10.1093/biomet/48.1-2.3}
 
+\hypertarget{ref-Buchanan2018b}{}
+Buchanan, E. M., \& Scofield, J. E. (2018). Methods to detect low
+quality data and its implication for psychological research.
+\emph{Behavior Research Methods}.
+doi:\href{https://doi.org/10.3758/s13428-018-1035-6}{10.3758/s13428-018-1035-6}
+
 \hypertarget{ref-Caron2017}{}
 Caron, J. E., March, J. K., Cohen, M. B., \& Schmidt, R. L. (2017). A
-survey of the prevalence and impact of reporting guideline endorsement
-in pathology journals. \emph{American Journal of Clinical Pathology},
-\emph{148}(4), 314--322.
-doi:\href{https://doi.org/10.1093/ajcp/aqx080}{10.1093/ajcp/aqx080}
+Survey of the Prevalence and Impact of Reporting Guideline Endorsement
+in Pathology Journals, 314--322.
+doi:\href{https://doi.org/10.1093/AJCP/AQX080}{10.1093/AJCP/AQX080}
+
+\hypertarget{ref-Chang2019}{}
+Chang, J. H., \& Bushman, B. J. (2019). Effect of Exposure to Gun
+Violence in Video Games on Children's Dangerous Behavior With Real Guns:
+A Randomized Clinical Trial. \emph{JAMA Network Open}, \emph{2}(5),
+e194319.
+doi:\href{https://doi.org/10.1001/jamanetworkopen.2019.4319}{10.1001/jamanetworkopen.2019.4319}
 
 \hypertarget{ref-Cook1980}{}
 Cook, R. D., \& Weisberg, S. (1980). Characterizations of an empirical
@@ -811,6 +836,11 @@ Gigerenzer, G. (2004). Mindless statistics. \emph{The Journal of
 Socio-Economics}, \emph{33}(5), 587--606.
 doi:\href{https://doi.org/10.1016/j.socec.2004.09.033}{10.1016/j.socec.2004.09.033}
 
+\hypertarget{ref-Hilgard2019}{}
+Hilgard, J. (2019). Comment on Chang \& Bushman (2019): Effects of
+outlier exclusion. Retrieved from
+\url{https://crystalprisonzone.blogspot.com/2019/06/comment-on-chang-bushman-2019-effects.html}
+
 \hypertarget{ref-Hodge2004}{}
 Hodge, V. J., \& Austin, J. (2004). A survey of outlier detection
 methodologies. \emph{Artificial Intelligence Review}, \emph{22}(2),
@@ -821,10 +851,6 @@ doi:\href{https://doi.org/10.1007/s10462-004-4304-y}{10.1007/s10462-004-4304-y}
 Ioannidis, J. P. A. (2005). Why most published research findings are
 false. \emph{PLoS Medicine}, \emph{2}(8), e124.
 doi:\href{https://doi.org/10.1371/journal.pmed.0020124}{10.1371/journal.pmed.0020124}
-
-\hypertarget{ref-jamovi2018}{}
-Jamovi project. (2018). jamovi (Version 0.8){[}Computer software{]}.
-Retrieved from \url{https://www.jamovi.org}
 
 \hypertarget{ref-JASP2018}{}
 JASP Team. (2018). JASP (Version 0.8.6){[}Computer software{]}.
@@ -868,11 +894,10 @@ Lindsay, D. S. (2015). Replication in psychological science.
 doi:\href{https://doi.org/10.1177/0956797615616374}{10.1177/0956797615616374}
 
 \hypertarget{ref-Macleod2017}{}
-Macleod, M. R., \& The NPQIP Collaborative Group. (2017). \emph{Findings
-of a retrospective, controlled cohort study of the impact of a change in
-Nature journals' editorial policy for life sciences research on the
-completeness of reporting study design and execution}.
-doi:\href{https://doi.org/10.1101/187245}{10.1101/187245}
+Macleod, M. R. (2017). Findings of a retrospective, controlled cohort
+study of the impact of a change in Nature journals' editorial policy for
+life sciences research on the completeness of reporting study design and
+execution. doi:\href{https://doi.org/10.1101/187245}{10.1101/187245}
 
 \hypertarget{ref-Maxwell2015}{}
 Maxwell, S. E., Lau, M. Y., \& Howard, G. S. (2015). Is psychology
@@ -932,9 +957,13 @@ special section on replicability in psychological science.
 doi:\href{https://doi.org/10.1177/1745691612465253}{10.1177/1745691612465253}
 
 \hypertarget{ref-Pinheiro2017}{}
-Pinheiro, J., Bates, D., Debroy, S., Sarkar, D., \& Team, R. C. (2017).
+Pinheiro, J., Bates, D., Debroy, S., Sarkar, D., \& R Core Team. (2017).
 nlme: Linear and nonlinear mixed effects models. Retrieved from
 \url{https://cran.r-project.org/package=nlme}
+
+\hypertarget{ref-jamovi2018}{}
+project, J. (2018). jamovi (Version 0.8){[}Computer software{]}.
+Retrieved from \url{https://www.jamovi.org}
 
 \hypertarget{ref-Simmons2011}{}
 Simmons, J. P., Nelson, L. D., \& Simonsohn, U. (2011). False-positive
@@ -966,17 +995,17 @@ evidence. \emph{Behaviormetrika}, 1--29.
 doi:\href{https://doi.org/10.1007/s41237-019-00078-4}{10.1007/s41237-019-00078-4}
 
 \hypertarget{ref-VanElk2015}{}
-van Elk, M., Matzke, D., Gronau, Q. F., Guan, M., Vandekerckhove, J., \&
+Van Elk, M., Matzke, D., Gronau, Q. F., Guan, M., Vandekerckhove, J., \&
 Wagenmakers, E.-J. (2015). Meta-analyses are no substitute for
 registered replications: A skeptical perspective on religious priming.
 \emph{Frontiers in Psychology}, \emph{6}, 1365.
 doi:\href{https://doi.org/10.3389/fpsyg.2015.01365}{10.3389/fpsyg.2015.01365}
 
 \hypertarget{ref-Wagenmakers2011a}{}
-Wagenmakers, E.-J., Wetzels, R., Borsboom, D., \& van der Maas, H. L. J.
-(2011). Why psychologists must change the way they analyze their data:
-The case of psi: Comment on Bem (2011). \emph{Journal of Personality and
-Social Psychology}, \emph{100}(3), 426--432.
+Wagenmakers, E.-J., Wetzels, R., Borsboom, D., \& Maas, H. L. J. van
+der. (2011). Why psychologists must change the way they analyze their
+data: The case of psi: Comment on Bem (2011). \emph{Journal of
+Personality and Social Psychology}, \emph{100}(3), 426--432.
 doi:\href{https://doi.org/10.1037/a0022790}{10.1037/a0022790}
 
 \hypertarget{ref-Yuan2001}{}
