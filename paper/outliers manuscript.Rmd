@@ -4,7 +4,7 @@ shorttitle        : "Outlier reporting"
 
 author: 
   - name          : "K. D. Valentine"
-    affiliation   : "1, 2"
+    affiliation   : "1,2"
     corresponding : yes    # Define only one corresponding author
     address       : "100 Cambridge St., Boston, MA 02114"
     email         : "kvalentine2@mgh.harvard.edu"
@@ -30,7 +30,7 @@ affiliation:
     institution   : "Missouri State University"
 
 author_note: |
- K. D. Valentine is a Postdoctoral Research Fellow at the Health Decision Sciences Center at Massachusetts General Hospital. Erin M. Buchanan is an Professor of Cognitive Analytics at Harrisburg University of Science and Technology. Arielle Cunningham, Tabetha Hopke, Addie Wikowsky, and Haley Wilson are master's candidates at Missouri State University. 
+ K. D. Valentine is a Postdoctoral Research Fellow at the Health Decision Sciences Center at Massachusetts General Hospital. Erin M. Buchanan is an Professor of Cognitive Analytics at Harrisburg University of Science and Technology. Arielle Cunningham, Tabetha Hopke, Addie Wikowsky, and Haley Wilson were master's candidates at Missouri State University during the creation of this paper.
   
 abstract: |
   Psychology is currently experiencing a "renaissance" where the replication and reproducibility of published reports are at the forefront of conversations in the field. While researchers have worked to discuss possible problems and solutions, work has yet to uncover how this new culture may have altered reporting practices in the social sciences. As outliers and other errant data points can bias both descriptive and inferential statistics, the search for these data points is essential to any analysis using these parameters. We quantified the rates of reporting of outliers and other data within psychology at two time points: 2012 when the replication crisis was born, and 2017, after the publication of reports concerning replication, questionable research practices, and transparency. A total of 2235 experiments were identified and analyzed, finding an increase in reporting from only 15.7% of experiments in 2012 to 25.0% in 2017. We investigated differences across years given the psychological field or statistical analysis that experiment employed. Further, we inspected whether data exclusions mentioned were whole participant observations or data points, and what reasons authors gave for stating the observation was deviant. We conclude that while report rates are improving overall, there is still room for improvement in the reporting practices of psychological scientists which can only aid in strengthening our science.
@@ -39,19 +39,18 @@ keywords          : "outlier, influential observation, replication, methods, rep
 
 bibliography      : ["outliers.bib"]
 
-figsintext        : no
+floatsintext      : no
 figurelist        : no
 tablelist         : no
 footnotelist      : no
-lineno            : yes
+linenumbers       : yes
+mask              : no
+draft             : no
+numbersections    : no
 
-
-lang              : "english"
-class             : "man"
-mask              : yes
-output            : papaja::apa6_pdf
-replace_ampersands: yes
-csl               : apa6.csl
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_docx
 ---
 
 ```{r load_packages, include = FALSE}
@@ -61,10 +60,9 @@ library(dplyr)
 library(lme4)
 library(ggplot2)
 library(reshape)
-knitr::opts_chunk$set(cache = TRUE)
 
 ##load the dataset
-master = read.csv("outliers complete.csv")
+master = read.csv("outliers complete.csv", stringsAsFactors = T)
 
 ##graph clean up code
 cleanup = theme(panel.grid.major = element_blank(), 
@@ -365,7 +363,7 @@ tableprint[ , 8] = printp(c(summary(m1cl)$coefficients[2,4],
                      summary(m1sport)$coefficients[2,4]))
 
 apa_table(as.data.frame(tableprint),
-          format = "latex",
+          #format = "latex",
           caption = "Outlier Reporting by Field Across Years",
           align = c("l", rep("c",7)),
           escape = FALSE,
@@ -518,7 +516,7 @@ apa_table(as.data.frame(tableprint),
                 caption = "Outlier Reporting by Analysis Type Across Years",
                 align = c("l", rep("c",7)),
                 escape = F,
-                format = "latex",
+                #format = "latex",
                 note = "$N$ represents number of experiments for each category.",
                 col.names = c("Analysis", "\\% 12", "$N$ 12", "\\% 17", 
                               "$N$ 17", "OR", "$Z$", "$p$"))
